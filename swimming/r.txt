@@ -1,0 +1,5 @@
+django-cors-headers==3.14.0
+django-filter==22.1
+djangorestframework==3.14.0
+Markdown==3.4.1
+pytz==2022.7.1

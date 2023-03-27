@@ -1,0 +1,52 @@
+from django.db import models
+
+# Create your models here.
+
+
+class Team(models.Model):
+    team_name = models.CharField(max_length=100)
+    team_founding_year = models.IntegerField()
+    team_budget = models.IntegerField()
+    team_motto = models.CharField(max_length=100)
+    team_abbreviation = models.CharField(max_length=10)
+
+
+class Swimmer(models.Model):
+    swimmer_last_name = models.CharField(max_length=100)
+    swimmer_first_name = models.CharField(max_length=100)
+    swimmer_county = models.CharField(max_length=100)
+    swimmer_date_of_birth = models.DateField()
+    swimmer_years_of_experience = models.IntegerField()
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='swimmers')
+    fans = models.ManyToManyField("Fan", through='SwimmerFan')
+
+
+class Coach(models.Model):
+    coach_first_name = models.CharField(max_length=100)
+    coach_last_name = models.CharField(max_length=100)
+    coach_years_of_experience = models.IntegerField()
+    coach_date_of_birth = models.DateField()
+    coach_email = models.CharField(max_length=100)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, unique=True)
+
+
+class Fan(models.Model):
+    fan_first_name = models.CharField(max_length=100)
+    fan_last_name = models.CharField(max_length=100)
+    fan_nationality = models.CharField(max_length=100)
+    fan_date_of_birth = models.DateField()
+    fan_email = models.CharField(max_length=100)
+    swimmers = models.ManyToManyField(Swimmer, through='SwimmerFan')
+
+    def __str__(self):
+        return self.fan_last_name
+
+
+class SwimmerFan(models.Model):
+    swimmer = models.ForeignKey(Swimmer, on_delete=models.CASCADE)
+    fan = models.ForeignKey(Fan, on_delete=models.CASCADE)
+    fan_page_name = models.CharField(max_length=100)
+    fan_since_year = models.IntegerField()
+
+
+
