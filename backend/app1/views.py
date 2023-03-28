@@ -11,6 +11,7 @@ from .serailizer import SwimmerSerializer, TeamSerializer, CoachSerializer, FanS
 
 
 class SwimmerDetails(APIView):
+    serializer_class = SwimmerSerializer
 
     def get(self, request):
         obj = Swimmer.objects.all()
@@ -27,6 +28,7 @@ class SwimmerDetails(APIView):
 
 
 class SwimmerInfo(APIView):
+    serializer_class = SwimmerSerializerId
 
     def get(self, request, id):
         try:
@@ -91,6 +93,7 @@ class SwimmerInfo(APIView):
 
 
 class TeamDetails(APIView):
+    serializer_class = TeamSerializer
 
     def get(self, request):
         obj = Team.objects.all()
@@ -107,6 +110,7 @@ class TeamDetails(APIView):
 
 
 class TeamInfo(APIView):
+    serializer_class = TeamSerializer
 
     def get(self, request, id):
         try:
@@ -170,6 +174,7 @@ class TeamInfo(APIView):
 
 
 class CoachDetails(APIView):
+    serializer_class = CoachSerializer
 
     def get(self, request):
         obj = Coach.objects.all()
@@ -186,6 +191,7 @@ class CoachDetails(APIView):
 
 
 class CoachInfo(APIView):
+    serializer_class = CoachSerializerId
 
     def get(self, request, id):
         try:
@@ -241,6 +247,7 @@ class CoachInfo(APIView):
 
 
 class FanDetails(APIView):
+    serializer_class = FanSerializer
 
     def get(self, request):
         obj = Fan.objects.all()
@@ -262,6 +269,7 @@ class FanDetails(APIView):
 
 
 class FanInfo(APIView):
+    serializer_class = FanSerializerId
 
     def get(self, request, id):
         try:
@@ -325,6 +333,7 @@ class FanInfo(APIView):
 
 
 class SwimmerFanDetails(APIView):
+    serializer_class = SwimmerFanSerializer
 
     def get(self, request):
         obj = SwimmerFan.objects.all()
@@ -341,6 +350,7 @@ class SwimmerFanDetails(APIView):
 
 
 class SwimmerFanInfo(APIView):
+    serializer_class = SwimmerFanSerializer
 
     def get(self, request, id):
         try:
@@ -396,6 +406,7 @@ class SwimmerFanInfo(APIView):
 
 
 class SwimmersWithAtLeastNYearsExp(APIView):
+    serializer_class = SwimmerSerializer
 
     def get(self, request, yoe):
         years_of_exp = Swimmer.objects.filter(swimmer_years_of_experience__gte=yoe)
@@ -404,6 +415,7 @@ class SwimmersWithAtLeastNYearsExp(APIView):
 
 
 class FansOrderedByAvgYoeOfSwimmersTheyAreFansOf(APIView):
+    serializer_class = FanSerializerAvg
 
     def get(self, request):
         fans = Fan.objects.annotate(
@@ -415,6 +427,7 @@ class FansOrderedByAvgYoeOfSwimmersTheyAreFansOf(APIView):
 
 
 class TeamsOrderedByNoOfSwimmers(APIView):
+    serializer_class = TeamSerializerNo
 
     def get(self, request):
         teams = Team.objects.annotate(no_of_swimmers=Count('swimmers')).order_by('no_of_swimmers')
@@ -424,6 +437,7 @@ class TeamsOrderedByNoOfSwimmers(APIView):
 
 
 class TeamsBulk(APIView):
+
     def post(self, request, id):
         try:
             team = Team.objects.get(id=id)
@@ -444,8 +458,6 @@ class TeamsBulk(APIView):
             swimmer.save()
 
         return Response({"message": "Bulk succeed"}, status=status.HTTP_200_OK)
-
-
 
 
 
