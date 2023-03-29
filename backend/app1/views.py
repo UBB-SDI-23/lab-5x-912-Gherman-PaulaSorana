@@ -70,7 +70,7 @@ class SwimmerInfo(APIView):
             obj = Swimmer.objects.get(id=id)
 
         except Swimmer.DoesNotExist:
-            msg = {"msg": "not found error"}
+            msg = {"msg": "not found error!"}
             return Response(msg, status=status.HTTP_404_NOT_FOUND)
 
         serializer = SwimmerSerializer(obj, data=request.data, partial=True)
