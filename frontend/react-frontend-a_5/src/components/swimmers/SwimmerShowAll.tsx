@@ -30,7 +30,8 @@ export const SwimmerShowAll = () => {
                     <th>County</th>
                     <th>Date of Birth</th>
                     <th>Years of experience</th>
-                    <th>Team Id</th>
+                    <th>Team ID</th>
+                    <th>Fans IDS</th>
                 </tr>
                 {swimmers.map((swimmer:Swimmer, index) => (
                     <tr key={index}>
@@ -41,6 +42,7 @@ export const SwimmerShowAll = () => {
                         <td>{swimmer.swimmer_date_of_birth}</td>
                         <td>{swimmer.swimmer_years_of_experience}</td>
                         <td>{swimmer.team}</td>
+                        <td>{swimmer.fans}</td>
                     </tr>
                 ))}
             </table>
