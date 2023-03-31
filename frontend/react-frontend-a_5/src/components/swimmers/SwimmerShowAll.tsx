@@ -12,7 +12,7 @@ export const SwimmerShowAll = () => {
         .then(data => setSwimmers(data));
     }, []);
 
-    if (swimmers.length == 0){
+    if (swimmers.length === 0){
         return <div>No swimmers</div>
     }
     else
@@ -37,7 +37,7 @@ export const SwimmerShowAll = () => {
                         <td>{swimmer.swimmer_county}</td>
                         <td>{swimmer.swimmer_date_of_birth}</td>
                         <td>{swimmer.swimmer_years_of_experience}</td>
-                        <td>{swimmer.team.id}</td>
+                        <td>{swimmer.team?.id}</td>
                         {/* <td>{swimmer.fans[index].id}</td> */}
                     </tr>
                 ))}
