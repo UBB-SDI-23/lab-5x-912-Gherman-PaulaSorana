@@ -20,6 +20,7 @@ export const SwimmerDetails = () => {
 		fetchSwimmer();
 	}, [swimmerId]);
 
+    console.log(swimmer);
 
     return (
 		<Container>
