@@ -36,7 +36,7 @@ export const SwimmerShowAll = () => {
     else
         return (
         <Container>
-			<h1>All courses</h1>
+			<h1>All Swimmers</h1>
 
                 <TableContainer component={Paper}>
 					<Table sx={{ minWidth: 650 }} aria-label="simple table">
