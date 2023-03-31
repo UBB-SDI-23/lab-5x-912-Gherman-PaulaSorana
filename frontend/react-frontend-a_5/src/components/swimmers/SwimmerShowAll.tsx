@@ -16,6 +16,7 @@ import {
 import { useEffect, useState } from "react";
 import { GlobalURL } from "../../main";
 import { Swimmer } from "../../models/Swimmer";
+import { Link } from "react-router-dom";
 
 
 export const SwimmerShowAll = () => {
@@ -57,6 +58,11 @@ export const SwimmerShowAll = () => {
                                 <TableRow key={swimmer.id}>
                                     <TableCell component="th" scope="row">
 										{index + 1}
+                                    <TableCell component="th" scope="row">
+                                        <Link to={`/swimmers/${swimmer.id}/details`} title="View swimmer details">
+                                            {swimmer.swimmer_last_name}
+                                        </Link>
+									</TableCell>
 									</TableCell>
                                     <TableCell align="center">{swimmer.swimmer_last_name}</TableCell>
                                     <TableCell align="center">{swimmer.swimmer_first_name}</TableCell>
