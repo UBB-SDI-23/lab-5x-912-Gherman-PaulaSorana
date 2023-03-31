@@ -58,13 +58,13 @@ export const SwimmerShowAll = () => {
                                     <TableCell component="th" scope="row">
 										{index + 1}
 									</TableCell>
-                                    <TableCell align="right">{swimmer.swimmer_last_name}</TableCell>
-                                    <TableCell align="right">{swimmer.swimmer_first_name}</TableCell>
-                                    <TableCell align="right">{swimmer.swimmer_county}</TableCell>
-                                    <TableCell align="right">{swimmer.swimmer_date_of_birth}</TableCell>
-                                    <TableCell align="right">{swimmer.swimmer_years_of_experience}</TableCell>
-                                    <TableCell align="right">{swimmer.team}</TableCell>
-                                    <TableCell align="right">{swimmer.fans}</TableCell>
+                                    <TableCell align="center">{swimmer.swimmer_last_name}</TableCell>
+                                    <TableCell align="center">{swimmer.swimmer_first_name}</TableCell>
+                                    <TableCell align="center">{swimmer.swimmer_county}</TableCell>
+                                    <TableCell align="center">{swimmer.swimmer_date_of_birth}</TableCell>
+                                    <TableCell align="center">{swimmer.swimmer_years_of_experience}</TableCell>
+                                    <TableCell align="center">{swimmer.team}</TableCell>
+                                    <TableCell align="center">{swimmer.fans}</TableCell>
                                 </TableRow>
                             ))}
                     </TableBody>
