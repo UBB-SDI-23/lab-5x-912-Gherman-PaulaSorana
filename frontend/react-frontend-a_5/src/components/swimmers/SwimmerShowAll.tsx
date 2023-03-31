@@ -55,6 +55,7 @@ export const SwimmerShowAll = () => {
                         <TableBody>
 							{swimmers.map((swimmer:Swimmer, index) => (
                                 <TableRow key={index}>
+                                    <TableCell align="right">#</TableCell>
                                     <TableCell align="right">{swimmer.swimmer_last_name}</TableCell>
                                     <TableCell align="right">{swimmer.swimmer_first_name}</TableCell>
                                     <TableCell align="right">{swimmer.swimmer_county}</TableCell>
