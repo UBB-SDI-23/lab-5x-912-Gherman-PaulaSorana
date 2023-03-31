@@ -40,8 +40,7 @@ export const SwimmerShowAll = () => {
                         <td>{swimmer.swimmer_county}</td>
                         <td>{swimmer.swimmer_date_of_birth}</td>
                         <td>{swimmer.swimmer_years_of_experience}</td>
-                        <td>{swimmer.team?.id}</td>
-                        {/* <td>{swimmer.fans[index].id}</td> */}
+                        <td>{swimmer.team}</td>
                     </tr>
                 ))}
             </table>
