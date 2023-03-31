@@ -8,6 +8,6 @@ export interface Swimmer{
     swimmer_county:string;
     swimmer_date_of_birth:string;
     swimmer_years_of_experience:number;
-    team: Team;
-    fans: Fan[];
+    team: number;
+    fans: number[];
 };
