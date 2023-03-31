@@ -39,7 +39,7 @@ export const SwimmerShowAll = () => {
 			<h1>All Swimmers</h1>
 
                 <TableContainer component={Paper}>
-					<Table sx={{ minWidth: 650 }} aria-label="simple table">
+					<Table sx={{ minWidth: 800 }} aria-label="simple table">
 						<TableHead>
 							<TableRow>
 								<TableCell>#</TableCell>
