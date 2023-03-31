@@ -11,8 +11,9 @@ export const SwimmerShowAll = () => {
     fetch("/api/swimmer/")
         .then(res => res.json())
         .then(data => setSwimmers(data));
-        console.log(swimmers);
     }, []);
+
+    console.log(swimmers);
 
     if (swimmers.length === 0){
         return <div>No swimmers</div>
