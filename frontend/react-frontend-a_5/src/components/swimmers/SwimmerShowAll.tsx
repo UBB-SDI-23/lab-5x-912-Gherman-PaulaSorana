@@ -60,7 +60,6 @@ export const SwimmerShowAll = () => {
 										{index + 1}
                                     <TableCell component="th" scope="row">
                                         <Link to={`/swimmers/${swimmer.id}/details`} title="View swimmer details">
-                                            {swimmer.swimmer_last_name}
                                         </Link>
 									</TableCell>
 									</TableCell>
