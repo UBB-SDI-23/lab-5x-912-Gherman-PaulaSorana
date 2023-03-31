@@ -7,7 +7,8 @@ export const SwimmerShowAll = () => {
     const [swimmers, setSwimmers] = useState([]);
 
     useEffect(() => {
-    fetch(GlobalURL + "app1/swimmer/")
+    fetch(GlobalURL + "/app1/swimmer/")
+    // fetch("/apiswimmer/")
         .then(res => res.json())
         .then(data => setSwimmers(data));
     }, []);
