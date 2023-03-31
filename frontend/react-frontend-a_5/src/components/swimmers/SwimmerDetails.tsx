@@ -12,12 +12,12 @@ export const SwimmerDetails = () => {
 	const [swimmer, setSwimmer] = useState<Swimmer>();
 
     useEffect(() => {
-		const fetchCourse = async () => {
+		const fetchSwimmer = async () => {
 			const response = await fetch(`api/swimmer/${swimmerId}/`);
 			const swimmer = await response.json();
 			setSwimmer(swimmer);
 		};
-		fetchCourse();
+		fetchSwimmer();
 	}, [swimmerId]);
 
 
