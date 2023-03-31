@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { GlobalURL } from "../../main";
 import { Swimmer } from "../../models/Swimmer";
 
 
@@ -6,7 +7,7 @@ export const SwimmerShowAll = () => {
     const [swimmers, setSwimmers] = useState([]);
 
     useEffect(() => {
-    fetch("http://13.50.226.167/app1/swimmer/")
+    fetch(GlobalURL + "app1/swimmer/")
         .then(res => res.json())
         .then(data => setSwimmers(data));
     }, []);
@@ -26,7 +27,7 @@ export const SwimmerShowAll = () => {
                     <th>County</th>
                     <th>Date of Birth</th>
                     <th>Years of experience</th>
-                    <th>Team ID</th>
+                    <th>Team Id</th>
                 </tr>
                 {swimmers.map((swimmer:Swimmer, index) => (
                     <tr key={index}>
