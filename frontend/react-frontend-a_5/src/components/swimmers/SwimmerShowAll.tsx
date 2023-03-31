@@ -36,7 +36,7 @@ export const SwimmerShowAll = () => {
     else
         return (
         <Container>
-			<h1>All swimmers</h1>
+			<h1>All Swimmers</h1>
 
                 <TableContainer component={Paper}>
 					<Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -55,7 +55,7 @@ export const SwimmerShowAll = () => {
                         <TableBody>
 							{swimmers.map((swimmer:Swimmer, index) => (
                                 <TableRow key={index}>
-                                    <TableCell align="right">#</TableCell>
+                                    <TableCell align="right">{index}</TableCell>
                                     <TableCell align="right">{swimmer.swimmer_last_name}</TableCell>
                                     <TableCell align="right">{swimmer.swimmer_first_name}</TableCell>
                                     <TableCell align="right">{swimmer.swimmer_county}</TableCell>
