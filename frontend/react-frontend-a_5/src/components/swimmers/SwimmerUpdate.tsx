@@ -1,4 +1,4 @@
-import { Button, Card, CardActions, CardContent, Container, IconButton, TextField } from "@mui/material";
+import { Button, Card, CardActions, CardContent, CircularProgress, Container, IconButton, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Swimmer } from "../../models/Swimmer";
@@ -9,9 +9,10 @@ import { FullSwimmer } from "../../models/FullSwimmer";
 
 export const SwimmerUpdate = () => {
 
-const navigate = useNavigate();
-
+	const navigate = useNavigate();
     const { swimmerId } = useParams();
+
+	const [loading, setLoading] = useState(true)
 	const [swimmer, setSwimmer] = useState({
         swimmer_last_name:"",
         swimmer_first_name:"",
@@ -26,6 +27,7 @@ const navigate = useNavigate();
 			const response = await fetch(`../api/swimmer/${swimmerId}/`);
 			const swimmer = await response.json();
 			setSwimmer(swimmer);
+			setLoading(false);
             console.log(swimmer);
 		};
 		fetchSwimmer();
@@ -41,9 +43,15 @@ const navigate = useNavigate();
 		}
 	};
 
-	
+
 	return (
 		<Container>
+
+		{loading && <CircularProgress />}
+
+		{!loading && !swimmer && <div>Swimmer not found</div>}
+
+		{loading && (
 			<Card>
 				<CardContent>
 					<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmers/${swimmerId}`}>
@@ -108,6 +116,8 @@ const navigate = useNavigate();
 				</CardContent>
 				<CardActions></CardActions>
 			</Card>
+		)
+}
 		</Container>
 	);
 };

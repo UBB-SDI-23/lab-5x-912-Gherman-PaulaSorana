@@ -40,7 +40,7 @@ export const SwimmerShowAll = () => {
 
         {loading && <CircularProgress />}
 
-        {!loading && swimmers.length == 0 && <div>No students found</div>}
+        {!loading && swimmers.length == 0 && <div>No swimmers found</div>}
 
         {!loading && (
             <IconButton component={Link} sx={{ mr: 3 }} to={`/swimmers/add`}>
