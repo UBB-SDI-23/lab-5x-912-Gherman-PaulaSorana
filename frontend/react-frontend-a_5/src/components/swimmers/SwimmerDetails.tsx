@@ -30,7 +30,7 @@ export const SwimmerDetails = () => {
 					<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmers`}>
 						<ArrowBackIcon />
 					</IconButton>{" "}
-					<h1>Swimmer Details</h1>
+					<h1 style={{textAlign:"left"}}>Swimmer Details</h1>
 					<p style={{textAlign:"left"}}>Swimmer Last Name: {swimmer?.swimmer_last_name}</p>
 					<p style={{textAlign:"left"}}>Swimmer First Name: {swimmer?.swimmer_first_name}</p>
 					<p style={{textAlign:"left"}}>Swimmer County: {swimmer?.swimmer_county}</p>
