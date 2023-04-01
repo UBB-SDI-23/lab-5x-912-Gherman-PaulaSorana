@@ -2,6 +2,7 @@ import { Box, AppBar, Toolbar, IconButton, Typography, Button } from "@mui/mater
 import { Link, useLocation } from "react-router-dom";
 import PoolIcon from '@mui/icons-material/Pool';
 import ScubaDivingIcon from '@mui/icons-material/ScubaDiving';
+import Diversity3Icon from '@mui/icons-material/Diversity3';
 
 export const AppMenu = () => {
 	const location = useLocation();
@@ -33,6 +34,17 @@ export const AppMenu = () => {
 						startIcon={<ScubaDivingIcon />}>
 						Swimmers
 					</Button>
+
+					<Button
+						variant={path.startsWith("/teams") ? "outlined" : "text"}
+						to="/teams/teamsOrd"
+						component={Link}
+						color="inherit"
+						sx={{ mr: 5 }}
+						startIcon={<Diversity3Icon />}>
+						Teams Ordered By The No Of Swimmers
+					</Button>
+
 				</Toolbar>
 			</AppBar>
 		</Box>
