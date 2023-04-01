@@ -8,6 +8,7 @@ import { SwimmerDetails } from "./components/swimmers/SwimmerDetails";
 import { AppMenu } from "./components/AppMenu";
 import { SwimmerAdd } from "./components/swimmers/SwimmerAdd";
 import { AppHome } from "./components/AppHome";
+import { SwimmerDelete } from "./components/SwimmerDelete";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -22,8 +23,9 @@ function App() {
                       <Route path="/" element={<AppHome />} />
                       <Route path="/swimmers/add" element={<SwimmerAdd />} />
                       <Route path="/swimmers" element={<SwimmerShowAll />} />
+                      <Route path="/swimmers/:swimmerId/delete" element={<SwimmerDelete />} />
                       <Route path="/swimmers/:swimmerId" element={<SwimmerDetails />} />
-                      
+
               </Routes>
       </Router>
     </React.Fragment>

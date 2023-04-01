@@ -3,13 +3,13 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 
-export const CourseDelete = () => {
-	const { courseId } = useParams();
+export const SwimmerDelete = () => {
+	const { swimmerId } = useParams();
 	const navigate = useNavigate();
 
 	const handleDelete = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		await axios.delete(`../api/swimmer/${courseId}/`);
+		await axios.delete(`../api/swimmer/${swimmerId}/`);
 		
 		navigate("/swimmers");
 	};
