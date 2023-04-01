@@ -4,7 +4,8 @@ import { Link, useParams } from "react-router-dom";
 import { Swimmer } from "../../models/Swimmer";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { FullSwimmer } from "../../models/FullSwimmer";
-
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 
 export const SwimmerDetails = () => {
@@ -43,6 +44,17 @@ export const SwimmerDetails = () => {
                         ))}
                     </ul>
 				</CardContent>
+
+                <CardActions>
+					<IconButton component={Link} sx={{ mr: 3 }} to={`/courses/${swimmerId}/edit`}>
+						<EditIcon />
+					</IconButton>
+
+					<IconButton component={Link} sx={{ mr: 3 }} to={`/courses/${swimmerId}/delete`}>
+						<DeleteForeverIcon sx={{ color: "red" }} />
+					</IconButton>
+				</CardActions>
+
 			</Card>
 		</Container>
 	);
