@@ -51,7 +51,7 @@ export const SwimmerUpdate = () => {
 
 		{!loading && !swimmer && <div>Swimmer not found</div>}
 
-		{loading && (
+		{!loading && (
 			<Card>
 				<CardContent>
 					<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmers/${swimmerId}`}>
