@@ -33,8 +33,8 @@ export const SwimmerDetails = () => {
 					<p>Swimmer Last Name: {swimmer?.swimmer_last_name}</p>
 					<p>Swimmer First Name: {swimmer?.swimmer_first_name}</p>
 					<p>Swimmer County: {swimmer?.swimmer_county}</p>
+                    <p>Swimmer Date of Birth: {swimmer?.swimmer_date_of_birth}</p>
                     <p>Swimmer Year Of Experience: {swimmer?.swimmer_years_of_experience}</p>
-                
 				</CardContent>
 			</Card>
 		</Container>
