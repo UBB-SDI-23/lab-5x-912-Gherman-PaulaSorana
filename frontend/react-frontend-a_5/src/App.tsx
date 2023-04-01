@@ -21,9 +21,8 @@ function App() {
               <Routes>
                       <Route path="" element={<AppHome />} />
                       <Route path="/swimmers" element={<SwimmerShowAll />} />
-                      <Route path="/swimmers/:swimmerId/details" element={<SwimmerDetails />} />
                       <Route path="/swimmers/add" element={<SwimmerAdd />} />
-
+                      <Route path="/swimmers/:swimmerId/details" element={<SwimmerDetails />} />
               </Routes>
       </Router>
     </React.Fragment>
