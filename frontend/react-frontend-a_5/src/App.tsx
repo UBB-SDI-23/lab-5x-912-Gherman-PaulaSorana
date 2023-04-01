@@ -9,6 +9,7 @@ import { AppMenu } from "./components/AppMenu";
 import { SwimmerAdd } from "./components/swimmers/SwimmerAdd";
 import { AppHome } from "./components/AppHome";
 import { SwimmerDelete } from "./components/swimmers/SwimmerDelete";
+import { SwimmerUpdate } from "./components/swimmers/SwimmerUpdate";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -24,6 +25,7 @@ function App() {
                       <Route path="/swimmers/add" element={<SwimmerAdd />} />
                       <Route path="/swimmers" element={<SwimmerShowAll />} />
                       <Route path="/swimmers/:swimmerId/delete" element={<SwimmerDelete />} />
+                      <Route path="/swimmers/:swimmerId/edit" element={<SwimmerUpdate />} />
                       <Route path="/swimmers/:swimmerId" element={<SwimmerDetails />} />
 
               </Routes>
