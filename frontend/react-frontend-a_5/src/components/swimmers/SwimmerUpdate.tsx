@@ -41,9 +41,7 @@ const navigate = useNavigate();
 		}
 	};
 
-    while(swimmer === undefined)
-    {}
-
+	
 	return (
 		<Container>
 			<Card>
