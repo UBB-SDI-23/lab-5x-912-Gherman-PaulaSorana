@@ -16,11 +16,10 @@ export const SwimmerDetails = () => {
 			const response = await fetch(`../../api/swimmer/${swimmerId}`);
 			const swimmer = await response.json();
 			setSwimmer(swimmer);
+            console.log(swimmer);
 		};
 		fetchSwimmer();
 	}, [swimmerId]);
-
-    console.log(swimmer);
 
     return (
 		<Container>
