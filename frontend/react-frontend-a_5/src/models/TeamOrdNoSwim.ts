@@ -10,5 +10,5 @@ export interface TeamOrdNoSwim{
     team_motto:string;
     team_abbreviation:string;
     swimmers: Swimmer[];
-    no_swimmers:number;
+    no_of_swimmers:number;
 };

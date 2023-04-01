@@ -75,7 +75,7 @@ export const TeamsShowOrdSwim = () => {
                                     <li key={swimmer.id}>{swimmer.swimmer_last_name} {swimmer.swimmer_first_name}</li>
                                     ))}
                                 </TableCell>
-                                <TableCell align="center">{teams.no_swimmers}</TableCell>
+                                <TableCell align="center">{teams.no_of_swimmers}</TableCell>
                             </TableRow>
                         ))}
                 </TableBody>
