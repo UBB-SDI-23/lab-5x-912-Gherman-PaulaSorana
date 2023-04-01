@@ -76,6 +76,5 @@ export const SwimmerShowAll = () => {
 					</Table>
 				</TableContainer>
         </Container>
-        );
-  };
-  
+        );       
+};
