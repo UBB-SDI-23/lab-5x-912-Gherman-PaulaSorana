@@ -91,7 +91,7 @@ export const SwimmerShowAll = () => {
 											<EditIcon />
 										</IconButton>
 
-										<IconButton component={Link} sx={{ mr: 3 }} to={`/courses/${swimmer.id}/delete`}>
+										<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmers/${swimmer.id}/delete`}>
 											<DeleteForeverIcon sx={{ color: "red" }} />
 										</IconButton>
 									</TableCell>
