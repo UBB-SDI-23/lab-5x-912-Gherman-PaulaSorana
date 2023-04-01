@@ -6,6 +6,7 @@ import { SwimmerShowAll } from "./components/swimmers/SwimmerShowAll";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { SwimmerDetails } from "./components/swimmers/SwimmerDetails";
 import { AppMenu } from "./components/AppMenu";
+import { SwimmerAdd } from "./components/swimmers/SwimmerAdd";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -17,8 +18,11 @@ function App() {
               <AppMenu />
 
               <Routes>
+
                       <Route path="/swimmers" element={<SwimmerShowAll />} />
                       <Route path="/swimmers/:swimmerId/details" element={<SwimmerDetails />} />
+                      <Route path="/swimmers/add" element={<SwimmerAdd />} />
+                      
               </Routes>
       </Router>
     </React.Fragment>
