@@ -41,9 +41,8 @@ const navigate = useNavigate();
 		}
 	};
 
-
-    const wait=(ms:number)=>new Promise(resolve => setTimeout(resolve, ms));
-    wait(1000);
+    while(swimmer === undefined)
+    {}
 
 	return (
 		<Container>
