@@ -7,7 +7,7 @@ import axios from "axios";
 import { FullSwimmer } from "../../models/FullSwimmer";
 
 
-export const SwimmerAdd = () => {
+export const SwimmerUpdate = () => {
 
 const navigate = useNavigate();
 
