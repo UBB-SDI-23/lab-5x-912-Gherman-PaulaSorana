@@ -8,7 +8,7 @@ import { SwimmerDetails } from "./components/swimmers/SwimmerDetails";
 import { AppMenu } from "./components/AppMenu";
 import { SwimmerAdd } from "./components/swimmers/SwimmerAdd";
 import { AppHome } from "./components/AppHome";
-import { SwimmerDelete } from "./components/SwimmerDelete";
+import { SwimmerDelete } from "./components/swimmers/SwimmerDelete";
 
 function App() {
   const [count, setCount] = useState(0);
