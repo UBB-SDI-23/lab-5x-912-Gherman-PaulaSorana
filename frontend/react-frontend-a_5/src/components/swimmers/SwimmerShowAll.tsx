@@ -27,7 +27,7 @@ export const SwimmerShowAll = () => {
     // fetch(GlobalURL + "/app1/swimmer/")
     fetch("/api/swimmer/")
         .then(res => res.json())
-        .then(data => setSwimmers(data));
+        .then(data => {setSwimmers(data); setLoading(false);})
     }, []);
 
     console.log(swimmers);
