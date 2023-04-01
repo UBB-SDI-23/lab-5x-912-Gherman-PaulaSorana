@@ -45,7 +45,7 @@ const navigate = useNavigate();
 		<Container>
 			<Card>
 				<CardContent>
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmers/${swimmerId}`}>
+					<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmers/${swimmerId}/`}>
 						<ArrowBackIcon />
 					</IconButton>{" "}
 					<form onSubmit={updateSwimmer}>
