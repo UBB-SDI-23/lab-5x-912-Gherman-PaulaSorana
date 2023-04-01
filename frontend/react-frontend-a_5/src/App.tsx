@@ -4,6 +4,7 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import { SwimmerShowAll } from "./components/swimmers/SwimmerShowAll";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { SwimmerDetails } from "./components/swimmers/SwimmerDetails";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -14,6 +15,7 @@ function App() {
       <Router>
               <Routes>
                       <Route path="/swimmers" element={<SwimmerShowAll />} />
+                      <Route path="/swimmers/:swimmerId/details" element={<SwimmerDetails />} />
               </Routes>
       </Router>
     </React.Fragment>
