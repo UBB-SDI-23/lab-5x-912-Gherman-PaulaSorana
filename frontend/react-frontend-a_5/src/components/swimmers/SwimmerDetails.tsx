@@ -39,7 +39,7 @@ export const SwimmerDetails = () => {
                     <p>Swimmer Fans</p>
                     <ul>
                         {swimmer?.fans?.map((fan) => (
-                            <li key={fan.id}>{fan.fan_last_name}{fan.fan_first_name}</li>
+                            <li key={fan.id}>{fan.fan_last_name} {fan.fan_first_name}</li>
                         ))}
                     </ul>
 				</CardContent>
