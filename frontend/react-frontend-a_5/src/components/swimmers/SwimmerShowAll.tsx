@@ -44,9 +44,9 @@ export const SwimmerShowAll = () => {
 						<TableHead>
 							<TableRow>
 								<TableCell>#</TableCell>
-								<TableCell align="right">Last Name</TableCell>
-								<TableCell align="right">First Name</TableCell>
-								<TableCell align="right">County</TableCell>
+								<TableCell align="center">Last Name</TableCell>
+								<TableCell align="center">First Name</TableCell>
+								<TableCell align="center">County</TableCell>
 								<TableCell align="center">Date Of Birth</TableCell>
                                 <TableCell align="center">Years of experience</TableCell>
                                 <TableCell align="center">Team ID</TableCell>
@@ -60,6 +60,7 @@ export const SwimmerShowAll = () => {
 										{index + 1}
                                     <TableCell component="th" scope="row">
                                         <Link to={`/swimmers/${swimmer.id}/details`} title="View swimmer details">
+                                            {swimmer.swimmer_last_name}
                                         </Link>
 									</TableCell>
 									</TableCell>
