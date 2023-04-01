@@ -70,7 +70,7 @@ export const TeamsShowOrdSwim = () => {
                                 <TableCell align="center">{teams.team_budget}</TableCell>
                                 <TableCell align="center">{teams.team_motto}</TableCell>
                                 <TableCell align="center">{teams.team_abbreviation}</TableCell>
-                                <TableCell align="center">
+                                <TableCell align="left">
                                     {teams?.swimmers?.map((swimmer) => (
                                     <li key={swimmer.id}>{swimmer.swimmer_last_name} {swimmer.swimmer_first_name}</li>
                                     ))}
