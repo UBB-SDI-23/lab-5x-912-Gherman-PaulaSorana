@@ -31,14 +31,14 @@ export const SwimmerDetails = () => {
 						<ArrowBackIcon />
 					</IconButton>{" "}
 					<h1>Swimmer Details</h1>
-					<p>Swimmer Last Name: {swimmer?.swimmer_last_name}</p>
-					<p>Swimmer First Name: {swimmer?.swimmer_first_name}</p>
-					<p>Swimmer County: {swimmer?.swimmer_county}</p>
-                    <p>Swimmer Date of Birth: {swimmer?.swimmer_date_of_birth}</p>
-                    <p>Swimmer Years Of Experience: {swimmer?.swimmer_years_of_experience}</p>
-                    <p>Swimmer Team: {swimmer?.team.team_name}</p>
-                    <p>Swimmer Fans</p>
-                    <ul>
+					<p text-align:left>Swimmer Last Name: {swimmer?.swimmer_last_name}</p>
+					<p text-align:left>Swimmer First Name: {swimmer?.swimmer_first_name}</p>
+					<p text-align:left>Swimmer County: {swimmer?.swimmer_county}</p>
+                    <p text-align:left>Swimmer Date of Birth: {swimmer?.swimmer_date_of_birth}</p>
+                    <p text-align:left>Swimmer Years Of Experience: {swimmer?.swimmer_years_of_experience}</p>
+                    <p text-align:left>Swimmer Team: {swimmer?.team.team_name}</p>
+                    <p text-align:left>Swimmer Fans</p>
+                    <ul text-align:left>
                         {swimmer?.fans?.map((fan) => (
                             <li key={fan.id}>{fan.fan_last_name} {fan.fan_first_name}</li>
                         ))}
