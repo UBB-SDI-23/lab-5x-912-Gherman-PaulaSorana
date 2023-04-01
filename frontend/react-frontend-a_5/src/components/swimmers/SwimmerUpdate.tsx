@@ -26,7 +26,14 @@ export const SwimmerUpdate = () => {
 		const fetchSwimmer = async () => {
 			const response = await fetch(`../../api/swimmer/${swimmerId}/`);
 			const swimmer = await response.json();
-			setSwimmer(swimmer);
+			setSwimmer({
+				swimmer_last_name: swimmer.swimmer_last_name,
+				swimmer_first_name: swimmer.swimmer_first_name,
+				swimmer_county: swimmer.swimmer_county,
+				swimmer_date_of_birth: swimmer.swimmer_date_of_birth,
+				swimmer_years_of_experience: swimmer.swimmer_years_of_experience,
+				team: swimmer.team.id
+		})
 			setLoading(false);
             console.log(swimmer);
 		};
