@@ -93,7 +93,7 @@ const navigate = useNavigate();
 							onChange={(event) => setSwimmer({ ...swimmer, swimmer_years_of_experience: Number(event.target.value) })}
 						/>
 
-                        <TextField
+                        <TextField value={swimmer.team}
 							id="team"
 							label="Team"
 							variant="outlined"
@@ -102,7 +102,7 @@ const navigate = useNavigate();
 							onChange={(event) => setSwimmer({ ...swimmer, team: Number(event.target.value) })}
 						/>
 
-						<Button type="submit">Add Swimmer</Button>
+						<Button type="submit">Update Swimmer</Button>
 					</form>
 				</CardContent>
 				<CardActions></CardActions>
