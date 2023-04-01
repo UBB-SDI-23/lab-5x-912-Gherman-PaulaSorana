@@ -10,8 +10,8 @@ export const AppMenu = () => {
 
 	return (
 		<Box sx={{ flexGrow: 1 }}>
-			<AppBar position="relative" style={{ width: "100%", top: 0, minHeight:200}}>
-				<Toolbar>
+			<AppBar position="static">
+				<Toolbar variant="dense">
 					<IconButton
 						component={Link}
 						to="/"
