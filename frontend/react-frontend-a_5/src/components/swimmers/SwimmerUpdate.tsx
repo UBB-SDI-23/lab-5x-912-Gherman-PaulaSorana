@@ -49,7 +49,7 @@ const navigate = useNavigate();
 						<ArrowBackIcon />
 					</IconButton>{" "}
 					<form onSubmit={updateSwimmer}>
-						<TextField
+						<TextField value={swimmer.swimmer_last_name}
 							id="swimmer_last_name"
 							label="Last name"
 							variant="outlined"
@@ -57,7 +57,7 @@ const navigate = useNavigate();
 							sx={{ mb: 2 }}
 							onChange={(event) => setSwimmer({ ...swimmer, swimmer_last_name: event.target.value })}
 						/>
-						<TextField
+						<TextField value={swimmer.swimmer_first_name}
 							id="swimmer_first_name"
 							label="First name"
 							variant="outlined"
@@ -66,7 +66,7 @@ const navigate = useNavigate();
 							onChange={(event) => setSwimmer({ ...swimmer, swimmer_first_name: event.target.value })}
 						/>
 
-                        <TextField
+                        <TextField value={swimmer.swimmer_county}
 							id="swimmer_county"
 							label="County"
 							variant="outlined"
@@ -75,8 +75,8 @@ const navigate = useNavigate();
 							onChange={(event) => setSwimmer({ ...swimmer, swimmer_county: event.target.value })}
 						/>
 
-                        <TextField
-							id="swimmer_date_of_birth"
+                        <TextField value={swimmer.swimmer_date_of_birth}
+							id="swimmer_date_of_birth" 
 							label="Date of birth"
 							variant="outlined"
 							fullWidth
@@ -84,7 +84,7 @@ const navigate = useNavigate();
 							onChange={(event) => setSwimmer({ ...swimmer, swimmer_date_of_birth: event.target.value })}
 						/>
 
-                        <TextField
+                        <TextField value={swimmer.swimmer_years_of_experience}
 							id="swimmer_years_of_experience"
 							label="Years of experience"
 							variant="outlined"
