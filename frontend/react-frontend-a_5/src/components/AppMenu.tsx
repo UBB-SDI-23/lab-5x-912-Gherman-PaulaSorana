@@ -1,6 +1,6 @@
 import { Box, AppBar, Toolbar, IconButton, Typography, Button } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
-import SchoolIcon from "@mui/icons-material/School";
+import PoolIcon from '@mui/icons-material/Pool';
 import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 
 export const AppMenu = () => {
@@ -19,10 +19,10 @@ export const AppMenu = () => {
 						color="inherit"
 						aria-label="school"
 						sx={{ mr: 2 }}>
-						<SchoolIcon />
+						<PoolIcon />
 					</IconButton>
 					<Typography variant="h6" component="div" sx={{ mr: 5 }}>
-						Course management
+						Professional swimming
 					</Typography>
 					<Button
 						variant={path.startsWith("/swimmers") ? "outlined" : "text"}
@@ -31,7 +31,7 @@ export const AppMenu = () => {
 						color="inherit"
 						sx={{ mr: 5 }}
 						startIcon={<LocalLibraryIcon />}>
-						Courses
+						Swimmers
 					</Button>
 				</Toolbar>
 			</AppBar>
