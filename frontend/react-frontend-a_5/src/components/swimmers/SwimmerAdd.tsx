@@ -23,7 +23,7 @@ const navigate = useNavigate();
 		event.preventDefault();
 		try {
 			await axios.post("api/swimmers/", swimmer);
-			navigate("/courses");
+			navigate("/swimmers");
 		} catch (error) {
 			console.log(error);
 		}
