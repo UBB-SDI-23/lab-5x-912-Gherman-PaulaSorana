@@ -12,7 +12,8 @@ import {
 	Tooltip,
 } from "@mui/material";
 
-
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useEffect, useState } from "react";
 import { GlobalURL } from "../../main";
 import { Swimmer } from "../../models/Swimmer";
@@ -63,6 +64,7 @@ export const SwimmerShowAll = () => {
                             <TableCell align="center">Years of experience</TableCell>
                             <TableCell align="center">Team ID</TableCell>
                             <TableCell align="center">Fans IDS</TableCell>
+                            <TableCell align="center">Operations</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -83,6 +85,16 @@ export const SwimmerShowAll = () => {
                                 <TableCell align="center">{swimmer.swimmer_years_of_experience}</TableCell>
                                 <TableCell align="center">{swimmer.team}</TableCell>
                                 <TableCell align="center">{swimmer.fans}</TableCell>
+                                <TableCell align="center">
+
+										<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmers/${swimmer.id}/edit`}>
+											<EditIcon />
+										</IconButton>
+
+										<IconButton component={Link} sx={{ mr: 3 }} to={`/courses/${swimmer.id}/delete`}>
+											<DeleteForeverIcon sx={{ color: "red" }} />
+										</IconButton>
+									</TableCell>
                             </TableRow>
                         ))}
                 </TableBody>
