@@ -2,7 +2,7 @@ import { Card, CardActions, CardContent, Container, IconButton } from "@mui/mate
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Swimmer } from "../../models/Swimmer";
-
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 
 
@@ -26,15 +26,15 @@ export const SwimmerDetails = () => {
 		<Container>
 			<Card>
 				<CardContent>
-					{/* <IconButton component={Link} sx={{ mr: 3 }} to={`/swimmers`}>
+					<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmers`}>
 						<ArrowBackIcon />
-					</IconButton>{" "} */}
+					</IconButton>{" "}
 					<h1>Swimmer Details</h1>
 					<p>Swimmer Last Name: {swimmer?.swimmer_last_name}</p>
 					<p>Swimmer First Name: {swimmer?.swimmer_first_name}</p>
 					<p>Swimmer County: {swimmer?.swimmer_county}</p>
                     <p>Swimmer Date of Birth: {swimmer?.swimmer_date_of_birth}</p>
-                    <p>Swimmer Year Of Experience: {swimmer?.swimmer_years_of_experience}</p>
+                    <p>Swimmer Years Of Experience: {swimmer?.swimmer_years_of_experience}</p>
 				</CardContent>
 			</Card>
 		</Container>
