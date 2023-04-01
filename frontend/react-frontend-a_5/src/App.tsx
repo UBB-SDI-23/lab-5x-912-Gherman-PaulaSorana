@@ -5,6 +5,7 @@ import "./App.css";
 import { SwimmerShowAll } from "./components/swimmers/SwimmerShowAll";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { SwimmerDetails } from "./components/swimmers/SwimmerDetails";
+import { AppMenu } from "./components/AppMenu";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -13,6 +14,8 @@ function App() {
 
     <React.Fragment>
       <Router>
+              <AppMenu />
+
               <Routes>
                       <Route path="/swimmers" element={<SwimmerShowAll />} />
                       <Route path="/swimmers/:swimmerId/details" element={<SwimmerDetails />} />
