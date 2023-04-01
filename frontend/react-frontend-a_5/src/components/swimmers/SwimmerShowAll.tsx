@@ -20,6 +20,7 @@ import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 
 export const SwimmerShowAll = () => {
+    const[loading, setLoading] = useState(true)
     const [swimmers, setSwimmers] = useState([]);
 
     useEffect(() => {
@@ -31,19 +32,24 @@ export const SwimmerShowAll = () => {
 
     console.log(swimmers);
 
-    if (swimmers.length === 0){
-        return <div>No swimmers</div>
-    }
     
     return (
     <Container>
         <h1>All Swimmers</h1>
 
+        {loading && <CircularProgress />}
+
+        {!loading && swimmers.length == 0 && <div>No students found</div>}
+
+        {!loading && (
             <IconButton component={Link} sx={{ mr: 3 }} to={`/swimmers/add`}>
-                        <Tooltip title="Add a new swimmer" arrow>
-                            <AddIcon color="primary" />
-                        </Tooltip>
-                    </IconButton>
+                <Tooltip title="Add a new swimmer" arrow>
+                    <AddIcon color="primary" />
+                </Tooltip>
+            </IconButton>
+        )}
+
+        {!loading && swimmers.length > 0 && (
 
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 800 }} aria-label="simple table">
@@ -82,6 +88,9 @@ export const SwimmerShowAll = () => {
                 </TableBody>
                 </Table>
             </TableContainer>
+        )
+        }
     </Container>
+        
     );       
 };
