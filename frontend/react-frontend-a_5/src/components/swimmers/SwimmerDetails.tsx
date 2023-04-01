@@ -13,7 +13,7 @@ export const SwimmerDetails = () => {
 
     useEffect(() => {
 		const fetchSwimmer = async () => {
-			const response = await fetch(`../../api/swimmer/${swimmerId}`);
+			const response = await fetch(`../api/swimmer/${swimmerId}`);
 			const swimmer = await response.json();
 			setSwimmer(swimmer);
             console.log(swimmer);
