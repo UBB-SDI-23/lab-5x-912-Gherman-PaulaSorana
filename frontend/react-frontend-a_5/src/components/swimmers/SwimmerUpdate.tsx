@@ -41,6 +41,10 @@ const navigate = useNavigate();
 		}
 	};
 
+
+    const wait=(ms:number)=>new Promise(resolve => setTimeout(resolve, ms));
+    wait(1000);
+
 	return (
 		<Container>
 			<Card>
