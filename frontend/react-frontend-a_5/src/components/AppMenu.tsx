@@ -1,7 +1,7 @@
 import { Box, AppBar, Toolbar, IconButton, Typography, Button } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 import PoolIcon from '@mui/icons-material/Pool';
-import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
+import ScubaDivingIcon from '@mui/icons-material/ScubaDiving';
 
 export const AppMenu = () => {
 	const location = useLocation();
@@ -30,7 +30,7 @@ export const AppMenu = () => {
 						component={Link}
 						color="inherit"
 						sx={{ mr: 5 }}
-						startIcon={<LocalLibraryIcon />}>
+						startIcon={<ScubaDivingIcon />}>
 						Swimmers
 					</Button>
 				</Toolbar>
