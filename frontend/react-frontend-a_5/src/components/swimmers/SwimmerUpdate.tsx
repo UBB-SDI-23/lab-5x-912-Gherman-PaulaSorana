@@ -44,7 +44,7 @@ export const SwimmerUpdate = () => {
 		event.preventDefault();
 		try {
 			await axios.put(`../../api/swimmer/${swimmerId}/`, swimmer);
-			navigate(`/swimmers/${swimmerId}/`);
+			navigate(`/swimmers/${swimmerId}`);
 		} catch (error) {
 			console.log(error);
 		}
