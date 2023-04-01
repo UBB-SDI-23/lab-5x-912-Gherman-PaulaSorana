@@ -46,11 +46,11 @@ export const SwimmerDetails = () => {
 				</CardContent>
 
                 <CardActions>
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/courses/${swimmerId}/edit`}>
+					<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmers/${swimmerId}/edit`}>
 						<EditIcon />
 					</IconButton>
 
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/courses/${swimmerId}/delete`}>
+					<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmers/${swimmerId}/delete`}>
 						<DeleteForeverIcon sx={{ color: "red" }} />
 					</IconButton>
 				</CardActions>
