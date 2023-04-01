@@ -17,7 +17,7 @@ import { useEffect, useState } from "react";
 import { GlobalURL } from "../../main";
 import { Swimmer } from "../../models/Swimmer";
 import { Link } from "react-router-dom";
-
+import AddIcon from "@mui/icons-material/Add";
 
 export const SwimmerShowAll = () => {
     const [swimmers, setSwimmers] = useState([]);
@@ -38,6 +38,12 @@ export const SwimmerShowAll = () => {
     return (
     <Container>
         <h1>All Swimmers</h1>
+
+            <IconButton component={Link} sx={{ mr: 3 }} to={`/swimmers/add`}>
+                        <Tooltip title="Add a new swimmer" arrow>
+                            <AddIcon color="primary" />
+                        </Tooltip>
+                    </IconButton>
 
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 800 }} aria-label="simple table">
