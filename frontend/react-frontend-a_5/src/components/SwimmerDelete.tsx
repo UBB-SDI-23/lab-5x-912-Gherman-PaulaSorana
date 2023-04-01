@@ -9,7 +9,7 @@ export const SwimmerDelete = () => {
 
 	const handleDelete = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		await axios.delete(`../api/swimmer/${swimmerId}/`);
+		await axios.delete(`../../api/swimmer/${swimmerId}/`);
 		
 		navigate("/swimmers");
 	};
