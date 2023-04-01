@@ -22,7 +22,7 @@ const navigate = useNavigate();
 	const addSwimmer = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 		try {
-			await axios.post("api/swimmers/", swimmer);
+			await axios.post("../api/swimmers/", swimmer);
 			navigate("/swimmers");
 		} catch (error) {
 			console.log(error);
