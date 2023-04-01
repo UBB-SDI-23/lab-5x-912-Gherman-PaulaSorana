@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Swimmer } from "../../models/Swimmer";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { FullSwimmer } from "../../models/FullSwimmer";
 
 
 
 export const SwimmerDetails = () => {
 
     const { swimmerId } = useParams();
-	const [swimmer, setSwimmer] = useState<Swimmer>();
+	const [swimmer, setSwimmer] = useState<FullSwimmer>();
 
     useEffect(() => {
 		const fetchSwimmer = async () => {
@@ -34,6 +35,13 @@ export const SwimmerDetails = () => {
 					<p>Swimmer County: {swimmer?.swimmer_county}</p>
                     <p>Swimmer Date of Birth: {swimmer?.swimmer_date_of_birth}</p>
                     <p>Swimmer Years Of Experience: {swimmer?.swimmer_years_of_experience}</p>
+                    <p>Swimmer Team: {swimmer?.team.team_name}</p>
+                    <p>Swimmer Fans</p>
+                    <ul>
+                        {swimmer?.fans?.map((fan) => (
+                            <li key={fan.id}>{fan.fan_last_name}{fan.fan_first_name}</li>
+                        ))}
+                    </ul>
 				</CardContent>
 			</Card>
 		</Container>
