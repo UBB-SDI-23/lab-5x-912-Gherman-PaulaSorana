@@ -57,14 +57,14 @@ export const SwimmerShowAll = () => {
                     <TableHead>
                         <TableRow>
                             <TableCell>#</TableCell>
-                            <TableCell align="center" style={{color:"blue"}}>Last Name</TableCell>
-                            <TableCell align="center">First Name</TableCell>
-                            <TableCell align="center">County</TableCell>
-                            <TableCell align="center">Date Of Birth</TableCell>
-                            <TableCell align="center">Years of experience</TableCell>
-                            <TableCell align="center">Team ID</TableCell>
-                            <TableCell align="center">Fans IDS</TableCell>
-                            <TableCell align="center">Operations</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight:'bold'}}>Last Name</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>First Name</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>County</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Date Of Birth</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Years of experience</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Team ID</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Fans IDS</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Operations</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
