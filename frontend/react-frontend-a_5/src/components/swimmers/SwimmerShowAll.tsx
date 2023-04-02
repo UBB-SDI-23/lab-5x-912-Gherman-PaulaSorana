@@ -35,7 +35,7 @@ export const SwimmerShowAll = () => {
 
     
     return (
-    <Container>
+    <Container style={{marginTop:"20px"}}>
         <h1>All Swimmers</h1>
 
         {loading && <CircularProgress />}
@@ -43,9 +43,9 @@ export const SwimmerShowAll = () => {
         {!loading && swimmers.length == 0 && <div>No swimmers found</div>}
 
         {!loading && (
-            <IconButton style={{color:"black"}} component={Link} sx={{ mr: 3 }} to={`/swimmers/add`}>
+            <IconButton component={Link} sx={{ mr: 3 }} to={`/swimmers/add`}>
                 <Tooltip title="Add a new swimmer" arrow>
-                    <AddIcon color="primary" />
+                    <AddIcon style={{color:"black"}} />
                 </Tooltip>
             </IconButton>
         )}
