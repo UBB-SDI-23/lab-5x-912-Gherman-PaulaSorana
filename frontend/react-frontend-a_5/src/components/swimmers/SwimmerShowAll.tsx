@@ -57,7 +57,7 @@ export const SwimmerShowAll = () => {
                     <TableHead>
                         <TableRow>
                             <TableCell>#</TableCell>
-                            <TableCell align="center" style={{font:"bold"}}>Last Name</TableCell>
+                            <TableCell align="center" style={{color:"blue"}}>Last Name</TableCell>
                             <TableCell align="center">First Name</TableCell>
                             <TableCell align="center">County</TableCell>
                             <TableCell align="center">Date Of Birth</TableCell>
