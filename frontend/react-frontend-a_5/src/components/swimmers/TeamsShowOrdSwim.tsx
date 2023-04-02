@@ -37,7 +37,7 @@ export const TeamsShowOrdSwim = () => {
     
     return (
     <Container>
-        <h1>All Teams Ordered By The Number Of Swimmers</h1>
+        <h1 style={{marginTop:"65px"}}>All Teams Ordered By The Number Of Swimmers</h1>
 
         {loading && <CircularProgress />}
 
