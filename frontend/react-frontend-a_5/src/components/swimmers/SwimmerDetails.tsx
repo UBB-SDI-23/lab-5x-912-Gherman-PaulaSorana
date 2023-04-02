@@ -25,7 +25,7 @@ export const SwimmerDetails = () => {
 
     return (
 		<Container>
-			<Card>
+			<Card style={{backgroundColor:"whitesmoke"}}>
 				<CardContent>
 					<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmers`}>
 						<ArrowBackIcon />

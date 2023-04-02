@@ -53,7 +53,7 @@ export const SwimmerShowAll = () => {
         {!loading && swimmers.length > 0 && (
 
             <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 800 }} aria-label="simple table">
+                <Table sx={{ minWidth: 800 }} aria-label="simple table" style={{backgroundColor:"whitesmoke"}}>
                     <TableHead>
                         <TableRow>
                             <TableCell>#</TableCell>
