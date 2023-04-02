@@ -37,7 +37,7 @@ const navigate = useNavigate();
 						<ArrowBackIcon />
 					</IconButton>{" "}
 					<form onSubmit={addSwimmer}>
-						<TextField
+						<TextField style={{color:"#2471A3", fontWeight:'bold'}}
 							id="swimmer_last_name"
 							label="Last name"
 							variant="outlined"
@@ -45,7 +45,7 @@ const navigate = useNavigate();
 							sx={{ mb: 2 }}
 							onChange={(event) => setSwimmer({ ...swimmer, swimmer_last_name: event.target.value })}
 						/>
-						<TextField
+						<TextField style={{color:"#2471A3", fontWeight:'bold'}}
 							id="swimmer_first_name"
 							label="First name"
 							variant="outlined"
@@ -54,7 +54,7 @@ const navigate = useNavigate();
 							onChange={(event) => setSwimmer({ ...swimmer, swimmer_first_name: event.target.value })}
 						/>
 
-                        <TextField
+                        <TextField style={{color:"#2471A3", fontWeight:'bold'}}
 							id="swimmer_county"
 							label="County"
 							variant="outlined"
@@ -63,7 +63,7 @@ const navigate = useNavigate();
 							onChange={(event) => setSwimmer({ ...swimmer, swimmer_county: event.target.value })}
 						/>
 
-                        <TextField
+                        <TextField style={{color:"#2471A3", fontWeight:'bold'}}
 							id="swimmer_date_of_birth"
 							label="Date of birth"
 							variant="outlined"
@@ -72,7 +72,7 @@ const navigate = useNavigate();
 							onChange={(event) => setSwimmer({ ...swimmer, swimmer_date_of_birth: event.target.value })}
 						/>
 
-                        <TextField
+                        <TextField style={{color:"#2471A3", fontWeight:'bold'}}
 							id="swimmer_years_of_experience"
 							label="Years of experience"
 							variant="outlined"
@@ -81,7 +81,7 @@ const navigate = useNavigate();
 							onChange={(event) => setSwimmer({ ...swimmer, swimmer_years_of_experience: Number(event.target.value) })}
 						/>
 
-                        <TextField
+                        <TextField style={{color:"#2471A3", fontWeight:'bold'}}
 							id="team"
 							label="Team"
 							variant="outlined"

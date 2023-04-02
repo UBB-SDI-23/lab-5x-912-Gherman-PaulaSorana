@@ -65,7 +65,7 @@ export const SwimmerUpdate = () => {
 						<ArrowBackIcon />
 					</IconButton>{" "}
 					<form onSubmit={updateSwimmer}>
-						<TextField value={swimmer.swimmer_last_name}
+						<TextField value={swimmer.swimmer_last_name} style={{color:"#2471A3", fontWeight:'bold'}}
 							id="swimmer_last_name"
 							label="Last name"
 							variant="outlined"
@@ -73,7 +73,7 @@ export const SwimmerUpdate = () => {
 							sx={{ mb: 2 }}
 							onChange={(event) => setSwimmer({ ...swimmer, swimmer_last_name: event.target.value })}
 						/>
-						<TextField value={swimmer.swimmer_first_name}
+						<TextField value={swimmer.swimmer_first_name} style={{color:"#2471A3", fontWeight:'bold'}}
 							id="swimmer_first_name"
 							label="First name"
 							variant="outlined"
@@ -82,7 +82,7 @@ export const SwimmerUpdate = () => {
 							onChange={(event) => setSwimmer({ ...swimmer, swimmer_first_name: event.target.value })}
 						/>
 
-                        <TextField value={swimmer.swimmer_county}
+                        <TextField value={swimmer.swimmer_county} style={{color:"#2471A3", fontWeight:'bold'}}
 							id="swimmer_county"
 							label="County"
 							variant="outlined"
@@ -91,7 +91,7 @@ export const SwimmerUpdate = () => {
 							onChange={(event) => setSwimmer({ ...swimmer, swimmer_county: event.target.value })}
 						/>
 
-                        <TextField value={swimmer.swimmer_date_of_birth}
+                        <TextField value={swimmer.swimmer_date_of_birth} style={{color:"#2471A3", fontWeight:'bold'}}
 							id="swimmer_date_of_birth" 
 							label="Date of birth"
 							variant="outlined"
@@ -100,7 +100,7 @@ export const SwimmerUpdate = () => {
 							onChange={(event) => setSwimmer({ ...swimmer, swimmer_date_of_birth: event.target.value })}
 						/>
 
-                        <TextField value={swimmer.swimmer_years_of_experience}
+                        <TextField value={swimmer.swimmer_years_of_experience} style={{color:"#2471A3", fontWeight:'bold'}}
 							id="swimmer_years_of_experience"
 							label="Years of experience"
 							variant="outlined"
@@ -109,7 +109,7 @@ export const SwimmerUpdate = () => {
 							onChange={(event) => setSwimmer({ ...swimmer, swimmer_years_of_experience: Number(event.target.value) })}
 						/>
 
-                        <TextField value={swimmer.team}
+                        <TextField value={swimmer.team} style={{color:"#2471A3", fontWeight:'bold'}}
 							id="team"
 							label="Team"
 							variant="outlined"

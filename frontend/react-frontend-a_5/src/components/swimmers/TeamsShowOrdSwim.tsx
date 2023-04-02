@@ -50,13 +50,13 @@ export const TeamsShowOrdSwim = () => {
                     <TableHead>
                         <TableRow>
                             <TableCell>#</TableCell>
-                            <TableCell align="center">Team Name</TableCell>
-                            <TableCell align="center">Founding Year</TableCell>
-                            <TableCell align="center">Budget</TableCell>
-                            <TableCell align="center">Motto</TableCell>
-                            <TableCell align="center">Abbreviation</TableCell>
-                            <TableCell align="center">Swimmers Names</TableCell>
-                            <TableCell align="center">Number Of Swimmers</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight:'bold'}}>Team Name</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight:'bold'}}>Founding Year</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight:'bold'}}>Budget</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight:'bold'}}>Motto</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight:'bold'}}>Abbreviation</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight:'bold'}}>Swimmers Names</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight:'bold'}}>Number Of Swimmers</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
