@@ -58,7 +58,7 @@ export const SwimmerShowAll = () => {
                 <Table sx={{ minWidth: 800 }} aria-label="simple table" style={{backgroundColor:"whitesmoke"}}>
                     <TableHead>
                         <TableRow>
-                            <TableCell>#</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight:'bold'}}>Crt.</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight:'bold'}}>Last Name</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>First Name</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>County</TableCell>
