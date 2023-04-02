@@ -31,13 +31,13 @@ export const SwimmerDetails = () => {
 						<ArrowBackIcon />
 					</IconButton>{" "} 
 					<h1 style={{textAlign:"left", fontWeight:'bold'}}>Swimmer Details</h1>
-					<p style={{textAlign:"left", fontWeight:'bold'}}>Swimmer Last Name: {swimmer?.swimmer_last_name}</p>
-					<p style={{textAlign:"left", fontWeight:'bold'}}>Swimmer First Name: {swimmer?.swimmer_first_name}</p>
-					<p style={{textAlign:"left", fontWeight:'bold'}}>Swimmer County: {swimmer?.swimmer_county}</p>
-                    <p style={{textAlign:"left", fontWeight:'bold'}}>Swimmer Date of Birth: {swimmer?.swimmer_date_of_birth}</p>
-                    <p style={{textAlign:"left", fontWeight:'bold'}}>Swimmer Years Of Experience: {swimmer?.swimmer_years_of_experience}</p>
-                    <p style={{textAlign:"left", fontWeight:'bold'}}>Swimmer Team: {swimmer?.team.team_name}</p>
-                    <p style={{textAlign:"left", fontWeight:'bold'}}>Swimmer Fans</p>
+					<p style={{textAlign:"left", fontWeight:'bold'}}>Last Name: {swimmer?.swimmer_last_name}</p>
+					<p style={{textAlign:"left", fontWeight:'bold'}}>First Name: {swimmer?.swimmer_first_name}</p>
+					<p style={{textAlign:"left", fontWeight:'bold'}}>County: {swimmer?.swimmer_county}</p>
+                    <p style={{textAlign:"left", fontWeight:'bold'}}>Date of Birth: {swimmer?.swimmer_date_of_birth}</p>
+                    <p style={{textAlign:"left", fontWeight:'bold'}}>Years Of Experience: {swimmer?.swimmer_years_of_experience}</p>
+                    <p style={{textAlign:"left", fontWeight:'bold'}}>Team: {swimmer?.team.team_name}</p>
+                    <p style={{textAlign:"left", fontWeight:'bold'}}>Fans</p>
                     <ul style={{textAlign:"left", fontWeight:'bold'}}>
                         {swimmer?.fans?.map((fan) => (
                             <li key={fan.id}>{fan.fan_last_name} {fan.fan_first_name}</li>
