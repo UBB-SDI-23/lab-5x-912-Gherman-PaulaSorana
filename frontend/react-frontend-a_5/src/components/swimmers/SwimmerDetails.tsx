@@ -30,15 +30,15 @@ export const SwimmerDetails = () => {
 					<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmers`}>
 						<ArrowBackIcon />
 					</IconButton>{" "} 
-					<h1 style={{textAlign:"left", color:"#2471A3", fontWeight:'bold'}}>Swimmer Details</h1>
-					<p style={{textAlign:"left", color:"#2471A3", fontWeight:'bold'}}>Swimmer Last Name: {swimmer?.swimmer_last_name}</p>
-					<p style={{textAlign:"left", color:"#2471A3", fontWeight:'bold'}}>Swimmer First Name: {swimmer?.swimmer_first_name}</p>
-					<p style={{textAlign:"left", color:"#2471A3", fontWeight:'bold'}}>Swimmer County: {swimmer?.swimmer_county}</p>
-                    <p style={{textAlign:"left", color:"#2471A3", fontWeight:'bold'}}>Swimmer Date of Birth: {swimmer?.swimmer_date_of_birth}</p>
-                    <p style={{textAlign:"left", color:"#2471A3", fontWeight:'bold'}}>Swimmer Years Of Experience: {swimmer?.swimmer_years_of_experience}</p>
-                    <p style={{textAlign:"left", color:"#2471A3", fontWeight:'bold'}}>Swimmer Team: {swimmer?.team.team_name}</p>
-                    <p style={{textAlign:"left", color:"#2471A3", fontWeight:'bold'}}>Swimmer Fans</p>
-                    <ul style={{textAlign:"left", color:"#2471A3", fontWeight:'bold'}}>
+					<h1 style={{textAlign:"left", fontWeight:'bold'}}>Swimmer Details</h1>
+					<p style={{textAlign:"left", fontWeight:'bold'}}>Swimmer Last Name: {swimmer?.swimmer_last_name}</p>
+					<p style={{textAlign:"left", fontWeight:'bold'}}>Swimmer First Name: {swimmer?.swimmer_first_name}</p>
+					<p style={{textAlign:"left", fontWeight:'bold'}}>Swimmer County: {swimmer?.swimmer_county}</p>
+                    <p style={{textAlign:"left", fontWeight:'bold'}}>Swimmer Date of Birth: {swimmer?.swimmer_date_of_birth}</p>
+                    <p style={{textAlign:"left", fontWeight:'bold'}}>Swimmer Years Of Experience: {swimmer?.swimmer_years_of_experience}</p>
+                    <p style={{textAlign:"left", fontWeight:'bold'}}>Swimmer Team: {swimmer?.team.team_name}</p>
+                    <p style={{textAlign:"left", fontWeight:'bold'}}>Swimmer Fans</p>
+                    <ul style={{textAlign:"left", fontWeight:'bold'}}>
                         {swimmer?.fans?.map((fan) => (
                             <li key={fan.id}>{fan.fan_last_name} {fan.fan_first_name}</li>
                         ))}

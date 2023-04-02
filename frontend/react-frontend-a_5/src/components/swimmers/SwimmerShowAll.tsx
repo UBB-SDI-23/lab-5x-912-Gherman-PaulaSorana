@@ -35,8 +35,8 @@ export const SwimmerShowAll = () => {
 
     
     return (
-    <Container style={{marginTop:"20px"}}>
-        <h1>All Swimmers</h1>
+    <Container>
+        <h1 style={{marginTop:"20px"}}>All Swimmers</h1>
 
         {loading && <CircularProgress />}
 
