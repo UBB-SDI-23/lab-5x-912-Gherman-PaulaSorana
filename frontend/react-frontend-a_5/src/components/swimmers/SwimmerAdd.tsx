@@ -90,7 +90,7 @@ const navigate = useNavigate();
 							onChange={(event) => setSwimmer({ ...swimmer, team: Number(event.target.value) })}
 						/>
 
-						<Button type="submit" style={{color:"black"}}>Add Swimmer</Button>
+						<Button type="submit">Add Swimmer</Button>
 					</form>
 				</CardContent>
 				<CardActions></CardActions>

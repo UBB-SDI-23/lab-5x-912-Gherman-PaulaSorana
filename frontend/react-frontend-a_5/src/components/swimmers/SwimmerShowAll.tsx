@@ -43,7 +43,7 @@ export const SwimmerShowAll = () => {
         {!loading && swimmers.length == 0 && <div>No swimmers found</div>}
 
         {!loading && (
-            <IconButton component={Link} sx={{ mr: 3 }} to={`/swimmers/add`}>
+            <IconButton style={{color:"black"}} component={Link} sx={{ mr: 3 }} to={`/swimmers/add`}>
                 <Tooltip title="Add a new swimmer" arrow>
                     <AddIcon color="primary" />
                 </Tooltip>
@@ -57,7 +57,7 @@ export const SwimmerShowAll = () => {
                     <TableHead>
                         <TableRow>
                             <TableCell>#</TableCell>
-                            <TableCell align="center">Last Name</TableCell>
+                            <TableCell align="center" style={{font:"bold"}}>Last Name</TableCell>
                             <TableCell align="center">First Name</TableCell>
                             <TableCell align="center">County</TableCell>
                             <TableCell align="center">Date Of Birth</TableCell>
