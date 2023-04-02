@@ -10,7 +10,7 @@ export const AppHome = () => {
 				<Typography variant="h1" component="h1" gutterBottom>
 				</Typography>
 			</Container>
-			
+
 		</React.Fragment>
 	);
 };
