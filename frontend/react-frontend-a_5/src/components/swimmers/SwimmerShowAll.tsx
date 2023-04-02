@@ -20,6 +20,7 @@ import { Swimmer } from "../../models/Swimmer";
 import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+import { Scale } from "@mui/icons-material";
 
 export const SwimmerShowAll = () => {
     const[loading, setLoading] = useState(true)
@@ -46,7 +47,7 @@ export const SwimmerShowAll = () => {
         {!loading && (
             <IconButton component={Link} sx={{ mr: 3 }} to={`/swimmers/add`}>
                 <Tooltip title="Add a new swimmer" arrow>
-                    <PersonAddAlt1Icon style={{color:"whitesmoke", width:"30px"}} />
+                    <PersonAddAlt1Icon style={{color:"whitesmoke", scale:(1.8)}} />
                 </Tooltip>
             </IconButton>
         )}
