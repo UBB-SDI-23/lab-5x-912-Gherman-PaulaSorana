@@ -46,7 +46,7 @@ export const SwimmerShowAll = () => {
         {!loading && (
             <IconButton component={Link} sx={{ mr: 3 }} to={`/swimmers/add`}>
                 <Tooltip title="Add a new swimmer" arrow>
-                    <PersonAddAlt1Icon />
+                    <PersonAddAlt1Icon style={{color:"whitesmoke"}} />
                 </Tooltip>
             </IconButton>
         )}
