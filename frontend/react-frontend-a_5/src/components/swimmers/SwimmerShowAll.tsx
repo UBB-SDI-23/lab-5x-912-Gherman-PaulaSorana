@@ -25,7 +25,7 @@ import { Scale } from "@mui/icons-material";
 
 export const SwimmerShowAll = () => {
     const[loading, setLoading] = useState(true)
-    const [swimmers, setSwimmers] = useState([]);
+    const[swimmers, setSwimmers] = useState([]);
 
     useEffect(() => {
     // fetch(GlobalURL + "/app1/swimmer/")
@@ -37,7 +37,7 @@ export const SwimmerShowAll = () => {
     console.log(swimmers);
 
     const sortSwimmers = () => {
-        const sortedSwimmers = swimmers.sort((a: Swimmer, b: Swimmer) => {
+        const sortedSwimmers = [...swimmers].sort((a: Swimmer, b: Swimmer) => {
             if (a.swimmer_years_of_experience < b.swimmer_years_of_experience) {
                 return -1;
             }
