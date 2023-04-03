@@ -10,6 +10,7 @@ import {
 	Container,
 	IconButton,
 	Tooltip,
+    Button,
 } from "@mui/material";
 
 import EditIcon from "@mui/icons-material/Edit";
@@ -35,6 +36,19 @@ export const SwimmerShowAll = () => {
 
     console.log(swimmers);
 
+    const sortSwimmers = () => {
+        const sortedSwimmers = swimmers.sort((a: Swimmer, b: Swimmer) => {
+            if (a.swimmer_years_of_experience < b.swimmer_years_of_experience) {
+                return -1;
+            }
+            if (a.swimmer_years_of_experience > b.swimmer_years_of_experience) {
+                return 1;
+            }
+            return 0;
+        })
+
+        setSwimmers(sortedSwimmers);
+    }
     
     return (
     <Container>
@@ -50,7 +64,14 @@ export const SwimmerShowAll = () => {
                     <PersonAddAlt1Icon style={{color:"whitesmoke", fontSize:"50px"}} />
                 </Tooltip>
             </IconButton>
+
         )}
+
+        {!loading && (
+                <Button sx={{}} onClick={sortSwimmers} >
+                    Sort swimmers
+                </Button>
+            )}
 
         {!loading && swimmers.length > 0 && (
 
