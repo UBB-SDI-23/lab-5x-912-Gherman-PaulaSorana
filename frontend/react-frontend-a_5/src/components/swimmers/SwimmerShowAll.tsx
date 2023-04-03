@@ -85,7 +85,7 @@ export const SwimmerShowAll = () => {
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>County</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Date Of Birth</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Years of experience</TableCell>
-                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Team ID</TableCell>
+                            {/* <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Team ID</TableCell> */}
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Fans IDS</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Operations</TableCell>
                         </TableRow>
@@ -106,7 +106,7 @@ export const SwimmerShowAll = () => {
                                 <TableCell align="center">{swimmer.swimmer_county}</TableCell>
                                 <TableCell align="center">{swimmer.swimmer_date_of_birth}</TableCell>
                                 <TableCell align="center">{swimmer.swimmer_years_of_experience}</TableCell>
-                                <TableCell align="center">{swimmer.team}</TableCell>
+                                {/* <TableCell align="center">{swimmer.team}</TableCell> */}
                                 <TableCell align="center">{swimmer.fans}</TableCell>
                                 <TableCell align="center">
 
