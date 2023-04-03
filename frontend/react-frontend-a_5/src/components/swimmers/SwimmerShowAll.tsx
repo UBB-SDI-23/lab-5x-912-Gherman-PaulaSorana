@@ -46,7 +46,7 @@ export const SwimmerShowAll = () => {
             }
             return 0;
         })
-
+        console.log(sortedSwimmers);
         setSwimmers(sortedSwimmers);
     }
     
