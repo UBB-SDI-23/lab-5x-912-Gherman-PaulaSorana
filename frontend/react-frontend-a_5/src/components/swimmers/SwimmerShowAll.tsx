@@ -68,7 +68,7 @@ export const SwimmerShowAll = () => {
         )}
 
         {!loading && (
-                <Button sx={{}} onClick={sortSwimmers} >
+                <Button sx={{color:"black"}} onClick={sortSwimmers} >
                     Sort swimmers
                 </Button>
             )}
