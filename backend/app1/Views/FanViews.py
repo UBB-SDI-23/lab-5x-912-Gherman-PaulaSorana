@@ -2,8 +2,8 @@ from django.db.models import Avg
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status, generics
-from app1.models import Fan, SwimmerFan
-from app1.serailizer import FanSerializer, FanSerializerId, SwimmerFanSerializer, FanSerializerAvg
+from ..models import Fan, SwimmerFan
+from ..serailizer import FanSerializer, FanSerializerId, SwimmerFanSerializer, FanSerializerAvg
 
 
 class FanDetails(APIView):

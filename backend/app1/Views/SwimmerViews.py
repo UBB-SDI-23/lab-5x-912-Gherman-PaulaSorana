@@ -1,8 +1,8 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status, generics
-from app1.models import Swimmer, SwimmerFan
-from app1.serailizer import SwimmerSerializer, SwimmerSerializerId, SwimmerFanSerializer
+from ..models import Swimmer, SwimmerFan
+from ..serailizer import SwimmerSerializer, SwimmerSerializerId, SwimmerFanSerializer
 
 
 class SwimmerDetails(APIView):

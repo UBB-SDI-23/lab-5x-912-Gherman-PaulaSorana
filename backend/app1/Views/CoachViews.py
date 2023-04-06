@@ -1,8 +1,8 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status, generics
-from app1.models import Coach, Team
-from app1.serailizer import CoachSerializer, CoachSerializerId
+from ..models import Coach, Team
+from ..serailizer import CoachSerializer, CoachSerializerId
 
 
 class CoachDetails(APIView):
@@ -20,6 +20,7 @@ class CoachDetails(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class CoachInfo(APIView):
     serializer_class = CoachSerializerId
