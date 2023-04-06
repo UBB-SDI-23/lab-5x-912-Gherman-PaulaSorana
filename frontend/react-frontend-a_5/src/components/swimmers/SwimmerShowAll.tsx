@@ -29,7 +29,7 @@ export const SwimmerShowAll = () => {
 
     useEffect(() => {
     // fetch(GlobalURL + "/app1/swimmer/")
-    fetch("/api/swimmer/")
+    fetch("https://professional-swimming-app.jumpingcrab.com/app1/swimmer/")
         .then(res => res.json())
         .then(data => {setSwimmers(data); setLoading(false);})
     }, []);
