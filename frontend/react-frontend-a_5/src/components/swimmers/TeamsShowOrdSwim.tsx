@@ -27,7 +27,7 @@ export const TeamsShowOrdSwim = () => {
     const [teams, setTeams] = useState([]);
 
     useEffect(() => {
-    fetch(`/${BACKEND_API_URL}/teamNoSwim/`)
+    fetch(`${BACKEND_API_URL}/teamNoSwim/`)
         .then(res => res.json())
         .then(data => {setTeams(data); setLoading(false);})
     }, []);
