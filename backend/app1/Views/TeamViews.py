@@ -2,8 +2,8 @@ from django.db.models import Count
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status, generics
-from app1.models import Team, Swimmer
-from app1.serailizer import TeamSerializer, TeamSerializerNo, SwimmerSerializer
+from ..models import Team, Swimmer
+from ..serailizer import TeamSerializer, TeamSerializerNo, SwimmerSerializer
 
 
 class TeamDetails(APIView):
