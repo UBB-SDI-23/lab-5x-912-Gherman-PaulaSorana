@@ -22,14 +22,14 @@ import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import { Scale } from "@mui/icons-material";
+import { BACKEND_API_URL } from "../../constants";
 
 export const SwimmerShowAll = () => {
     const[loading, setLoading] = useState(true)
     const[swimmers, setSwimmers] = useState([]);
 
     useEffect(() => {
-    // fetch(GlobalURL + "/app1/swimmer/")
-    fetch("https://professional-swimming-app.jumpingcrab.com/app1/swimmer/")
+    fetch(`${BACKEND_API_URL}/swimmer/`)
         .then(res => res.json())
         .then(data => {setSwimmers(data); setLoading(false);})
     }, []);

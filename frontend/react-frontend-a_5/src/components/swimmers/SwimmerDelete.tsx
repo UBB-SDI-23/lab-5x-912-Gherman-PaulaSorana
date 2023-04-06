@@ -2,6 +2,7 @@ import { Container, Card, CardContent, IconButton, CardActions, Button } from "@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
+import { BACKEND_API_URL } from "../../constants";
 
 export const SwimmerDelete = () => {
 	const { swimmerId } = useParams();
@@ -9,7 +10,7 @@ export const SwimmerDelete = () => {
 
 	const handleDelete = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		await axios.delete(`../../api/swimmer/${swimmerId}/`);
+		await axios.delete(`../../${BACKEND_API_URL}/swimmer/${swimmerId}/`);
 		
 		navigate("/swimmers");
 	};

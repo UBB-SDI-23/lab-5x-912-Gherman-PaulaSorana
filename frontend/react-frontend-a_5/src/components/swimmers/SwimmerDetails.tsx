@@ -6,6 +6,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { FullSwimmer } from "../../models/FullSwimmer";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { BACKEND_API_URL } from "../../constants";
 
 
 export const SwimmerDetails = () => {
@@ -15,7 +16,7 @@ export const SwimmerDetails = () => {
 
     useEffect(() => {
 		const fetchSwimmer = async () => {
-			const response = await fetch(`../api/swimmer/${swimmerId}/`);
+			const response = await fetch(`../${BACKEND_API_URL}/swimmer/${swimmerId}/`);
 			const swimmer = await response.json();
 			setSwimmer(swimmer);
             console.log(swimmer);

@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Swimmer } from "../../models/Swimmer";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
+import { BACKEND_API_URL } from "../../constants";
 
 
 export const SwimmerAdd = () => {
@@ -22,7 +23,7 @@ const navigate = useNavigate();
 	const addSwimmer = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 		try {
-			await axios.post("../api/swimmer/", swimmer);
+			await axios.post(`../${BACKEND_API_URL}/swimmer/`, swimmer);
 			navigate("/swimmers");
 		} catch (error) {
 			console.log(error);

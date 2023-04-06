@@ -1,0 +1,1 @@
+export const BACKEND_API_URL = "https://professional-swimming-app.jumpingcrab.com/app1"

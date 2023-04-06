@@ -20,14 +20,14 @@ import { Swimmer } from "../../models/Swimmer";
 import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import { TeamOrdNoSwim } from "../../models/TeamOrdNoSwim";
+import { BACKEND_API_URL } from "../../constants";
 
 export const TeamsShowOrdSwim = () => {
     const[loading, setLoading] = useState(true)
     const [teams, setTeams] = useState([]);
 
     useEffect(() => {
-    // fetch(GlobalURL + "/app1/swimmer/")
-    fetch("/api/teamNoSwim/")
+    fetch(`/${BACKEND_API_URL}/teamNoSwim/`)
         .then(res => res.json())
         .then(data => {setTeams(data); setLoading(false);})
     }, []);
