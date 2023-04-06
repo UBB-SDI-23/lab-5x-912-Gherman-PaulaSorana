@@ -25,7 +25,7 @@ export const SwimmerUpdate = () => {
 
     useEffect(() => {
 		const fetchSwimmer = async () => {
-			const response = await fetch(`../../${BACKEND_API_URL}/swimmer/${swimmerId}/`);
+			const response = await fetch(`${BACKEND_API_URL}/swimmer/${swimmerId}/`);
 			const swimmer = await response.json();
 			setSwimmer({
 				swimmer_last_name: swimmer.swimmer_last_name,
