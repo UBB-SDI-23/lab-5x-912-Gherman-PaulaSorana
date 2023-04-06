@@ -4,6 +4,7 @@ from rest_framework import status, generics
 from app1.models import Swimmer, SwimmerFan
 from app1.serailizer import SwimmerSerializer, SwimmerSerializerId, SwimmerFanSerializer
 
+
 class SwimmerDetails(APIView):
     serializer_class = SwimmerSerializer
 
@@ -85,4 +86,13 @@ class SwimmerInfo(APIView):
 
         obj.delete()
         return Response({"msg":"deleted"}, status=status.HTTP_204_NO_CONTENT)
+
+
+class SwimmersWithAtLeastNYearsExp(APIView):
+    serializer_class = SwimmerSerializer
+
+    def get(self, request, yoe):
+        years_of_exp = Swimmer.objects.filter(swimmer_years_of_experience__gte=yoe)
+        serializer = SwimmerSerializer(years_of_exp, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 

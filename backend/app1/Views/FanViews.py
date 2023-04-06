@@ -5,6 +5,7 @@ from rest_framework import status, generics
 from app1.models import Fan, SwimmerFan
 from app1.serailizer import FanSerializer, FanSerializerId, SwimmerFanSerializer, FanSerializerAvg
 
+
 class FanDetails(APIView):
     serializer_class = FanSerializer
 

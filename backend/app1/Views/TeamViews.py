@@ -5,6 +5,7 @@ from rest_framework import status, generics
 from app1.models import Team, Swimmer
 from app1.serailizer import TeamSerializer, TeamSerializerNo, SwimmerSerializer
 
+
 class TeamDetails(APIView):
     serializer_class = TeamSerializer
 

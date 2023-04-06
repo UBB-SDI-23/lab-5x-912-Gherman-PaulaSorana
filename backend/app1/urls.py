@@ -1,7 +1,9 @@
 from django.urls import path
-from .views import SwimmerDetails, SwimmerInfo, TeamInfo, TeamDetails, SwimmersWithAtLeastNYearsExp, CoachDetails, \
-    CoachInfo, FanInfo, FanDetails, SwimmerFanDetails, SwimmerFanInfo, FansOrderedByAvgYoeOfSwimmersTheyAreFansOf, \
-    TeamsOrderedByNoOfSwimmers, TeamsBulk
+from Views.SwimmerViews import SwimmerDetails, SwimmerInfo, SwimmersWithAtLeastNYearsExp
+from Views.TeamViews import TeamDetails, TeamInfo, TeamsBulk, TeamsOrderedByNoOfSwimmers
+from Views.CoachViews import CoachInfo, CoachDetails
+from Views.FanViews import FanInfo, FanDetails,FansOrderedByAvgYoeOfSwimmersTheyAreFansOf
+from Views.SwimmerFanViews import SwimmerFanDetails, SwimmerFanInfo
 
 urlpatterns = [
 

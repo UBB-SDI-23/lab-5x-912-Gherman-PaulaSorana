@@ -4,6 +4,7 @@ from rest_framework import status, generics
 from app1.models import SwimmerFan
 from app1.serailizer import SwimmerFanSerializer
 
+
 class SwimmerFanDetails(APIView):
     serializer_class = SwimmerFanSerializer
 
