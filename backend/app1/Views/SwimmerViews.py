@@ -9,7 +9,7 @@ class SwimmerDetails(APIView):
     serializer_class = SwimmerSerializer
 
     def get(self, request):
-        obj = Swimmer.objects.all()
+        obj = Swimmer.objects.all()[:100]
         serializer = SwimmerSerializer(obj, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
