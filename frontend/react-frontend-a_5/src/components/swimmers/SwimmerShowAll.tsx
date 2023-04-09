@@ -99,6 +99,7 @@ export const SwimmerShowAll = () => {
                                     <Link to={`/swimmers/${swimmer.id}`} title="View swimmer details">
                                         {"view details"}
                                     </Link>
+                                    
                                 </TableCell>
                                 </TableCell>
                                 <TableCell align="center">{swimmer.swimmer_last_name}</TableCell>
