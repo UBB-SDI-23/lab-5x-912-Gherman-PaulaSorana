@@ -9,6 +9,7 @@ class Team(models.Model):
     team_budget = models.IntegerField()
     team_motto = models.CharField(max_length=100)
     team_abbreviation = models.CharField(max_length=10)
+    team_description = models.CharField(max_length=200)
 
 
 class Swimmer(models.Model):
