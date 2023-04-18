@@ -1,1 +1,1 @@
-export const BACKEND_API_URL = "https://professional-swimming-app.jumpingcrab.com/app1"
+export const BACKEND_API_URL = "https://swimfast.strangled.net/app1"
