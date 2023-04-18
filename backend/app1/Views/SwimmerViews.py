@@ -1,15 +1,18 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status, generics
+
+from .Pagination import CustomPagination
 from ..models import Swimmer, SwimmerFan
 from ..serailizer import SwimmerSerializer, SwimmerSerializerId, SwimmerFanSerializer
 
 
 class SwimmerDetails(APIView):
     serializer_class = SwimmerSerializer
+    pagination_class = CustomPagination
 
     def get(self, request):
-        obj = Swimmer.objects.all()[:100]
+        obj = Swimmer.objects.all()
         serializer = SwimmerSerializer(obj, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -24,6 +27,7 @@ class SwimmerDetails(APIView):
 
 class SwimmerInfo(APIView):
     serializer_class = SwimmerSerializerId
+    pagination_class = CustomPagination
 
     def get(self, request, id):
         try:

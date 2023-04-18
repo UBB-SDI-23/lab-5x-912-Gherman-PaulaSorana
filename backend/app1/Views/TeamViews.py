@@ -2,12 +2,15 @@ from django.db.models import Count
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status, generics
+
+from .Pagination import CustomPagination
 from ..models import Team, Swimmer
 from ..serailizer import TeamSerializer, TeamSerializerNo, SwimmerSerializer
 
 
 class TeamDetails(APIView):
     serializer_class = TeamSerializer
+    pagination_class = CustomPagination
 
     def get(self, request):
         obj = Team.objects.all()
@@ -25,6 +28,7 @@ class TeamDetails(APIView):
 
 class TeamInfo(APIView):
     serializer_class = TeamSerializer
+    pagination_class = CustomPagination
 
     def get(self, request, id):
         try:

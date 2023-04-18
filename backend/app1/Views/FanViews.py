@@ -2,12 +2,15 @@ from django.db.models import Avg
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status, generics
+
+from .Pagination import CustomPagination
 from ..models import Fan, SwimmerFan
 from ..serailizer import FanSerializer, FanSerializerId, SwimmerFanSerializer, FanSerializerAvg
 
 
 class FanDetails(APIView):
     serializer_class = FanSerializer
+    pagination_class = CustomPagination
 
     def get(self, request):
         obj = Fan.objects.all()
@@ -30,6 +33,7 @@ class FanDetails(APIView):
 
 class FanInfo(APIView):
     serializer_class = FanSerializerId
+    pagination_class = CustomPagination
 
     def get(self, request, id):
         try:
