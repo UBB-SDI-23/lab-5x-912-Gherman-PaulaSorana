@@ -27,14 +27,31 @@ import { BACKEND_API_URL } from "../../constants";
 export const SwimmerShowAll = () => {
     const[loading, setLoading] = useState(true)
     const[swimmers, setSwimmers] = useState([]);
+    const [page, setPage] = useState(1);
+    const [pageSize, setPageSize] = useState(10);
+    
 
-    useEffect(() => {
-    fetch(`${BACKEND_API_URL}/swimmer/`)
-        .then(res => res.json())
-        .then(data => {setSwimmers(data); setLoading(false);})
-    }, []);
+    // useEffect(() => {
+    // fetch(`${BACKEND_API_URL}/swimmer/`)
+    //     .then(res => res.json())
+    //     .then(data => {setSwimmers(data); setLoading(false);})
+    // }, []);
 
-    console.log(swimmers);
+    // console.log(swimmers);
+
+    const fetchSwimmers = async () => {
+        setLoading(true);
+        const response = await fetch(
+          `${BACKEND_API_URL}/swimmer?page=${page}&page_size=${pageSize}`
+        );
+        const { count, next, previous, results } = await response.json();
+        setSwimmers(results);
+        setLoading(false);
+      };
+    
+      useEffect(() => {
+        fetchSwimmers();
+      }, [page]);
 
     const sortSwimmers = () => {
         const sortedSwimmers = [...swimmers].sort((a: Swimmer, b: Swimmer) => {
@@ -74,7 +91,7 @@ export const SwimmerShowAll = () => {
             )}
 
         {!loading && swimmers.length > 0 && (
-
+          <>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 800 }} aria-label="simple table" style={{backgroundColor:"whitesmoke"}}>
                     <TableHead>
@@ -125,6 +142,17 @@ export const SwimmerShowAll = () => {
                 </TableBody>
                 </Table>
             </TableContainer>
+            <Button disabled={page === 1} onClick={() => setPage(page - 1)}>
+            Previous
+            </Button>
+
+            <Button
+            disabled={swimmers.length < pageSize}
+            onClick={() => setPage(page + 1)}
+            >
+            Next
+            </Button>
+          </>
         )
         }
     </Container>
