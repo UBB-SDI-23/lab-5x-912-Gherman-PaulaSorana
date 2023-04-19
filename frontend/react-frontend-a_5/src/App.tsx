@@ -46,7 +46,7 @@ function App() {
                       <Route path="/swimmers/:swimmerId/delete" element={<SwimmerDelete />} />
                       <Route path="/swimmers/:swimmerId/edit" element={<SwimmerUpdate />} />
                       <Route path="/swimmers/:swimmerId" element={<SwimmerDetails />} />
-                      <Route path="/teams/teamsOrd" element={<TeamsShowOrdSwim />} />
+                      <Route path="/teamss/teamsOrd" element={<TeamsShowOrdSwim />} />
 
                       <Route path="/teams/add" element={<TeamAdd />} />
                       <Route path="/teams" element={<TeamsShowOrdSwim />} />
