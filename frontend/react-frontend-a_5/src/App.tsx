@@ -29,6 +29,7 @@ import { SwimmerFanAdd } from "./components/swimmerfans/SwimmerFanAdd";
 import { SwimmerFanShowAll } from "./components/swimmerfans/SwimmerFanShowAll";
 import { SwimmerFanDelete } from "./components/swimmerfans/SwimmerFanDelete";
 import { SwimmerFanDetails } from "./components/swimmerfans/SwimmerFanDetails";
+import { TeamShowAll } from "./components/teams/TeamsShowAll";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -49,7 +50,7 @@ function App() {
                       <Route path="/statisticsteam/teamsOrd" element={<TeamsShowOrdSwim />} />
 
                       <Route path="/teams/add" element={<TeamAdd />} />
-                      <Route path="/teams" element={<TeamsShowOrdSwim />} />
+                      <Route path="/teams" element={<TeamShowAll />} />
                       <Route path="/teams/:teamId/delete" element={<TeamDelete />} />
                       <Route path="/teams/:teamId/edit" element={<TeamUpdate />} />
                       <Route path="/teams/:teamId" element={<TeamDetails />} />

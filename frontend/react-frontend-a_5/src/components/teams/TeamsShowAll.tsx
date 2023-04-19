@@ -23,7 +23,7 @@ import { Scale } from "@mui/icons-material";
 import { BACKEND_API_URL } from "../../constants";
 import { Team } from "../../models/Team";
 
-export const SwimmerShowAll = () => {
+export const TeamShowAll = () => {
     const[loading, setLoading] = useState(true)
     const[teams, setTeams] = useState([]);
     const [page, setPage] = useState(1);
