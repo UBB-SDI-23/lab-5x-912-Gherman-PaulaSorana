@@ -81,8 +81,8 @@ export const AppMenu = () => {
 					</Button>
 
 					<Button
-						variant={path.startsWith("/teamss") ? "outlined" : "text"}
-						to="/teamss/teamsOrd"
+						variant={path.startsWith("/statisticsteam") ? "outlined" : "text"}
+						to="/statisticsteam/teamsOrd"
 						component={Link}
 						color="inherit"
 						sx={{ mr: 5 }}
