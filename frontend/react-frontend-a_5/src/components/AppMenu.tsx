@@ -77,7 +77,7 @@ export const AppMenu = () => {
 						color="inherit"
 						sx={{ mr: 5 }}
 						startIcon={<ConnectWithoutContactIcon />}>
-						SwimmerFans
+						Swimmer Fans
 					</Button>
 
 					<Button
