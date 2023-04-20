@@ -38,6 +38,8 @@ class FanInfo(APIView):
                                                                                  fan=id))
             swimmer['fan_page_name'] = fan_swimmer_serializer.data['fan_page_name']
             swimmer['fan_since_year'] = fan_swimmer_serializer.data['fan_since_year']
+            
+            del swimmer['fans']
 
         return Response(serialized_data, status=status.HTTP_200_OK)
 
