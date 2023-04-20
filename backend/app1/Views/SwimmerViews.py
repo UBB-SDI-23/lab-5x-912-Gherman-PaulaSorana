@@ -50,7 +50,6 @@ class SwimmerListCreateView(generics.ListCreateAPIView):
 
 class SwimmerInfo(APIView):
     serializer_class = SwimmerSerializerId
-    pagination_class = CustomPagination
 
     def get(self, request, id):
         try:
