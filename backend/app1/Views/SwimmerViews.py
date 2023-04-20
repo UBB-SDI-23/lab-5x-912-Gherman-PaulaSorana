@@ -30,7 +30,7 @@ class SwimmerListCreateView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         queryset = Swimmer.objects.all()
-        # print(queryset.explain())
+        print(queryset.explain())
         return queryset
 
     # def get(self, request):
