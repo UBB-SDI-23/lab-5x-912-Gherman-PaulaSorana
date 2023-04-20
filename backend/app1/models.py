@@ -55,6 +55,7 @@ class Fan(models.Model):
 
     class Meta:
         ordering = ['id']
+        indexes = [models.Index(fields=["fan_first_name", "id"])]
 
 
 class SwimmerFan(models.Model):
