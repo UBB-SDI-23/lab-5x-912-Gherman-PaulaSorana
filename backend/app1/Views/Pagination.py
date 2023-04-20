@@ -4,7 +4,7 @@ from django.core.paginator import Paginator
 class CustomPagination(CursorPagination):
     page_size = 10
     max_page_size = 100
-    ordering = '-created_at' # Replace 'created_at' with the field you want to use for ordering
+    ordering = 'id' # Replace 'created_at' with the field you want to use for ordering
 
     # Override `get_cursor()` to return the cursor value for the next page of results
     def get_cursor(self, queryset):
