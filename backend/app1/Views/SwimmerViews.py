@@ -11,15 +11,29 @@ class SwimmerDetails(APIView):
     serializer_class = SwimmerSerializer
     pagination_class = CustomPagination
 
+    # def get(self, request):
+    #     obj = Swimmer.objects.all()
+    #     serializer = SwimmerSerializer(obj, many=True)
+    #     return Response(serializer.data, status=status.HTTP_200_OK)
+    #
+    # def post(self, request):
+    #     serializer = SwimmerSerializer(data=request.data)
+    #     if serializer.is_valid():
+    #         print(serializer.errors)
+    #         serializer.save()
+    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     def get(self, request):
         obj = Swimmer.objects.all()
-        serializer = SwimmerSerializer(obj, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        paginator = self.pagination_class()
+        page = paginator.paginate_queryset(obj, request)
+        serializer = SwimmerSerializer(page, many=True)
+        return paginator.get_paginated_response(serializer.data)
 
     def post(self, request):
         serializer = SwimmerSerializer(data=request.data)
         if serializer.is_valid():
-            print(serializer.errors)
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
