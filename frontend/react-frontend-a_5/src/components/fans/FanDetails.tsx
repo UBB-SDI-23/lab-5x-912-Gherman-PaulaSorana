@@ -37,11 +37,11 @@ export const FanDetails = () => {
                     <p  style={{textAlign:"left", fontWeight:'bold'}}>Date of Birth: {fan?.fan_date_of_birth}</p>
                     <p  style={{textAlign:"left", fontWeight:'bold'}}>Email: {fan?.fan_email}</p>
                     <p  style={{textAlign:"left", fontWeight:'bold'}}>Swimmers</p>
-                    <ul style={{textAlign:"left", fontWeight:'bold'}}>
+                    {/* <ul style={{textAlign:"left", fontWeight:'bold'}}>
                         {fan?.swimmers?.map((swimmer) => (
                             <li key={swimmer.id}>{swimmer.swimmer_last_name} {swimmer.swimmer_first_name}</li>
                         ))}
-                    </ul>
+                    </ul> */}
 				</CardContent>
 
                 <CardActions>

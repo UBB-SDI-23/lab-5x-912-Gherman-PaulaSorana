@@ -7,5 +7,5 @@ export interface Fan{
     fan_nationality:string;
     fan_date_of_birth:string;
     fan_email:string;
-    swimmers: Swimmer[];
+    swimmers: number[];
 };
