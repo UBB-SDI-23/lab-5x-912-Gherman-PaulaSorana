@@ -13,7 +13,7 @@ class Team(models.Model):
 
     class Meta:
         ordering = ['id']
-        
+
 
 class Swimmer(models.Model):
     swimmer_last_name = models.CharField(max_length=100)
