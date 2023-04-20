@@ -25,7 +25,7 @@ import { Scale } from "@mui/icons-material";
 import { BACKEND_API_URL } from "../../constants";
 
 export const SwimmerShowAll = () => {
-    const[loading, setLoading] = useState(true)
+    const[loading, setLoading] = useState(true);
     const[swimmers, setSwimmers] = useState([]);
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);

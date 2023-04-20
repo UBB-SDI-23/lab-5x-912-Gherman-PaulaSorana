@@ -24,7 +24,7 @@ import { BACKEND_API_URL } from "../../constants";
 import { Coach } from "../../models/Coach";
 
 export const CoachShowAll = () => {
-    const[loading, setLoading] = useState(true)
+    const[loading, setLoading] = useState(true);
     const[coaches, setCoaches] = useState([]);
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);

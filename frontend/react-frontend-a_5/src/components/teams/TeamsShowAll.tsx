@@ -24,7 +24,7 @@ import { BACKEND_API_URL } from "../../constants";
 import { Team } from "../../models/Team";
 
 export const TeamShowAll = () => {
-    const[loading, setLoading] = useState(true)
+    const[loading, setLoading] = useState(true);
     const[teams, setTeams] = useState([]);
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);

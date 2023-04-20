@@ -22,7 +22,7 @@ import { BACKEND_API_URL } from "../../constants";
 import { Fan } from "../../models/Fan";
 
 export const FanShowAll = () => {
-    const[loading, setLoading] = useState(true)
+    const[loading, setLoading] = useState(true);
     const[fans, setFans] = useState([]);
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
