@@ -1,10 +1,10 @@
 from rest_framework.pagination import CursorPagination
-
+from django.core.paginator import Paginator
 
 class CustomPagination(CursorPagination):
     page_size = 10
     max_page_size = 100
-    ordering = 'id'
+    ordering = '-created_at' # Replace 'created_at' with the field you want to use for ordering
 
     # Override `get_cursor()` to return the cursor value for the next page of results
     def get_cursor(self, queryset):
@@ -24,7 +24,9 @@ class CustomPagination(CursorPagination):
         if cursor:
             qs = qs.filter(**{f"{self.ordering}__lt": cursor})
 
-        # Use Django's built-in pagination methods to paginate the queryset
-        page = self.django_paginator.get_page(qs, self.get_page_size(request), self.get_max_page_size(request))
+        # Use Django's built-in Paginator class to paginate the queryset
+        paginator = Paginator(qs, self.get_page_size(request))
+        page_number = request.query_params.get(self.page_query_param, 1)
+        page = paginator.get_page(page_number)
 
         return page
