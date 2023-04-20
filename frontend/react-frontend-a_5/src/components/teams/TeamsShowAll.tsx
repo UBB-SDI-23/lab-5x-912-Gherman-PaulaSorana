@@ -73,7 +73,7 @@ export const TeamShowAll = () => {
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Budget</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Motto</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Abbreviation</TableCell>
-                            {/* <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Description</TableCell> */}
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Operations</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
