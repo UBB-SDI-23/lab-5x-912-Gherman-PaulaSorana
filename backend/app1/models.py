@@ -50,8 +50,8 @@ class Fan(models.Model):
     fan_email = models.CharField(max_length=100)
     swimmers = models.ManyToManyField(Swimmer, through='SwimmerFan')
 
-    def __str__(self):
-        return self.fan_last_name
+    # def __str__(self):
+    #     return self.fan_last_name
 
     class Meta:
         ordering = ['id']
