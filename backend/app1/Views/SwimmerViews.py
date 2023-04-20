@@ -7,9 +7,9 @@ from ..models import Swimmer, SwimmerFan
 from ..serailizer import SwimmerSerializer, SwimmerSerializerId, SwimmerFanSerializer
 
 
-class SwimmerDetails(APIView):
-    serializer_class = SwimmerSerializer
-    pagination_class = CustomPagination
+# class SwimmerDetails(APIView):
+#     serializer_class = SwimmerSerializer
+#     pagination_class = CustomPagination
 
     # def get(self, request):
     #     obj = Swimmer.objects.all()
@@ -24,24 +24,24 @@ class SwimmerDetails(APIView):
     #         return Response(serializer.data, status=status.HTTP_201_CREATED)
     #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def get_queryset(self):
-        queryset = Swimmer.objects.all().order_by('id')
-        print(queryset.explain())
-        return queryset
+class SwimmerListCreateView(generics.ListCreateAPIView):
+    queryset = Swimmer.objects.all()
+    serializer_class = SwimmerSerializer
+    pagination_class = CustomPagination
 
-    def get(self, request):
-        obj = Swimmer.objects.all().order_by('id')
-        paginator = self.pagination_class()
-        page = paginator.paginate_queryset(obj, request)
-        serializer = SwimmerSerializer(page, many=True)
-        return paginator.get_paginated_response(serializer.data)
-
-    def post(self, request):
-        serializer = SwimmerSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    # def get(self, request):
+    #     obj = Swimmer.objects.all().order_by('id')
+    #     paginator = self.pagination_class()
+    #     page = paginator.paginate_queryset(obj, request)
+    #     serializer = SwimmerSerializer(page, many=True)
+    #     return paginator.get_paginated_response(serializer.data)
+    #
+    # def post(self, request):
+    #     serializer = SwimmerSerializer(data=request.data)
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class SwimmerInfo(APIView):
