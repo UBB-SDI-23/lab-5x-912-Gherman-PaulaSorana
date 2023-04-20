@@ -8,23 +8,6 @@ from ..models import Team, Swimmer
 from ..serailizer import TeamSerializer, TeamSerializerNo, SwimmerSerializer
 
 
-# class TeamDetails(APIView):
-#     serializer_class = TeamSerializer
-#     pagination_class = CustomPagination
-#
-#     def get(self, request):
-#         obj = Team.objects.all()
-#         serializer = TeamSerializer(obj, many=True)
-#         return Response(serializer.data, status=status.HTTP_200_OK)
-#
-#     def post(self, request):
-#         serializer = TeamSerializer(data=request.data)
-#         if serializer.is_valid():
-#             print(serializer.errors)
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 class TeamListCreateView(generics.ListCreateAPIView):
     serializer_class = TeamSerializer
     pagination_class = CustomPagination

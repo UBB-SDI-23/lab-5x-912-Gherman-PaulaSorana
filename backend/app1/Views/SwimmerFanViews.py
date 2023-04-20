@@ -7,22 +7,14 @@ from ..models import SwimmerFan
 from ..serailizer import SwimmerFanSerializer
 
 
-class SwimmerFanDetails(APIView):
+class SwimmerFanListCreateView(generics.ListCreateAPIView):
     serializer_class = SwimmerFanSerializer
     pagination_class = CustomPagination
 
-    def get(self, request):
-        obj = SwimmerFan.objects.all()
-        serializer = SwimmerFanSerializer(obj, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-    def post(self, request):
-        serializer = SwimmerFanSerializer(data=request.data)
-        if serializer.is_valid():
-            print(serializer.errors)
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def get_queryset(self):
+        queryset = SwimmerFan.objects.all()
+        print(queryset.explain())
+        return queryset
 
 
 class SwimmerFanInfo(APIView):

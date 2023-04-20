@@ -8,27 +8,14 @@ from ..models import Fan, SwimmerFan
 from ..serailizer import FanSerializer, FanSerializerId, SwimmerFanSerializer, FanSerializerAvg
 
 
-class FanDetails(APIView):
+class FanListCreateView(generics.ListCreateAPIView):
     serializer_class = FanSerializer
     pagination_class = CustomPagination
 
-    def get(self, request):
-        obj = Fan.objects.all()
-        serializer = FanSerializer(obj, many=True)
-        serialized_data = serializer.data
-
-        for i in range(len(serialized_data)):
-            del serialized_data[i]['swimmers']
-
-        return Response(serialized_data, status=status.HTTP_200_OK)
-
-    def post(self, request):
-        serializer = FanSerializer(data=request.data)
-        if serializer.is_valid():
-            print(serializer.errors)
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def get_queryset(self):
+        queryset = Fan.objects.all()
+        print(queryset.explain())
+        return queryset
 
 
 class FanInfo(APIView):
