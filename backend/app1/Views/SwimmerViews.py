@@ -28,7 +28,7 @@ class SwimmerListCreateView(generics.ListCreateAPIView):
     serializer_class = SwimmerSerializer
     pagination_class = CustomPagination
 
-    def query_set(self):
+    def get_queryset(self):
         queryset = Swimmer.objects.all()
         print(queryset.explain())
         return queryset
