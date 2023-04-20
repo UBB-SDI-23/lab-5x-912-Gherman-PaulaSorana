@@ -24,6 +24,11 @@ class SwimmerDetails(APIView):
     #         return Response(serializer.data, status=status.HTTP_201_CREATED)
     #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def get_queryset(self):
+        queryset = Swimmer.objects.all().order_by('id')
+        print(queryset.explain())
+        return queryset
+
     def get(self, request):
         obj = Swimmer.objects.all().order_by('id')
         paginator = self.pagination_class()
