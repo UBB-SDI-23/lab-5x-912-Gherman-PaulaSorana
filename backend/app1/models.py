@@ -21,6 +21,10 @@ class Swimmer(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='swimmers')
     fans = models.ManyToManyField("Fan", through='SwimmerFan')
 
+    class Meta:
+        ordering = ['id']
+        indexes = [models.Index(fields=["id"])]
+
 
 class Coach(models.Model):
     coach_first_name = models.CharField(max_length=100)

@@ -25,7 +25,7 @@ class SwimmerDetails(APIView):
     #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request):
-        obj = Swimmer.objects.all()
+        obj = Swimmer.objects.all().order_by('id')
         paginator = self.pagination_class()
         page = paginator.paginate_queryset(obj, request)
         serializer = SwimmerSerializer(page, many=True)
