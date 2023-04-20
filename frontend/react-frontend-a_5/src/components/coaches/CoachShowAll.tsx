@@ -41,7 +41,7 @@ export const CoachShowAll = () => {
     const fetchCoaches = async () => {
         setLoading(true);
         const response = await fetch(
-          `${BACKEND_API_URL}/coach?page=${page}&page_size=${pageSize}`
+          `${BACKEND_API_URL}/coach/?page=${page}&page_size=${pageSize}`
         );
         const { count, next, previous, results } = await response.json();
         setCoaches(results);
@@ -118,11 +118,11 @@ export const CoachShowAll = () => {
                 </TableBody>
                 </Table>
             </TableContainer>
-            <Button disabled={page === 1} onClick={() => setPage(page - 1)}>
+            <Button style={{color:"whitesmoke"}} disabled={page === 1} onClick={() => setPage(page - 1)}>
             Previous
             </Button>
 
-            <Button
+            <Button style={{color:"whitesmoke"}}
             disabled={coaches.length < pageSize}
             onClick={() => setPage(page + 1)}
             >

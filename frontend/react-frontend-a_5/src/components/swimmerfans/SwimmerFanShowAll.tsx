@@ -39,7 +39,7 @@ export const SwimmerFanShowAll = () => {
     const fetchSwimmers = async () => {
         setLoading(true);
         const response = await fetch(
-          `${BACKEND_API_URL}/swimmerfan?page=${page}&page_size=${pageSize}`
+          `${BACKEND_API_URL}/swimmerfan/?page=${page}&page_size=${pageSize}`
         );
         const { count, next, previous, results } = await response.json();
         setSwimmers(results);
@@ -111,11 +111,11 @@ export const SwimmerFanShowAll = () => {
                 </TableBody>
                 </Table>
             </TableContainer>
-            <Button disabled={page === 1} onClick={() => setPage(page - 1)}>
+            <Button style={{color:"whitesmoke"}} disabled={page === 1} onClick={() => setPage(page - 1)}>
             Previous
             </Button>
 
-            <Button
+            <Button style={{color:"whitesmoke"}}
             disabled={swimmers.length < pageSize}
             onClick={() => setPage(page + 1)}
             >

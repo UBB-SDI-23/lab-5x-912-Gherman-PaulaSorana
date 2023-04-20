@@ -39,7 +39,7 @@ export const FanShowAll = () => {
     const fetchFans = async () => {
         setLoading(true);
         const response = await fetch(
-          `${BACKEND_API_URL}/fan?page=${page}&page_size=${pageSize}`
+          `${BACKEND_API_URL}/fan/?page=${page}&page_size=${pageSize}`
         );
         const { count, next, previous, results } = await response.json();
         setFans(results);
@@ -117,11 +117,11 @@ export const FanShowAll = () => {
                 </TableBody>
                 </Table>
             </TableContainer>
-            <Button disabled={page === 1} onClick={() => setPage(page - 1)}>
+            <Button style={{color:"whitesmoke"}} disabled={page === 1} onClick={() => setPage(page - 1)}>
             Previous
             </Button>
 
-            <Button
+            <Button style={{color:"whitesmoke"}}
             disabled={fans.length < pageSize}
             onClick={() => setPage(page + 1)}
             >
