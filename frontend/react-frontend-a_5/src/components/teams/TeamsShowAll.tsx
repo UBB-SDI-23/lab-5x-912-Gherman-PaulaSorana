@@ -109,11 +109,11 @@ export const TeamShowAll = () => {
                 </TableBody>
                 </Table>
             </TableContainer>
-            <Button disabled={page === 1} onClick={() => setPage(page - 1)}>
+            <Button style={{color:"whitesmoke"}} disabled={page === 1} onClick={() => setPage(page - 1)}>
             Previous
             </Button>
 
-            <Button
+            <Button style={{color:"whitesmoke"}}
             disabled={teams.length < pageSize}
             onClick={() => setPage(page + 1)}
             >
