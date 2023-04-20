@@ -37,7 +37,6 @@ export const CoachDetails = () => {
                     <p  style={{textAlign:"left", fontWeight:'bold'}}>Date of Birth: {coach?.coach_date_of_birth}</p>
                     <p  style={{textAlign:"left", fontWeight:'bold'}}>Email: {coach?.coach_email}</p>
                     <p  style={{textAlign:"left", fontWeight:'bold'}}>Team: {coach?.team.team_name}</p>
-                    <p  style={{textAlign:"left", fontWeight:'bold'}}>Fans</p>
 				</CardContent>
 
                 <CardActions>

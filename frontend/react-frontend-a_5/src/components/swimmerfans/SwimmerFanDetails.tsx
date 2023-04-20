@@ -29,7 +29,7 @@ export const SwimmerFanDetails = () => {
 		<Container>
 			<Card style={{backgroundColor:"whitesmoke"}}>
 				<CardContent>
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmersfans`}>
+					<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmerfans`}>
 						<ArrowBackIcon />
 					</IconButton>{" "} 
 					<h1 style={{textAlign:"left", fontWeight:'bold'}}>Swimmer fan Details</h1>
@@ -40,11 +40,11 @@ export const SwimmerFanDetails = () => {
 				</CardContent>
 
                 <CardActions>
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmersfans/${swimmerfanId}/edit`}>
+					<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmerfans/${swimmerfanId}/edit`}>
 						<EditIcon />
 					</IconButton>
 
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmersfans/${swimmerfanId}/delete`}>
+					<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmerfans/${swimmerfanId}/delete`}>
 						<DeleteForeverIcon sx={{ color: "red" }} />
 					</IconButton>
 				</CardActions>

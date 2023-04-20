@@ -22,7 +22,7 @@ const navigate = useNavigate();
 		event.preventDefault();
 		try {
 			await axios.post(`${BACKEND_API_URL}/swimmerfan/`, swimmer);
-			navigate("/swimmersfans");
+			navigate("/swimmerfans");
 		} catch (error) {
 			console.log(error);
 		}
@@ -32,7 +32,7 @@ const navigate = useNavigate();
 		<Container>
 			<Card>
 				<CardContent>
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmersfans`}>
+					<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmerfans`}>
 						<ArrowBackIcon />
 					</IconButton>{" "}
 					<form onSubmit={addSwimmer}>

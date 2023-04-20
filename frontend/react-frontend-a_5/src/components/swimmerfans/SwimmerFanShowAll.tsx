@@ -60,7 +60,7 @@ export const SwimmerFanShowAll = () => {
         {!loading && swimmers.length == 0 && <div>No swimmerfans found</div>}
 
         {!loading && (
-            <IconButton component={Link} sx={{ mr: 3 }} to={`/swimmersfans/add`}>
+            <IconButton component={Link} sx={{ mr: 3 }} to={`/swimmerfans/add`}>
                 <Tooltip title="Add a new swimmer fan" arrow>
                     <PersonAddAlt1Icon style={{color:"whitesmoke", fontSize:"50px"}} />
                 </Tooltip>
@@ -98,11 +98,11 @@ export const SwimmerFanShowAll = () => {
                                 <TableCell align="center">{swimmer.fan_since_year}</TableCell>
                                 <TableCell align="center">
 
-										<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmersfans/${swimmer.id}/edit`}>
+										<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmerfans/${swimmer.id}/edit`}>
 											<EditIcon />
 										</IconButton>
 
-										<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmersfans/${swimmer.id}/delete`}>
+										<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmerfans/${swimmer.id}/delete`}>
 											<DeleteForeverIcon sx={{ color: "red" }} />
 										</IconButton>
 									</TableCell>

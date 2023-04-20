@@ -12,20 +12,20 @@ export const SwimmerFanDelete = () => {
 		event.preventDefault();
 		await axios.delete(`${BACKEND_API_URL}/swimmerfan/${swimmerfanId}/`);
 		
-		navigate("/swimmersfans");
+		navigate("/swimmerfans");
 	};
 
 	const handleCancel = (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 	
-		navigate("/swimmersfans");
+		navigate("/swimmerfans");
 	};
 
 	return (
 		<Container>
 			<Card>
 				<CardContent>
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmersfans`}>
+					<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmerfans`}>
 						<ArrowBackIcon />
 					</IconButton>{" "}
 					Are you sure you want to delete this swimmer fan? This cannot be undone!

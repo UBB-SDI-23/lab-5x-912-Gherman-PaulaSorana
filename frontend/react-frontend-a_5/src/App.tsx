@@ -67,10 +67,10 @@ function App() {
                       <Route path="/fans/:fanId/edit" element={<FanUpdate />} />
                       <Route path="/fans/:fanId" element={<FanDetails />} />
 
-                      <Route path="/swimmersfans/add" element={<SwimmerFanAdd/>} />
-                      <Route path="/swimmersfans" element={<SwimmerFanShowAll />} />
-                      <Route path="/swimmersfans/:swimmerfanId/delete" element={<SwimmerFanDelete />} />
-                      <Route path="/swimmersfans/:swimmerfanId" element={<SwimmerFanDetails />} />
+                      <Route path="/swimmerfans/add" element={<SwimmerFanAdd/>} />
+                      <Route path="/swimmerfans" element={<SwimmerFanShowAll />} />
+                      <Route path="/swimmerfans/:swimmerfanId/delete" element={<SwimmerFanDelete />} />
+                      <Route path="/swimmerfans/:swimmerfanId" element={<SwimmerFanDetails />} />
    
               </Routes>
       </Router>

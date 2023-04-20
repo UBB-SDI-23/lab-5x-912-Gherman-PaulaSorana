@@ -71,8 +71,8 @@ export const AppMenu = () => {
 					</Button>
 
 					<Button
-						variant={path.startsWith("/swimmersfans") ? "outlined" : "text"}
-						to="/swimmersfans"
+						variant={path.startsWith("/swimmerfans") ? "outlined" : "text"}
+						to="/swimmerfans"
 						component={Link}
 						color="inherit"
 						sx={{ mr: 5 }}
