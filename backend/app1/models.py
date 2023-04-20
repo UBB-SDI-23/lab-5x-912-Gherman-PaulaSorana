@@ -26,7 +26,7 @@ class Swimmer(models.Model):
 
     class Meta:
         ordering = ['id']
-        indexes = [models.Index(fields=["team", "fans"])]
+        indexes = [models.Index(fields=["team"])]
 
 
 class Coach(models.Model):
@@ -39,7 +39,6 @@ class Coach(models.Model):
 
     class Meta:
         ordering = ['id']
-        
         indexes = [models.Index(fields=["team"])]
 
 
@@ -56,7 +55,6 @@ class Fan(models.Model):
 
     class Meta:
         ordering = ['id']
-        indexes = [models.Index(fields=["swimmers"])]
 
 
 class SwimmerFan(models.Model):
