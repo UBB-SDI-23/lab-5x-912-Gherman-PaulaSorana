@@ -11,6 +11,9 @@ class Team(models.Model):
     team_abbreviation = models.CharField(max_length=10)
     team_description = models.CharField(max_length=5000, default="")
 
+    class Meta:
+        ordering = ['id']
+        
 
 class Swimmer(models.Model):
     swimmer_last_name = models.CharField(max_length=100)
