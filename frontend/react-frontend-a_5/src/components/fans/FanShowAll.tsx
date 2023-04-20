@@ -44,6 +44,7 @@ export const FanShowAll = () => {
         const { count, next, previous, results } = await response.json();
         setFans(results);
         setLoading(false);
+        console.log(results);
       };
     
       useEffect(() => {
