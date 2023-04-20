@@ -66,9 +66,6 @@ class SwimmerFan(models.Model):
 
     class Meta:
         ordering = ['id']
-        index_together = [
-            ["swimmer", "fan"],
-        ]
         indexes = [models.Index(fields=["swimmer", "fan"])]
 
 
