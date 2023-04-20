@@ -26,6 +26,7 @@ class Swimmer(models.Model):
 
     class Meta:
         ordering = ['id']
+        indexes = [models.Index(fields=["team", "fans"])]
 
 
 class Coach(models.Model):
@@ -35,6 +36,10 @@ class Coach(models.Model):
     coach_date_of_birth = models.DateField()
     coach_email = models.CharField(max_length=100)
     team = models.ForeignKey(Team, on_delete=models.CASCADE, unique=True)
+
+    class Meta:
+        ordering = ['id']
+        indexes = [models.Index(fields=["team"])]
 
 
 class Fan(models.Model):
@@ -48,12 +53,20 @@ class Fan(models.Model):
     def __str__(self):
         return self.fan_last_name
 
+    class Meta:
+        ordering = ['id']
+        indexes = [models.Index(fields=["swimmers"])]
+
 
 class SwimmerFan(models.Model):
     swimmer = models.ForeignKey(Swimmer, on_delete=models.CASCADE)
     fan = models.ForeignKey(Fan, on_delete=models.CASCADE)
     fan_page_name = models.CharField(max_length=100)
     fan_since_year = models.IntegerField()
+
+    class Meta:
+        ordering = ['id']
+        indexes = [models.Index(fields=["swimmer", "fan"])]
 
 
 
