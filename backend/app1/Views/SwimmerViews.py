@@ -25,9 +25,13 @@ from ..serailizer import SwimmerSerializer, SwimmerSerializerId, SwimmerFanSeria
     #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class SwimmerListCreateView(generics.ListCreateAPIView):
-    queryset = Swimmer.objects.all()
     serializer_class = SwimmerSerializer
     pagination_class = CustomPagination
+
+    def query_set(self):
+        queryset = Swimmer.objects.all()
+        print(queryset.explain())
+        return queryset
 
     # def get(self, request):
     #     obj = Swimmer.objects.all().order_by('id')
