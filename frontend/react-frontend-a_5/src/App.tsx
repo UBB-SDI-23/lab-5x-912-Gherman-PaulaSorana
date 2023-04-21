@@ -48,6 +48,7 @@ function App() {
                       <Route path="/swimmers/:swimmerId/edit" element={<SwimmerUpdate />} />
                       <Route path="/swimmers/:swimmerId" element={<SwimmerDetails />} />
                       <Route path="/statisticsteam/teamsOrd" element={<TeamsShowOrdSwim />} />
+                      <Route path="/statisticsteam" element={<TeamsShowOrdSwim />} />
 
                       <Route path="/teams/add" element={<TeamAdd />} />
                       <Route path="/teams" element={<TeamShowAll />} />
