@@ -14,7 +14,7 @@ import { FullSwimmerFan } from "../../models/FullSwimmerFan";
 export const SwimmerFanDetails = () => {
 
     const { swimmerfanId } = useParams();
-	const [swimmer, setSwimmer] = useState<FullSwimmerFan>();
+	const [swimmer, setSwimmer] = useState<SwimmerFan>();
 
     useEffect(() => {
 		const fetchSwimmer = async () => {
@@ -36,8 +36,8 @@ export const SwimmerFanDetails = () => {
 					<h1 style={{textAlign:"left", fontWeight:'bold'}}>SwimmerFan Details</h1>
 					<p  style={{textAlign:"left", fontWeight:'bold'}}>Fan Page Name: {swimmer?.fan_page_name}</p>
 					<p  style={{textAlign:"left", fontWeight:'bold'}}>Fan Since Year: {swimmer?.fan_since_year}</p>
-                    <p  style={{textAlign:"left", fontWeight:'bold'}}>Swimmers: {swimmer?.swimmer.swimmer_first_name}</p>
-                    <p  style={{textAlign:"left", fontWeight:'bold'}}>Fans: {swimmer?.fan.fan_first_name}</p>
+                    <p  style={{textAlign:"left", fontWeight:'bold'}}>Swimmers: {swimmer?.swimmer}</p>
+                    <p  style={{textAlign:"left", fontWeight:'bold'}}>Fans: {swimmer?.fan}</p>
 				</CardContent>
 
 
