@@ -55,7 +55,7 @@ class Fan(models.Model):
 
     class Meta:
         ordering = ['id']
-        indexes = [models.Index(fields=["fan_first_name", "fan_last_name"])]
+        indexes = [models.Index(fields=["fan_first_name", "fan_last_name", "fan_email"])]
 
 
 class SwimmerFan(models.Model):
@@ -68,8 +68,8 @@ class SwimmerFan(models.Model):
         ordering = ['id']
         indexes = [models.Index(fields=["swimmer", "fan"]),
                    models.Index(fields=['swimmer']),
-                   models.Index(fields=['fan']),
-                   models.Index(fields=['fan__fan_email'])]
+                   models.Index(fields=['fan'])
+                   ]
 
 
 
