@@ -26,15 +26,7 @@ export const FanShowAll = () => {
     const [fans, setFans] = useState([]);
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
-    
-
-    // useEffect(() => {
-    // fetch(`${BACKEND_API_URL}/swimmer/`)
-    //     .then(res => res.json())
-    //     .then(data => {setSwimmers(data); setLoading(false);})
-    // }, []);
-
-    // console.log(swimmers);
+    const crt = (page - 1) * pageSize + 1;
 
     const fetchFans = async () => {
         setLoading(true);
@@ -86,10 +78,12 @@ export const FanShowAll = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {fans.map((fan:Fan, index) => (
+                         
+                        {fans.map((fan:Fan, index:number) => (
+
                             <TableRow key={fan.id}>
                                 <TableCell component="th" scope="row">
-                                    {index + 1}
+                                    {(crt + index)}
                                 <TableCell component="th" scope="row">
                                     <Link to={`/fans/${fan.id}`} title="View fan details">
                                         {"view details"}
