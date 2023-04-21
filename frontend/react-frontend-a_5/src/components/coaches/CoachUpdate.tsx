@@ -22,7 +22,7 @@ export const CoachUpdate = () => {
     });
 
     useEffect(() => {
-		const fetchSwimmer = async () => {
+		const fetchCoach = async () => {
 			const response = await fetch(`${BACKEND_API_URL}/coach/${coachId}/`);
 			const coach = await response.json();
 			setCoach({
@@ -36,7 +36,7 @@ export const CoachUpdate = () => {
 			setLoading(false);
             console.log(coach);
 		};
-		fetchSwimmer();
+		fetchCoach();
 	}, [coachId]);
 
 	const updateCoach = async (event: { preventDefault: () => void }) => {
