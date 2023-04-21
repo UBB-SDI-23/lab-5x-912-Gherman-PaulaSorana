@@ -31,7 +31,7 @@ export const TeamsShowOrdSwim = () => {
     const crt = (page - 1) * pageSize + 1;
 
     useEffect(() => {
-    fetch(`${BACKEND_API_URL}/teamNoSwim/`)
+    fetch(`${BACKEND_API_URL}/teamNoSwim/?page=${page}&page_size=${pageSize}`)
         .then(res => res.json())
         .then(data => {setTeams(data); setLoading(false);})
     }, []);
