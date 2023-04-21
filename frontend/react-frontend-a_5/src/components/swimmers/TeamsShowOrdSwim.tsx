@@ -65,6 +65,7 @@ export const TeamsShowOrdSwim  = () => {
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Budget</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Motto</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Abbreviation</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Swimmers</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>No Of Swimmers</TableCell>
                         </TableRow>
                     </TableHead>
@@ -79,6 +80,11 @@ export const TeamsShowOrdSwim  = () => {
                                 <TableCell align="center">{team.team_budget}</TableCell>
                                 <TableCell align="center">{team.team_motto}</TableCell>
                                 <TableCell align="center">{team.team_abbreviation}</TableCell>
+                                <TableCell align="left">
+                                    {team?.swimmers.map((swimmer) => (
+                                    <li key={swimmer.id}>{swimmer.swimmer_last_name} {swimmer.swimmer_first_name}</li>
+                                    ))}
+                                </TableCell>
                                 <TableCell align="center">{team.no_of_swimmers}</TableCell>
                                 
                             </TableRow>
