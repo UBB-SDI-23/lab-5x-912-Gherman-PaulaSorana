@@ -1,11 +1,9 @@
-import { Fan } from "./Fan";
-import { Swimmer } from "./Swimmer";
+export {};
 
 export interface SwimmerFan{
     id:number;
-    // swimmer:Swimmer;
     swimmer:number;
-    fan:Fan;
+    fan:number;
     fan_page_name:string;
     fan_since_year:string;
 };
