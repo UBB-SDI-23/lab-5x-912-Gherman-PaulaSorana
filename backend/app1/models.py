@@ -69,7 +69,7 @@ class SwimmerFan(models.Model):
         indexes = [models.Index(fields=["swimmer", "fan"]),
                    models.Index(fields=['swimmer']),
                    models.Index(fields=['fan']),
-                   models.Index(fields=['fan__email'])]
+                   models.Index(fields=['fan_email'])]
 
 
 
