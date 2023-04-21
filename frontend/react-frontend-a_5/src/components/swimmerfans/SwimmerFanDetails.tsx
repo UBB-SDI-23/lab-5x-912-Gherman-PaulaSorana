@@ -39,6 +39,7 @@ export const SwimmerFanDetails = () => {
                     <p  style={{textAlign:"left", fontWeight:'bold'}}>Fans: {swimmer?.fan.fan_first_name}</p>
 				</CardContent>
 
+
                 <CardActions>
 					<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmerfans/${swimmerfanId}/delete`}>
 						<DeleteForeverIcon sx={{ color: "red" }} />
