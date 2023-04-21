@@ -67,8 +67,8 @@ export const TeamsShowOrdSwim = () => {
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Budget</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Motto</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Abbreviation</TableCell>
-                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Swimmers</TableCell>
-                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>No Swimmers</TableCell>
+                            {/* <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Swimmers</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>No Swimmers</TableCell> */}
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -80,8 +80,8 @@ export const TeamsShowOrdSwim = () => {
                                 <TableCell align="center">{ordTeam.team_name}</TableCell>
                                 <TableCell align="center">{ordTeam.team_founding_year}</TableCell>
                                 <TableCell align="center">{ordTeam.team_budget}</TableCell>
-                                <TableCell align="center">{100}</TableCell>
-                                <TableCell align="center">{100}</TableCell>
+                                <TableCell align="center">{ordTeam.team_motto}</TableCell>
+                                <TableCell align="center">{ordTeam.team_abbreviation}</TableCell>
                             </TableRow>
                         ))}
                 </TableBody>
