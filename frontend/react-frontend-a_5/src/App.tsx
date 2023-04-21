@@ -30,6 +30,7 @@ import { SwimmerFanShowAll } from "./components/swimmerfans/SwimmerFanShowAll";
 import { SwimmerFanDelete } from "./components/swimmerfans/SwimmerFanDelete";
 import { SwimmerFanDetails } from "./components/swimmerfans/SwimmerFanDetails";
 import { TeamShowAll } from "./components/teams/TeamsShowAll";
+import { Statistics } from "./components/Statistics";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -48,7 +49,7 @@ function App() {
                       <Route path="/swimmers/:swimmerId/edit" element={<SwimmerUpdate />} />
                       <Route path="/swimmers/:swimmerId" element={<SwimmerDetails />} />
                       <Route path="/statisticsteam/teamsOrd" element={<TeamsShowOrdSwim />} />
-                      <Route path="/statisticsteam" element={<TeamsShowOrdSwim />} />
+                      <Route path="/allstatistics" element={<Statistics />} />
 
                       <Route path="/teams/add" element={<TeamAdd />} />
                       <Route path="/teams" element={<TeamShowAll />} />
