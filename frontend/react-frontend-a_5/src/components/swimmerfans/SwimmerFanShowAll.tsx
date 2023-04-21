@@ -79,7 +79,7 @@ export const SwimmerFanShowAll = () => {
                                 <TableCell component="th" scope="row">
                                     {index + crt}
                                 <TableCell component="th" scope="row">
-                                    <Link to={`/swimmersfans/${swimmer.id}`} title="View swimmer fan details">
+                                    <Link to={`/swimmerfans/${swimmer.id}`} title="View swimmer fan details">
                                         {"view details"}
                                         
                                     </Link>
@@ -89,11 +89,6 @@ export const SwimmerFanShowAll = () => {
                                 <TableCell align="center">{swimmer.fan_page_name}</TableCell>
                                 <TableCell align="center">{swimmer.fan_since_year}</TableCell>
                                 <TableCell align="center">
-
-										<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmerfans/${swimmer.id}/edit`}>
-											<EditIcon />
-										</IconButton>
-
 										<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmerfans/${swimmer.id}/delete`}>
 											<DeleteForeverIcon sx={{ color: "red" }} />
 										</IconButton>
