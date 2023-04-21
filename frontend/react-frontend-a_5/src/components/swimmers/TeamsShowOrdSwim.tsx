@@ -30,13 +30,19 @@ export const TeamsShowOrdSwim = () => {
     const [pageSize, setPageSize] = useState(10);
     const crt = (page - 1) * pageSize + 1;
 
-    useEffect(() => {
-    fetch(`${BACKEND_API_URL}/teamNoSwim/?page=${page}&page_size=${pageSize}`)
-        .then(res => res.json())
-        .then(data => {setTeams(data); setLoading(false);})
-    }, []);
-
-    console.log(teams);
+    const fetchTeamsOrdered = async () => {
+        setLoading(true);
+        const response = await fetch(
+            `${BACKEND_API_URL}/teamNoSwim/?page=${page}&page_size=${pageSize}`
+        );
+        const { count, next, previous, results } = await response.json();
+        setTeams(results);
+        setLoading(false);
+      };
+    
+      useEffect(() => {
+        fetchTeamsOrdered();
+      }, [page]);
 
     
     return (
