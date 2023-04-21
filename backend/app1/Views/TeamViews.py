@@ -83,15 +83,14 @@ class TeamInfo(APIView):
         return Response({"msg": "deleted"}, status=status.HTTP_204_NO_CONTENT)
 
 
-class TeamsOrderedByNoOfSwimmers(APIView):
+class TeamsOrderedByNoOfSwimmers(generics.ListCreateAPIView):
     serializer_class = TeamSerializerNo
     pagination_class = CustomPagination
 
-    def get(self, request):
-        teams = Team.objects.annotate(no_of_swimmers=Count('swimmers')).order_by('no_of_swimmers')
-
-        serializer = TeamSerializerNo(teams, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+    def get_queryset(self):
+        queryset = Team.objects.annotate(no_of_swimmers=Count('swimmers')).order_by('no_of_swimmers')
+        print(queryset.explain())
+        return queryset
 
 
 class TeamsBulk(APIView):
