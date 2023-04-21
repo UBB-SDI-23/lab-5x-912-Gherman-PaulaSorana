@@ -17,23 +17,23 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useEffect, useState } from "react";
 import { GlobalURL } from "../../main";
-import { Swimmer } from "../../models/Swimmer";
 import { Link } from "react-router-dom";
-import AddIcon from "@mui/icons-material/Add";
-import { TeamOrdNoSwim } from "../../models/TeamOrdNoSwim";
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+import { Scale } from "@mui/icons-material";
 import { BACKEND_API_URL } from "../../constants";
+import { TeamOrdNoSwim } from "../../models/TeamOrdNoSwim";
 
-export const TeamsShowOrdSwim = () => {
+export const TeamShowAll = () => {
     const[loading, setLoading] = useState(true);
-    const [teams, setTeams] = useState([]);
+    const[teams, setTeams] = useState([]);
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
     const crt = (page - 1) * pageSize + 1;
-
-    const fetchTeamsOrdered = async () => {
+    
+    const fetchTeams = async () => {
         setLoading(true);
         const response = await fetch(
-            `${BACKEND_API_URL}/teamNoSwim/?page=${page}&page_size=${pageSize}`
+          `${BACKEND_API_URL}/teamNoSwim/?page=${page}&page_size=${pageSize}`
         );
         const { count, next, previous, results } = await response.json();
         setTeams(results);
@@ -41,7 +41,7 @@ export const TeamsShowOrdSwim = () => {
       };
     
       useEffect(() => {
-        fetchTeamsOrdered();
+        fetchTeams();
       }, [page]);
 
     
@@ -54,55 +54,49 @@ export const TeamsShowOrdSwim = () => {
         {!loading && teams.length == 0 && <div>No teams found</div>}
 
         {!loading && teams.length > 0 && (
-            <>
+          <>
             <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 800 }} aria-label="simple table">
+                <Table sx={{ minWidth: 800 }} aria-label="simple table" style={{backgroundColor:"whitesmoke"}}>
                     <TableHead>
                         <TableRow>
-                            <TableCell>#</TableCell>
-                            <TableCell align="center" style={{color:"#2471A3", fontWeight:'bold'}}>Team Name</TableCell>
-                            <TableCell align="center" style={{color:"#2471A3", fontWeight:'bold'}}>Founding Year</TableCell>
-                            <TableCell align="center" style={{color:"#2471A3", fontWeight:'bold'}}>Budget</TableCell>
-                            <TableCell align="center" style={{color:"#2471A3", fontWeight:'bold'}}>Motto</TableCell>
-                            <TableCell align="center" style={{color:"#2471A3", fontWeight:'bold'}}>Abbreviation</TableCell>
-                            <TableCell align="center" style={{color:"#2471A3", fontWeight:'bold'}}>Swimmers Names</TableCell>
-                            <TableCell align="center" style={{color:"#2471A3", fontWeight:'bold'}}>Number Of Swimmers</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight:'bold'}}>Crt.</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight:'bold'}}>Name</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Founding year</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Budget</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Motto</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Abbreviation</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>No Of Swimmers</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {teams.map((teams:TeamOrdNoSwim, index) => (
-                            <TableRow key={teams.id}>
+                        {teams.map((team:TeamOrdNoSwim, index) => (
+                            <TableRow key={team.id}>
                                 <TableCell component="th" scope="row">
                                     {index + crt}
                                 </TableCell>
-                                <TableCell align="center">{teams.team_name}</TableCell>
-                                <TableCell align="center">{teams.team_founding_year}</TableCell>
-                                <TableCell align="center">{teams.team_budget}</TableCell>
-                                <TableCell align="center">{teams.team_motto}</TableCell>
-                                <TableCell align="center">{teams.team_abbreviation}</TableCell>
-                                <TableCell align="left">
-                                    {teams?.swimmers?.map((swimmer) => (
-                                    <li key={swimmer.id}>{swimmer.swimmer_last_name} {swimmer.swimmer_first_name}</li>
-                                    ))}
-                                </TableCell>
-                                <TableCell align="center">{teams.no_of_swimmers}</TableCell>
+                                <TableCell align="center">{team.team_name}</TableCell>
+                                <TableCell align="center">{team.team_founding_year}</TableCell>
+                                <TableCell align="center">{team.team_budget}</TableCell>
+                                <TableCell align="center">{team.team_motto}</TableCell>
+                                <TableCell align="center">{team.team_abbreviation}</TableCell>
+                                <TableCell align="center">{team.no_of_swimmers}</TableCell>
+                                
                             </TableRow>
                         ))}
                 </TableBody>
                 </Table>
             </TableContainer>
-             <Button style={{color:"whitesmoke"}} disabled={page === 1} onClick={() => setPage(page - 1)}>
-             Previous
-             </Button>
- 
-             <Button style={{color:"whitesmoke"}}
-             disabled={teams.length < pageSize}
-             onClick={() => setPage(page + 1)}
-             >
-             Next
-             </Button>
-             </>
+            <Button style={{color:"whitesmoke"}} disabled={page === 1} onClick={() => setPage(page - 1)}>
+            Previous
+            </Button>
 
+            <Button style={{color:"whitesmoke"}}
+            disabled={teams.length < pageSize}
+            onClick={() => setPage(page + 1)}
+            >
+            Next
+            </Button>
+          </>
         )
         }
     </Container>
