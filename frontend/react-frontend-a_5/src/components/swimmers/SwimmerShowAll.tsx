@@ -29,15 +29,7 @@ export const SwimmerShowAll = () => {
     const[swimmers, setSwimmers] = useState([]);
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
-    
-
-    // useEffect(() => {
-    // fetch(`${BACKEND_API_URL}/swimmer/`)
-    //     .then(res => res.json())
-    //     .then(data => {setSwimmers(data); setLoading(false);})
-    // }, []);
-
-    // console.log(swimmers);
+    const crt = (page - 1) * pageSize + 1;
 
     const fetchSwimmers = async () => {
         setLoading(true);
@@ -102,8 +94,6 @@ export const SwimmerShowAll = () => {
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>County</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Date Of Birth</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Years of experience</TableCell>
-                            {/* <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Team ID</TableCell> */}
-                            {/* <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Fans IDS</TableCell> */}
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Operations</TableCell>
                         </TableRow>
                     </TableHead>
@@ -111,7 +101,7 @@ export const SwimmerShowAll = () => {
                         {swimmers.map((swimmer:Swimmer, index) => (
                             <TableRow key={swimmer.id}>
                                 <TableCell component="th" scope="row">
-                                    {index + 1}
+                                    {index + crt}
                                 <TableCell component="th" scope="row">
                                     <Link to={`/swimmers/${swimmer.id}`} title="View swimmer details">
                                         {"view details"}
@@ -125,8 +115,6 @@ export const SwimmerShowAll = () => {
                                 <TableCell align="center">{swimmer.swimmer_county}</TableCell>
                                 <TableCell align="center">{swimmer.swimmer_date_of_birth}</TableCell>
                                 <TableCell align="center">{swimmer.swimmer_years_of_experience}</TableCell>
-                                {/* <TableCell align="center">{swimmer.team}</TableCell> */}
-                                {/* <TableCell align="center">{swimmer.fans}</TableCell> */}
                                 <TableCell align="center">
 
 										<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmers/${swimmer.id}/edit`}>

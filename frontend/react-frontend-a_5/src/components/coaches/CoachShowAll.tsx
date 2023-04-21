@@ -28,15 +28,7 @@ export const CoachShowAll = () => {
     const[coaches, setCoaches] = useState([]);
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
-    
-
-    // useEffect(() => {
-    // fetch(`${BACKEND_API_URL}/swimmer/`)
-    //     .then(res => res.json())
-    //     .then(data => {setSwimmers(data); setLoading(false);})
-    // }, []);
-
-    // console.log(swimmers);
+    const crt = (page - 1) * pageSize + 1;
 
     const fetchCoaches = async () => {
         setLoading(true);
@@ -89,7 +81,7 @@ export const CoachShowAll = () => {
                         {coaches.map((coach:Coach, index) => (
                             <TableRow key={coach.id}>
                                 <TableCell component="th" scope="row">
-                                    {index + 1}
+                                    {index + crt}
                                 <TableCell component="th" scope="row">
                                     <Link to={`/coaches/${coach.id}`} title="View coach details">
                                         {"view details"}

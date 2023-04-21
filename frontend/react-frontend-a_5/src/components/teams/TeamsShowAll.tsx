@@ -28,6 +28,7 @@ export const TeamShowAll = () => {
     const[teams, setTeams] = useState([]);
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
+    const crt = (page - 1) * pageSize + 1;
     
     const fetchTeams = async () => {
         setLoading(true);
@@ -80,7 +81,7 @@ export const TeamShowAll = () => {
                         {teams.map((team:Team, index) => (
                             <TableRow key={team.id}>
                                 <TableCell component="th" scope="row">
-                                    {index + 1}
+                                    {index + crt}
                                 <TableCell component="th" scope="row">
                                     <Link to={`/teams/${team.id}`} title="View team details">
                                         {"view details"}
