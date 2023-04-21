@@ -10,6 +10,7 @@ import {
 	Container,
 	IconButton,
 	Tooltip,
+    Button,
 } from "@mui/material";
 
 import EditIcon from "@mui/icons-material/Edit";
@@ -23,8 +24,11 @@ import { TeamOrdNoSwim } from "../../models/TeamOrdNoSwim";
 import { BACKEND_API_URL } from "../../constants";
 
 export const TeamsShowOrdSwim = () => {
-    const[loading, setLoading] = useState(true)
+    const[loading, setLoading] = useState(true);
     const [teams, setTeams] = useState([]);
+    const [page, setPage] = useState(1);
+    const [pageSize, setPageSize] = useState(10);
+    const crt = (page - 1) * pageSize + 1;
 
     useEffect(() => {
     fetch(`${BACKEND_API_URL}/teamNoSwim/`)
@@ -44,7 +48,7 @@ export const TeamsShowOrdSwim = () => {
         {!loading && teams.length == 0 && <div>No teams found</div>}
 
         {!loading && teams.length > 0 && (
-
+            <>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 800 }} aria-label="simple table">
                     <TableHead>
@@ -63,7 +67,7 @@ export const TeamsShowOrdSwim = () => {
                         {teams.map((teams:TeamOrdNoSwim, index) => (
                             <TableRow key={teams.id}>
                                 <TableCell component="th" scope="row">
-                                    {index + 1}
+                                    {index + crt}
                                 </TableCell>
                                 <TableCell align="center">{teams.team_name}</TableCell>
                                 <TableCell align="center">{teams.team_founding_year}</TableCell>
@@ -81,6 +85,18 @@ export const TeamsShowOrdSwim = () => {
                 </TableBody>
                 </Table>
             </TableContainer>
+             <Button style={{color:"whitesmoke"}} disabled={page === 1} onClick={() => setPage(page - 1)}>
+             Previous
+             </Button>
+ 
+             <Button style={{color:"whitesmoke"}}
+             disabled={teams.length < pageSize}
+             onClick={() => setPage(page + 1)}
+             >
+             Next
+             </Button>
+             </>
+
         )
         }
     </Container>

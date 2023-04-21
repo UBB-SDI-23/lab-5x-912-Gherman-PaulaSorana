@@ -85,6 +85,7 @@ class TeamInfo(APIView):
 
 class TeamsOrderedByNoOfSwimmers(APIView):
     serializer_class = TeamSerializerNo
+    pagination_class = CustomPagination
 
     def get(self, request):
         teams = Team.objects.annotate(no_of_swimmers=Count('swimmers')).order_by('no_of_swimmers')

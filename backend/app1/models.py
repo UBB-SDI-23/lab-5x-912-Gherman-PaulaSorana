@@ -68,7 +68,9 @@ class SwimmerFan(models.Model):
         ordering = ['id']
         indexes = [models.Index(fields=["swimmer", "fan"]),
                    models.Index(fields=['swimmer']),
-                   models.Index(fields=['fan'])
+                   models.Index(fields=['fan']),
+                   models.Index(fields=['fan_page_name']),
+                   models.Index(fields=['fan_since_year']),
                    ]
 
 

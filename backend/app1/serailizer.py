@@ -69,14 +69,14 @@ class CoachSerializerId(serializers.ModelSerializer):
 
 
 class FanSerializer(serializers.ModelSerializer):
-    # def validate_fan_email(self, value):
-    #     existing_emails = Fan.objects.filter(fan_email=value)
-    #
-    #     if self.instance:
-    #         existing_emails = existing_emails.exclude(pk=self.instance.pk)
-    #     if existing_emails.exists():
-    #         raise serializers.ValidationError("This email address is already in use.")
-    #     return value
+    def validate_fan_email(self, value):
+        existing_emails = Fan.objects.filter(fan_email=value)
+
+        if self.instance:
+            existing_emails = existing_emails.exclude(pk=self.instance.pk)
+        if existing_emails.exists():
+            raise serializers.ValidationError("This email address is already in use.")
+        return value
 
     class Meta:
         model = Fan
