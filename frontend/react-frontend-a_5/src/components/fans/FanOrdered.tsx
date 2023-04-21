@@ -47,7 +47,7 @@ export const FanOrdShowAll = () => {
     
     return (
     <Container>
-        <h1 style={{marginTop:"65px"}}>All Fans</h1>
+        <h1 style={{marginTop:"65px"}}>All Fans Ordered By AVG YOE Swimmers</h1>
 
         {loading && <CircularProgress />}
 
