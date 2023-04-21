@@ -32,18 +32,14 @@ export const SwimmerFanDetails = () => {
 					<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmerfans`}>
 						<ArrowBackIcon />
 					</IconButton>{" "} 
-					<h1 style={{textAlign:"left", fontWeight:'bold'}}>Swimmer fan Details</h1>
+					<h1 style={{textAlign:"left", fontWeight:'bold'}}>SwimmerFan Details</h1>
 					<p  style={{textAlign:"left", fontWeight:'bold'}}>Fan Page Name: {swimmer?.fan_page_name}</p>
 					<p  style={{textAlign:"left", fontWeight:'bold'}}>Fan Since Year: {swimmer?.fan_since_year}</p>
-                    <p  style={{textAlign:"left", fontWeight:'bold'}}>Fans: {swimmer?.swimmer.swimmer_first_name}</p>
-                    <p  style={{textAlign:"left", fontWeight:'bold'}}>Fan: {swimmer?.fan.fan_first_name}</p>
+                    <p  style={{textAlign:"left", fontWeight:'bold'}}>Swimmers: {swimmer?.swimmer.swimmer_first_name}</p>
+                    <p  style={{textAlign:"left", fontWeight:'bold'}}>Fans: {swimmer?.fan.fan_first_name}</p>
 				</CardContent>
 
                 <CardActions>
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmerfans/${swimmerfanId}/edit`}>
-						<EditIcon />
-					</IconButton>
-
 					<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmerfans/${swimmerfanId}/delete`}>
 						<DeleteForeverIcon sx={{ color: "red" }} />
 					</IconButton>
