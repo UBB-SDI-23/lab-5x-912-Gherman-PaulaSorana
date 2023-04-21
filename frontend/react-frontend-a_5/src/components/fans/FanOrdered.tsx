@@ -89,16 +89,7 @@ export const FanOrdShowAll = () => {
                                 <TableCell align="center">{fan.fan_date_of_birth}</TableCell>
                                 <TableCell align="center">{fan.fan_email}</TableCell>
                                 <TableCell align="center">{fan.avg_swimmer_experience}</TableCell>
-                                <TableCell align="center">
-
-										<IconButton component={Link} sx={{ mr: 3 }} to={`/fans/${fan.id}/edit`}>
-											<EditIcon />
-										</IconButton>
-
-										<IconButton component={Link} sx={{ mr: 3 }} to={`/fans/${fan.id}/delete`}>
-											<DeleteForeverIcon sx={{ color: "red" }} />
-										</IconButton>
-									</TableCell>
+                            
                             </TableRow>
                         ))}
                 </TableBody>
