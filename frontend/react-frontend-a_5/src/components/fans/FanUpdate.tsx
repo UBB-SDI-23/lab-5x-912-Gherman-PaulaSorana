@@ -60,7 +60,7 @@ export const FanUpdate = () => {
 		{!loading && (
 			<Card>
 				<CardContent>
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/sfans/${fanId}`}>
+					<IconButton component={Link} sx={{ mr: 3 }} to={`/fans/${fanId}`}>
 						<ArrowBackIcon />
 					</IconButton>{" "}
 					<form onSubmit={updateFan}>

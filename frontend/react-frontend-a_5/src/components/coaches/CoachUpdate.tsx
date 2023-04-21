@@ -64,18 +64,17 @@ export const CoachUpdate = () => {
 						<ArrowBackIcon />
 					</IconButton>{" "}
 					<form onSubmit={updateCoach}>
-                    <TextField
-						id="coach_first_name"
-						label={`${coach.coach_first_name}`}
-						variant="outlined"
-						fullWidth
-						sx={{ mb: 2 }}
-						onChange={(event) => setCoach({ ...coach, coach_first_name: event.target.value })}
-					/>
-
+                    <TextField style={{color:"#2471A3", fontWeight:'bold'}}
+							id="coach_first_name"
+							label="First name"
+							variant="outlined"
+							fullWidth
+							sx={{ mb: 2 }}
+							onChange={(event) => setCoach({ ...coach, coach_first_name: event.target.value })}
+						/>
 						<TextField style={{color:"#2471A3", fontWeight:'bold'}}
 							id="coach_last_name"
-							label={`${coach.coach_last_name}`}
+							label="Last name"
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
@@ -84,7 +83,7 @@ export const CoachUpdate = () => {
 
                         <TextField style={{color:"#2471A3", fontWeight:'bold'}}
 							id="coach_years_of_experience"
-							label={`${coach.coach_years_of_experience}`}
+							label="Years of experience"
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
@@ -93,7 +92,7 @@ export const CoachUpdate = () => {
 
                         <TextField style={{color:"#2471A3", fontWeight:'bold'}}
 							id="coach_date_of_birth"
-							label={`${coach.coach_date_of_birth}`}
+							label="Date of birth"
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
@@ -102,7 +101,7 @@ export const CoachUpdate = () => {
 
                         <TextField style={{color:"#2471A3", fontWeight:'bold'}}
 							id="coach_email"
-							label={`${coach.coach_email}`}
+							label="Email"
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
