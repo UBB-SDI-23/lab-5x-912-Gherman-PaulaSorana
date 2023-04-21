@@ -66,7 +66,7 @@ export const CoachUpdate = () => {
 					<form onSubmit={updateCoach}>
                     <TextField
 						id="coach_first_name"
-						label={`First name (${coach.coach_first_name})`}
+						label={`${coach.coach_first_name}`}
 						variant="outlined"
 						fullWidth
 						sx={{ mb: 2 }}
@@ -75,7 +75,7 @@ export const CoachUpdate = () => {
 
 						<TextField style={{color:"#2471A3", fontWeight:'bold'}}
 							id="coach_last_name"
-							label="Last name"
+							label={`${coach.coach_last_name}`}
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
@@ -84,7 +84,7 @@ export const CoachUpdate = () => {
 
                         <TextField style={{color:"#2471A3", fontWeight:'bold'}}
 							id="coach_years_of_experience"
-							label="Years of experience"
+							label={`${coach.coach_years_of_experience}`}
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
@@ -93,7 +93,7 @@ export const CoachUpdate = () => {
 
                         <TextField style={{color:"#2471A3", fontWeight:'bold'}}
 							id="coach_date_of_birth"
-							label="Date of birth"
+							label={`${coach.coach_date_of_birth}`}
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
@@ -102,7 +102,7 @@ export const CoachUpdate = () => {
 
                         <TextField style={{color:"#2471A3", fontWeight:'bold'}}
 							id="coach_email"
-							label="Email"
+							label={`${coach.coach_email}`}
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
