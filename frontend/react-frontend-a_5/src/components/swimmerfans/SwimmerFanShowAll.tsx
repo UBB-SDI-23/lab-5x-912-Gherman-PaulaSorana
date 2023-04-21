@@ -86,7 +86,7 @@ export const SwimmerFanShowAll = () => {
 
                                 </TableCell>
                                 </TableCell>
-                                <TableCell align="center">{swimmer.fan_page_name}</TableCell>
+                                <TableCell align="center">{swimmer.swimmer}</TableCell>
                                 <TableCell align="center">{swimmer.fan_since_year}</TableCell>
                                 <TableCell align="center">
 										<IconButton component={Link} sx={{ mr: 3 }} to={`/swimmerfans/${swimmer.id}/delete`}>
