@@ -90,9 +90,10 @@ class FansOrderedByAvgYoeOfSwimmersTheyAreFansOf(generics.ListCreateAPIView):
     pagination_class = CustomPagination
 
     def get_queryset(self):
-        queryset = Fan.objects.annotate(
-            avg_swimmer_experience=Avg('swimmers__swimmer_years_of_experience__gte=10, '
-                                       '.swimmers__swimmer_years_of_experience__lte=15')
+        queryset = Fan.objects.filter(swimmers__swimmer_years_of_experience__gte=10,
+                                      swimmers__swimmer_years_of_experience__lte=12
+                                      ).annotate(
+            avg_swimmer_experience=Avg('swimmers__swimmer_years_of_experience')
         ).order_by('-avg_swimmer_experience')
 
         print(queryset.explain())
