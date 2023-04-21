@@ -1,6 +1,6 @@
 import { Swimmer } from "./Swimmer";
 
-export{};
+export {};
 
 export interface TeamOrdNoSwim{
     id:number;

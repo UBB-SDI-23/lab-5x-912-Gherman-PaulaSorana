@@ -17,43 +17,45 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useEffect, useState } from "react";
 import { GlobalURL } from "../../main";
+import { Swimmer } from "../../models/Swimmer";
 import { Link } from "react-router-dom";
+import AddIcon from "@mui/icons-material/Add";
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import { Scale } from "@mui/icons-material";
 import { BACKEND_API_URL } from "../../constants";
 import { TeamOrdNoSwim } from "../../models/TeamOrdNoSwim";
 
-export const TeamsShowOrdSwim  = () => {
+export const TeamsShowOrdSwim = () => {
     const[loading, setLoading] = useState(true);
-    const[teams, setTeams] = useState([]);
+    const[ordTeams, setOrdTeams] = useState([]);
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
     const crt = (page - 1) * pageSize + 1;
-    
-    const fetchTeams = async () => {
+
+    const fetchOrdTeams = async () => {
         setLoading(true);
         const response = await fetch(
-          `${BACKEND_API_URL}/teamNoSwim/?page=${page}&page_size=${pageSize}`
+          `${BACKEND_API_URL}/teamNOSwim/?page=${page}&page_size=${pageSize}`
         );
         const { count, next, previous, results } = await response.json();
-        setTeams(results);
+        setOrdTeams(results);
         setLoading(false);
+        console.log(results);
       };
     
       useEffect(() => {
-        fetchTeams();
+        fetchOrdTeams();
       }, [page]);
-
     
     return (
     <Container>
-        <h1 style={{marginTop:"65px"}}>All Teams Ordered By The Number Of Swimmers</h1>
+        <h1 style={{marginTop:"65px"}}>Teams Ordered By The Number Of Swimmers</h1>
 
         {loading && <CircularProgress />}
 
-        {!loading && teams.length == 0 && <div>No teams found</div>}
+        {!loading && ordTeams.length == 0 && <div>No teams found</div>}
 
-        {!loading && teams.length > 0 && (
+        {!loading && ordTeams.length > 0 && (
           <>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 800 }} aria-label="simple table" style={{backgroundColor:"whitesmoke"}}>
@@ -66,27 +68,20 @@ export const TeamsShowOrdSwim  = () => {
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Motto</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Abbreviation</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Swimmers</TableCell>
-                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>No Of Swimmers</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>No Swimmers</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {teams.map((team:TeamOrdNoSwim, index) => (
-                            <TableRow key={team.id}>
+                        {ordTeams.map((ordTeam:TeamOrdNoSwim, index) => (
+                            <TableRow key={ordTeam.id}>
                                 <TableCell component="th" scope="row">
                                     {index + crt}
                                 </TableCell>
-                                <TableCell align="center">{team.team_name}</TableCell>
-                                <TableCell align="center">{team.team_founding_year}</TableCell>
-                                <TableCell align="center">{team.team_budget}</TableCell>
-                                <TableCell align="center">{team.team_motto}</TableCell>
-                                <TableCell align="center">{team.team_abbreviation}</TableCell>
-                                <TableCell align="left">
-                                    {team?.swimmers.map((swimmer) => (
-                                    <li key={swimmer.id}>{swimmer.swimmer_last_name} {swimmer.swimmer_first_name}</li>
-                                    ))}
-                                </TableCell>
-                                <TableCell align="center">{team.no_of_swimmers}</TableCell>
-                                
+                                <TableCell align="center">{ordTeam.team_name}</TableCell>
+                                <TableCell align="center">{ordTeam.team_founding_year}</TableCell>
+                                <TableCell align="center">{ordTeam.team_budget}</TableCell>
+                                <TableCell align="center">{100}</TableCell>
+                                <TableCell align="center">{100}</TableCell>
                             </TableRow>
                         ))}
                 </TableBody>
@@ -97,7 +92,7 @@ export const TeamsShowOrdSwim  = () => {
             </Button>
 
             <Button style={{color:"whitesmoke"}}
-            disabled={teams.length < pageSize}
+            disabled={ordTeams.length < pageSize}
             onClick={() => setPage(page + 1)}
             >
             Next
