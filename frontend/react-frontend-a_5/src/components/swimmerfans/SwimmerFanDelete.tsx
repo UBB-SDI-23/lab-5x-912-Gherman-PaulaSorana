@@ -10,7 +10,7 @@ export const SwimmerFanDelete = () => {
 
 	const handleDelete = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		await axios.delete(`${BACKEND_API_URL}/swimmerfan/${swimmerfanId}/`);
+		await axios.delete(`${BACKEND_API_URL}/swimmerFan/${swimmerfanId}/`);
 		
 		navigate("/swimmerfans");
 	};

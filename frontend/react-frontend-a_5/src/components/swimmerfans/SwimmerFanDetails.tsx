@@ -17,7 +17,7 @@ export const SwimmerFanDetails = () => {
 
     useEffect(() => {
 		const fetchSwimmer = async () => {
-			const response = await fetch(`${BACKEND_API_URL}/swimmerfan/${swimmerfanId}/`);
+			const response = await fetch(`${BACKEND_API_URL}/swimmerFan/${swimmerfanId}/`);
 			const swimmer = await response.json();
 			setSwimmer(swimmer);
             console.log(swimmer);
