@@ -10,7 +10,7 @@ export const Statistics = () => {
 
    
       <Button style={{color:"whitesmoke", border: '1px solid whitesmoke'}} component={Link} sx={{ mr: 3 }} to="/statisticsfan/fansOrd">
-       Fans Ordered By Avg Yoe OF Their Fans
+       Fans Ordered By Avg Yoe OF The Swimmers They Are Fans Of
       </Button>
     
     </Container>

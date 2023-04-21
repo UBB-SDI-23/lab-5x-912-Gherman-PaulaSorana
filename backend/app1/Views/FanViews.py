@@ -85,13 +85,15 @@ class FanInfo(APIView):
         return Response({"msg": "deleted"}, status=status.HTTP_204_NO_CONTENT)
 
 
-class FansOrderedByAvgYoeOfSwimmersTheyAreFansOf(APIView):
-    serializer_class = FanSerializerAvg
+class FansOrderedByAvgYoeOfSwimmersTheyAreFansOf(generics.ListCreateAPIView):
+    serializer_class = FanSerializer
+    pagination_class = CustomPagination
 
-    def get(self, request):
-        fans = Fan.objects.annotate(
+    def get_queryset(self):
+        queryset = Fan.objects.annotate(
             avg_swimmer_experience=Avg('swimmers__swimmer_years_of_experience')
         ).order_by('-avg_swimmer_experience')
 
-        serializer = FanSerializerAvg(fans, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        print(queryset.explain())
+        return queryset
+
