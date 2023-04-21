@@ -91,7 +91,7 @@ class FansOrderedByAvgYoeOfSwimmersTheyAreFansOf(generics.ListCreateAPIView):
 
     def get_queryset(self):
         queryset = Fan.objects.annotate(
-            avg_swimmer_experience=Avg('swimmers__swimmer_years_of_experience')
+            avg_swimmer_experience=Avg('swimmers__swimmer_years_of_experience__range=[10, 12]')
         ).order_by('-avg_swimmer_experience')
 
         print(queryset.explain())
