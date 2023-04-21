@@ -64,14 +64,15 @@ export const CoachUpdate = () => {
 						<ArrowBackIcon />
 					</IconButton>{" "}
 					<form onSubmit={updateCoach}>
-                    <TextField style={{color:"#2471A3", fontWeight:'bold'}}
-							id="coach_first_name"
-							label="First name"
-							variant="outlined"
-							fullWidth
-							sx={{ mb: 2 }}
-							onChange={(event) => setCoach({ ...coach, coach_first_name: event.target.value })}
-						/>
+                    <TextField
+						id="coach_first_name"
+						label={`First name (${coach.coach_first_name})`}
+						variant="outlined"
+						fullWidth
+						sx={{ mb: 2 }}
+						onChange={(event) => setCoach({ ...coach, coach_first_name: event.target.value })}
+					/>
+
 						<TextField style={{color:"#2471A3", fontWeight:'bold'}}
 							id="coach_last_name"
 							label="Last name"
