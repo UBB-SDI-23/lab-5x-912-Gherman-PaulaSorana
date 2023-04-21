@@ -20,8 +20,9 @@ import { Link } from "react-router-dom";
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import { BACKEND_API_URL } from "../../constants";
 import { Fan } from "../../models/Fan";
+import { FanOrderedAgvSwimmer } from "../../models/FanOrderedAgvSwim";
 
-export const FanShowAll = () => {
+export const FanOrdShowAll = () => {
     const [loading, setLoading] = useState(true);
     const [fans, setFans] = useState([]);
     const [page, setPage] = useState(1);
@@ -31,7 +32,7 @@ export const FanShowAll = () => {
     const fetchFans = async () => {
         setLoading(true);
         const response = await fetch(
-          `${BACKEND_API_URL}/fan/?page=${page}&page_size=${pageSize}`
+          `${BACKEND_API_URL}/fanAvgYoe/?page=${page}&page_size=${pageSize}`
         );
         const { count, next, previous, results } = await response.json();
         setFans(results);
@@ -52,16 +53,6 @@ export const FanShowAll = () => {
 
         {!loading && fans.length == 0 && <div>No fans found</div>}
 
-        {!loading && (
-            <IconButton component={Link} sx={{ mr: 3 }} to={`/fans/add`}>
-                <Tooltip title="Add a new fan" arrow>
-                    <PersonAddAlt1Icon style={{color:"whitesmoke", fontSize:"50px"}} />
-                </Tooltip>
-            </IconButton>
-
-        )}
-
-
         {!loading && fans.length > 0 && (
           <>
             <TableContainer component={Paper}>
@@ -74,12 +65,12 @@ export const FanShowAll = () => {
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Nationality</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Date Of Birth</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Email</TableCell>
-                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Operations</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Avg Yoe Swimmers</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                          
-                        {fans.map((fan:Fan, index:number) => (
+                        {fans.map((fan:FanOrderedAgvSwimmer, index:number) => (
 
                             <TableRow key={fan.id}>
                                 <TableCell component="th" scope="row">
@@ -97,6 +88,7 @@ export const FanShowAll = () => {
                                 <TableCell align="center">{fan.fan_nationality}</TableCell>
                                 <TableCell align="center">{fan.fan_date_of_birth}</TableCell>
                                 <TableCell align="center">{fan.fan_email}</TableCell>
+                                <TableCell align="center">{fan.avg_swimmer_experience}</TableCell>
                                 <TableCell align="center">
 
 										<IconButton component={Link} sx={{ mr: 3 }} to={`/fans/${fan.id}/edit`}>

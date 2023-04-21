@@ -26,7 +26,7 @@ class Swimmer(models.Model):
 
     class Meta:
         ordering = ['id']
-        indexes = [models.Index(fields=["team", "id"])]
+        indexes = [models.Index(fields=["team", "id"]), models.Index(fields=["swimmer_years_of_experience"])]
 
 
 class Coach(models.Model):

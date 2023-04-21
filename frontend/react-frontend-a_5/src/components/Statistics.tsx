@@ -7,6 +7,13 @@ export const Statistics = () => {
       <Button style={{color:"whitesmoke", border: '1px solid whitesmoke'}} component={Link} sx={{ mr: 3 }} to="/statisticsteam/teamsOrd">
         Teams Ordered By No Of Swimmers
       </Button>
+
+   
+      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke'}} component={Link} sx={{ mr: 3 }} to="/statisticsfan/fansOrd">
+       Fans Ordered By Avg Yoe OF Their Fans
+      </Button>
+    
     </Container>
+
   );
 };
