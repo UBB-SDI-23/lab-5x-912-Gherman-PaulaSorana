@@ -35,7 +35,7 @@ export const TeamsShowOrdSwim = () => {
     const fetchOrdTeams = async () => {
         setLoading(true);
         const response = await fetch(
-          `${BACKEND_API_URL}/teamNOSwim/?page=${page}&page_size=${pageSize}`
+          `${BACKEND_API_URL}/teamNoSwim/?page=${page}&page_size=${pageSize}`
         );
         const { count, next, previous, results } = await response.json();
         setOrdTeams(results);
