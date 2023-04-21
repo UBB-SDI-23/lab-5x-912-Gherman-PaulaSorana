@@ -6,12 +6,13 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { BACKEND_API_URL } from "../../constants";
 import { Fan } from "../../models/Fan";
+import { FullFan } from "../../models/FullFan";
 
 
 export const FanDetails = () => {
 
     const { fanId } = useParams();
-	const [fan, setFan] = useState<Fan>();
+	const [fan, setFan] = useState<FullFan>();
 
     useEffect(() => {
 		const fetchFan = async () => {
@@ -37,11 +38,11 @@ export const FanDetails = () => {
                     <p  style={{textAlign:"left", fontWeight:'bold'}}>Date of Birth: {fan?.fan_date_of_birth}</p>
                     <p  style={{textAlign:"left", fontWeight:'bold'}}>Email: {fan?.fan_email}</p>
                     <p  style={{textAlign:"left", fontWeight:'bold'}}>Swimmers</p>
-                    {/* <ul style={{textAlign:"left", fontWeight:'bold'}}>
+                    <ul style={{textAlign:"left", fontWeight:'bold'}}>
                         {fan?.swimmers?.map((swimmer) => (
                             <li key={swimmer.id}>{swimmer.swimmer_last_name} {swimmer.swimmer_first_name}</li>
                         ))}
-                    </ul> */}
+                    </ul>
 				</CardContent>
 
                 <CardActions>
