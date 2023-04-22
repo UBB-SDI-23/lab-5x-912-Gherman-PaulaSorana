@@ -129,7 +129,9 @@ const navigate = useNavigate();
 							id="team"
 							options={teams}
 							renderInput={(params) => <TextField {...params} label="Team" variant="outlined" />}
-							filterOptions={(x) => x}
+							// filterOptions={(x) => x}
+							filterOptions={(options, state) => options.filter((option) => option.team_name.toLowerCase().includes(state.inputValue.toLowerCase()))}
+
 							onInputChange={handleInputChange}
 							onChange={(event, value) => {
 								if (value) {
