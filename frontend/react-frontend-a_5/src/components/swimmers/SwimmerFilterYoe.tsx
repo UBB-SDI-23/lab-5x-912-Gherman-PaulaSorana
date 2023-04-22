@@ -50,14 +50,14 @@ export const SwimmerFilterYoe = () => {
     
     return (
     <Container>
-        <h1 style={{marginTop:"65px"}}>All Swimmers</h1>
+        <h1 style={{marginTop:"65px"}}>All Swimmers Filtered</h1>
 
         <div style={{ display: "flex", alignItems: "center", marginBottom: "16px" }}>
-        <TextField
+        <TextField 
           label="Years of Experience"
           value={yoeFilter}
           onChange={(e) => setYoeFilter(e.target.value)}
-          style={{ marginRight: "16px" }}
+          style={{ marginRight: "16px", color:'whitesmoke' }}
         />
         <Button variant="contained" style={{color:"whitesmoke"}} onClick={() => fetchSwimmers()}>
           Filter
