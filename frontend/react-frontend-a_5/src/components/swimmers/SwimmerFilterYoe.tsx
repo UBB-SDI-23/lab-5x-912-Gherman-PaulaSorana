@@ -57,6 +57,7 @@ export const SwimmerFilterYoe = () => {
           label="Years of Experience"
           value={yoeFilter}
           onChange={(e) => setYoeFilter(e.target.value)}
+          InputProps={{ style: { color: "whitesmoke" } }}
           style={{ marginRight: "16px", color:'whitesmoke' }}
         />
         <Button variant="contained" style={{color:"whitesmoke"}} onClick={() => fetchSwimmers()}>
@@ -71,11 +72,6 @@ export const SwimmerFilterYoe = () => {
 
         {!loading && swimmers.length > 0 && (
           <>
-
-            <Button variant="contained" style={{color:"whitesmoke"}} onClick={() => fetchSwimmers()}>
-            Filter
-            </Button>
-
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 800 }} aria-label="simple table" style={{backgroundColor:"whitesmoke"}}>
                     <TableHead>
