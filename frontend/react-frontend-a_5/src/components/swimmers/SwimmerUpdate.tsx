@@ -1,11 +1,13 @@
-import { Button, Card, CardActions, CardContent, CircularProgress, Container, IconButton, TextField } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Autocomplete, Button, Card, CardActions, CardContent, CircularProgress, Container, IconButton, TextField } from "@mui/material";
+import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Swimmer } from "../../models/Swimmer";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 import { FullSwimmer } from "../../models/FullSwimmer";
 import { BACKEND_API_URL } from "../../constants";
+import { Team } from "../../models/Team";
+import { debounce } from "lodash";
 
 
 export const SwimmerUpdate = () => {
@@ -40,6 +42,30 @@ export const SwimmerUpdate = () => {
 		};
 		fetchSwimmer();
 	}, [swimmerId]);
+	const [page, setPage] = useState(1);
+    const [pageSize, setPageSize] = useState(10);
+
+	const [teams, setTeams] = useState<Team[]>([]);
+
+	const fetchSuggestions = async (query: string) => {
+		try {
+			let url = `${BACKEND_API_URL}/teamOrdName/${query}/?page=${page}&page_size=${pageSize}`;
+			const response = await fetch(url);
+			const { count, next, previous, results } = await response.json();
+			setTeams(results);
+			console.log(results);
+		} catch (error) {
+			console.error("Error fetching suggestions:", error);
+		}
+	};
+
+	const debouncedFetchSuggestions = useCallback(debounce(fetchSuggestions, 500), []);
+
+	useEffect(() => {
+		return () => {
+			debouncedFetchSuggestions.cancel();
+		};
+	}, [debouncedFetchSuggestions]);
 
 	const updateSwimmer = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
@@ -48,6 +74,14 @@ export const SwimmerUpdate = () => {
 			navigate(`/swimmers/${swimmerId}`);
 		} catch (error) {
 			console.log(error);
+		}
+	};
+
+	const handleInputChange = (event: any, value: any, reason: any) => {
+		console.log("input", value, reason);
+
+		if (reason === "input") {
+			debouncedFetchSuggestions(value);
 		}
 	};
 
@@ -110,13 +144,21 @@ export const SwimmerUpdate = () => {
 							onChange={(event) => setSwimmer({ ...swimmer, swimmer_years_of_experience: Number(event.target.value) })}
 						/>
 
-                        <TextField value={swimmer.team} style={{color:"#2471A3", fontWeight:'bold'}}
+                        <Autocomplete
 							id="team"
-							label="Team"
-							variant="outlined"
-							fullWidth
-							sx={{ mb: 2 }}
-							onChange={(event) => setSwimmer({ ...swimmer, team: Number(event.target.value) })}
+							options={teams}
+							renderInput={(params) => <TextField {...params} label="Team" variant="outlined" />}
+							getOptionLabel={(option) => `${option.team_name} - ${option.team_abbreviation}`}
+							filterOptions={(options, state) => options.filter((option) => option.team_name.toLowerCase().includes(state.inputValue.toLowerCase()))}
+
+							onInputChange={handleInputChange}
+							onChange={(event, value) => {
+								if (value) {
+									console.log(value);
+									setSwimmer({ ...swimmer, team: value.id });
+								}
+							}}
+							
 						/>
 
 						<Button type="submit">Update Swimmer</Button>
