@@ -108,7 +108,7 @@ class FansOrderedByName(generics.ListCreateAPIView):
         f_name = self.kwargs.get("f_name")
         queryset = Fan.objects.all()
         if f_name is not None:
-            queryset = queryset.filter(team_name__icontains=f_name)
+            queryset = queryset.filter(fan_first_name__icontains=f_name)
         print(queryset.explain())
         print(f_name)
         return queryset

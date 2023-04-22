@@ -105,7 +105,7 @@ class SwimmersOrderedByName(generics.ListCreateAPIView):
         s_name = self.kwargs.get("s_name")
         queryset = Swimmer.objects.all()
         if s_name is not None:
-            queryset = queryset.filter(team_name__icontains=s_name)
+            queryset = queryset.filter(swimmer_first_name__icontains=s_name)
         print(queryset.explain())
         print(s_name)
         return queryset
