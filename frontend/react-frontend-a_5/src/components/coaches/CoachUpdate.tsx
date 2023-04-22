@@ -144,15 +144,6 @@ export const CoachUpdate = () => {
 							onChange={(event) => setCoach({ ...coach, coach_email: event.target.value })}
 						/>
 
-                        <TextField style={{color:"#2471A3", fontWeight:'bold'}}
-							id="team"
-							label="Team"
-							variant="outlined"
-							fullWidth
-							sx={{ mb: 2 }}
-							onChange={(event) => setCoach({ ...coach, team: Number(event.target.value) })}
-						/>
-
 						<Autocomplete
 							id="team"
 							options={teams}
