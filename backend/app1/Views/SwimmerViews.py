@@ -83,11 +83,14 @@ class SwimmerInfo(APIView):
         return Response({"msg":"deleted"}, status=status.HTTP_204_NO_CONTENT)
 
 
-class SwimmersWithAtLeastNYearsExp(APIView):
+class SwimmersWithAtLeastNYearsExp(generics.ListCreateAPIView):
     serializer_class = SwimmerSerializer
+    pagination_class = CustomPagination
 
-    def get(self, request, yoe):
-        years_of_exp = Swimmer.objects.filter(swimmer_years_of_experience__gte=yoe)
-        serializer = SwimmerSerializer(years_of_exp, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+    def get_queryset(self, yoe):
+        queryset = Swimmer.objects.filter(swimmer_years_of_experience__gte=yoe)
+        print(queryset.explain())
+        return queryset
+
+
 
