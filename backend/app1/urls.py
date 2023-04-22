@@ -21,5 +21,5 @@ urlpatterns = [
     path("fanAvgYoe/", FansOrderedByAvgYoeOfSwimmersTheyAreFansOf.as_view(), name="fanAvgYoe"),
     path("teamNoSwim/", TeamsOrderedByNoOfSwimmers.as_view(), name="teamNoSwim"),
     path("teamBulk/<int:id>/", TeamsBulk.as_view()),
-    path("teamOrdName/<string:t_name>/", TeamsOrderedByName.as_view(), name="t_name")
+    path("teamOrdName/<str:t_name>/", TeamsOrderedByName.as_view(), name="t_name")
 ]
