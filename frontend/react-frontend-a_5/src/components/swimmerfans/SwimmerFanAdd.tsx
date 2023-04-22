@@ -1,10 +1,12 @@
-import { Button, Card, CardActions, CardContent, Container, IconButton, TextField } from "@mui/material";
-import { useState } from "react";
+import { Autocomplete, Button, Card, CardActions, CardContent, Container, IconButton, TextField } from "@mui/material";
+import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Swimmer } from "../../models/Swimmer";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 import { BACKEND_API_URL } from "../../constants";
+import { Fan } from "../../models/Fan";
+import { debounce } from "lodash";
 
 
 export const SwimmerFanAdd = () => {
@@ -18,6 +20,32 @@ const navigate = useNavigate();
         fan_since_year:1
 	});
 
+	const [page, setPage] = useState(1);
+    const [pageSize, setPageSize] = useState(10);
+
+	const [swimmers, setTSwimmers] = useState<Swimmer[]>([]);
+	const [fan, setTFans] = useState<Fan[]>([]);
+
+	const fetchSuggestions = async (query: string) => {
+		try {
+			let url = `${BACKEND_API_URL}/swimmerOrdName/${query}/?page=${page}&page_size=${pageSize}`;
+			const response = await fetch(url);
+			const { count, next, previous, results } = await response.json();
+			setSwimmer(results);
+			console.log(results);
+		} catch (error) {
+			console.error("Error fetching suggestions:", error);
+		}
+	};
+
+	const debouncedFetchSuggestions = useCallback(debounce(fetchSuggestions, 500), []);
+
+	useEffect(() => {
+		return () => {
+			debouncedFetchSuggestions.cancel();
+		};
+	}, [debouncedFetchSuggestions]);
+
 	const addSwimmer = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 		try {
@@ -25,6 +53,14 @@ const navigate = useNavigate();
 			navigate("/swimmerfans");
 		} catch (error) {
 			console.log(error);
+		}
+	};
+
+	const handleInputChange = (event: any, value: any, reason: any) => {
+		console.log("input", value, reason);
+
+		if (reason === "input") {
+			debouncedFetchSuggestions(value);
 		}
 	};
 
@@ -69,6 +105,23 @@ const navigate = useNavigate();
 							fullWidth
 							sx={{ mb: 2 }}
 							onChange={(event) => setSwimmer({ ...swimmer, fan_since_year: Number(event.target.value) })}
+						/>
+
+						<Autocomplete
+							id="team"
+							options={swimmers}
+							renderInput={(params) => <TextField {...params} label="Swimmer" variant="outlined" />}
+							getOptionLabel={(option) => `${option.swimmer_first_name} - ${option.swimmer_last_name}`}
+							filterOptions={(options, state) => options.filter((option) => option.swimmer_first_name.toLowerCase().includes(state.inputValue.toLowerCase()))}
+
+							onInputChange={handleInputChange}
+							onChange={(event, value) => {
+								if (value) {
+									console.log(value);
+									setSwimmer({ ...swimmer, swimmer: value.id });
+								}
+							}}
+							
 						/>
 
 						<Button type="submit">Add Swimmer Fan</Button>
