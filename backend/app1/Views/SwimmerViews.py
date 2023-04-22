@@ -89,8 +89,9 @@ class SwimmersWithAtLeastNYearsExp(generics.ListCreateAPIView):
 
     def get_queryset(self):
         min_yoe = self.request.query_params.get("yoe")
+        queryset = Swimmer.objects.all()
         if min_yoe is not None:
-            queryset = Swimmer.objects.all().filter(swimmer_years_of_experience__gte=min_yoe)
+            queryset = queryset.filter(swimmer_years_of_experience__gte=min_yoe)
         print(queryset.explain())
         return queryset
 
