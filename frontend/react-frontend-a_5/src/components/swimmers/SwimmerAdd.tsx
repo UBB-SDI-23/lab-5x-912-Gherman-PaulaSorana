@@ -1,4 +1,4 @@
-import { Autocomplete, Button, Card, CardActions, CardContent, Container, debounce, IconButton, TextField } from "@mui/material";
+import { Autocomplete, Button, Card, CardActions, CardContent, Container, IconButton, TextField } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Swimmer } from "../../models/Swimmer";
@@ -6,7 +6,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 import { BACKEND_API_URL } from "../../constants";
 import { Team } from "../../models/Team";
-
+import {debounce} from  "lodash";
 
 export const SwimmerAdd = () => {
 
@@ -41,9 +41,9 @@ const navigate = useNavigate();
 	const debouncedFetchSuggestions = useCallback(debounce(fetchSuggestions, 500), []);
 
 	useEffect(() => {
-		// return () => {
-		// 	debouncedFetchSuggestions.cancel();
-		// };
+		return () => {
+			debouncedFetchSuggestions.cancel();
+		};
 	}, [debouncedFetchSuggestions]);
 
 	const addSwimmer = async (event: { preventDefault: () => void }) => {
