@@ -35,10 +35,7 @@ export const SwimmerFilterYoe = () => {
 
     const fetchSwimmers = async () => {
         setLoading(true);
-        let url = `${BACKEND_API_URL}/yoe/?page=${page}&page_size=${pageSize}`;
-        if (yoeFilter) {
-          url += `&yoe=${yoeFilter}`;
-        }
+        let url = `${BACKEND_API_URL}/yoe/${yoeFilter}/?page=${page}&page_size=${pageSize}`;
         const response = await fetch(url);
         const { count, next, previous, results } = await response.json();
         setSwimmers(results);
