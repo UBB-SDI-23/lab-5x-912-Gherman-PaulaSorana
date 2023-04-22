@@ -94,22 +94,22 @@ const navigate = useNavigate();
 						<ArrowBackIcon />
 					</IconButton>{" "}
 					<form onSubmit={addSwimmer}>
-					<Autocomplete
-							id="swimmer"
-							options={swimmers}
-							renderInput={(params) => <TextField {...params} label="Swimmer" variant="outlined" />}
-							getOptionLabel={(option) => `${option.swimmer_first_name} - ${option.swimmer_last_name}`}
-							filterOptions={(options, state) => options.filter((option) => option.swimmer_first_name.toLowerCase().includes(state.inputValue.toLowerCase()))}
-
-							onInputChange={handleInputChange}
-							onChange={(event, value) => {
-								if (value) {
-									console.log(value);
-									setSwimmer({ ...swimmer, swimmer: value.id });
-								}
-							}}
-							
-						/>
+						<Autocomplete
+								id="swimmer"
+								options={swimmers}
+								renderInput={(params) => <TextField {...params} label="Swimmer" variant="outlined" />}
+								getOptionLabel={(option) => `${option.swimmer_first_name} - ${option.swimmer_last_name}`}
+								filterOptions={(options, state) => options.filter((option) => option.swimmer_first_name.toLowerCase().includes(state.inputValue.toLowerCase()))}
+								sx={{ mb: 2 }}
+								onInputChange={handleInputChange}
+								onChange={(event, value) => {
+									if (value) {
+										console.log(value);
+										setSwimmer({ ...swimmer, swimmer: value.id });
+									}
+								}}
+								
+							/>
 
 						<Autocomplete
 							id="fan"
@@ -117,7 +117,7 @@ const navigate = useNavigate();
 							renderInput={(params) => <TextField {...params} label="Fan" variant="outlined" />}
 							getOptionLabel={(option) => `${option.fan_first_name} - ${option.fan_last_name}`}
 							filterOptions={(options, state) => options.filter((option) => option.fan_first_name.toLowerCase().includes(state.inputValue.toLowerCase()))}
-
+							sx={{ mb: 2 }}
 							onInputChange={handleInputChange2}
 							onChange={(event, value) => {
 								if (value) {
