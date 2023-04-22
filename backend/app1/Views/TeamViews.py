@@ -125,7 +125,7 @@ class TeamsOrderedByName(generics.ListCreateAPIView):
         t_name = self.kwargs.get("t_name")
         queryset = Team.objects.all()
         if t_name is not None:
-            queryset = queryset.filter(team_name=t_name)
+            queryset = queryset.filter(team_name__icontains=t_name)
         print(queryset.explain())
         print(t_name)
         return queryset

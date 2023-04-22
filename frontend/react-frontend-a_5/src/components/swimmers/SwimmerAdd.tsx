@@ -10,7 +10,7 @@ import {debounce} from  "lodash";
 
 export const SwimmerAdd = () => {
 
-const navigate = useNavigate();
+	const navigate = useNavigate();
 
 	const [swimmer, setSwimmer] = useState({
 		swimmer_last_name:"",
@@ -27,12 +27,15 @@ const navigate = useNavigate();
 
 	const fetchSuggestions = async (query: string) => {
 		try {
-			const response = await axios.get<Team[]>(
-				`${BACKEND_API_URL}/teamOrdName/${query}/?page=${page}&page_size=${pageSize}`
-			);
-			const data = await response.data;
-			setTeams(data);
-			console.log(data);
+			// const response = await axios.get<Team[]>(
+			// 	`${BACKEND_API_URL}/teamOrdName/${query}/?page=${page}&page_size=${pageSize}`
+			// );
+			// const data = await response.data;
+			let url = `${BACKEND_API_URL}/teamOrdName/${query}/?page=${page}&page_size=${pageSize}`;
+			const response = await fetch(url);
+			const { count, next, previous, results } = await response.json();
+			setTeams(results);
+			console.log(results);
 		} catch (error) {
 			console.error("Error fetching suggestions:", error);
 		}
@@ -116,20 +119,11 @@ const navigate = useNavigate();
 							onChange={(event) => setSwimmer({ ...swimmer, swimmer_years_of_experience: Number(event.target.value) })}
 						/>
 
-                        {/* <TextField style={{color:"#2471A3", fontWeight:'bold'}}
-							id="team"
-							label="Team"
-							variant="outlined"
-							fullWidth
-							sx={{ mb: 2 }}
-							onChange={(event) => setSwimmer({ ...swimmer, team: Number(event.target.value) })}
-						/> */}
-
 						<Autocomplete
 							id="team"
 							options={teams}
 							renderInput={(params) => <TextField {...params} label="Team" variant="outlined" />}
-							// filterOptions={(x) => x}
+							getOptionLabel={(option) => `${option.team_name} - ${option.team_abbreviation}`}
 							filterOptions={(options, state) => options.filter((option) => option.team_name.toLowerCase().includes(state.inputValue.toLowerCase()))}
 
 							onInputChange={handleInputChange}
@@ -141,7 +135,6 @@ const navigate = useNavigate();
 							}}
 						/>
 
-						
 
 						<Button type="submit">Add Swimmer</Button>
 					</form>
