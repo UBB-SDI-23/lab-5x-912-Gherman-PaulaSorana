@@ -108,9 +108,9 @@ const navigate = useNavigate();
 						/>
 
 						<Autocomplete
-							id="team"
+							id="swimmer"
 							options={swimmers}
-							renderInput={(params) => <TextField {...params} label="Swimmer" variant="outlined" />}
+							renderInput={(params) => <TextField {...params} label="Swimmers" variant="outlined" />}
 							getOptionLabel={(option) => `${option.swimmer_first_name} - ${option.swimmer_last_name}`}
 							filterOptions={(options, state) => options.filter((option) => option.swimmer_first_name.toLowerCase().includes(state.inputValue.toLowerCase()))}
 
