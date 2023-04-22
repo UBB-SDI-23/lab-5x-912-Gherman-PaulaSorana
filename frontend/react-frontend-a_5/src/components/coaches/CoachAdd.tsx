@@ -1,9 +1,11 @@
-import { Button, Card, CardActions, CardContent, Container, IconButton, TextField } from "@mui/material";
-import { useState } from "react";
+import { Autocomplete, Button, Card, CardActions, CardContent, Container, IconButton, TextField } from "@mui/material";
+import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 import { BACKEND_API_URL } from "../../constants";
+import { Team } from "../../models/Team";
+import { debounce } from "lodash";
 
 
 export const CoachAdd = () => {
@@ -19,6 +21,31 @@ const navigate = useNavigate();
         team: 1,
 	});
 
+	const [page, setPage] = useState(1);
+    const [pageSize, setPageSize] = useState(10);
+
+	const [teams, setTeams] = useState<Team[]>([]);
+
+	const fetchSuggestions = async (query: string) => {
+		try {
+			let url = `${BACKEND_API_URL}/teamOrdName/${query}/?page=${page}&page_size=${pageSize}`;
+			const response = await fetch(url);
+			const { count, next, previous, results } = await response.json();
+			setTeams(results);
+			console.log(results);
+		} catch (error) {
+			console.error("Error fetching suggestions:", error);
+		}
+	};
+
+	const debouncedFetchSuggestions = useCallback(debounce(fetchSuggestions, 500), []);
+
+	useEffect(() => {
+		return () => {
+			debouncedFetchSuggestions.cancel();
+		};
+	}, [debouncedFetchSuggestions]);
+
 	const addCoach = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 		try {
@@ -26,6 +53,14 @@ const navigate = useNavigate();
 			navigate("/coaches");
 		} catch (error) {
 			console.log(error);
+		}
+	};
+
+	const handleInputChange = (event: any, value: any, reason: any) => {
+		console.log("input", value, reason);
+
+		if (reason === "input") {
+			debouncedFetchSuggestions(value);
 		}
 	};
 
@@ -80,15 +115,24 @@ const navigate = useNavigate();
 							sx={{ mb: 2 }}
 							onChange={(event) => setCoach({ ...coach, coach_email: event.target.value })}
 						/>
-
-                        <TextField style={{color:"#2471A3", fontWeight:'bold'}}
+						
+						<Autocomplete
 							id="team"
-							label="Team"
-							variant="outlined"
-							fullWidth
-							sx={{ mb: 2 }}
-							onChange={(event) => setCoach({ ...coach, team: Number(event.target.value) })}
+							options={teams}
+							renderInput={(params) => <TextField {...params} label="Team" variant="outlined" />}
+							getOptionLabel={(option) => `${option.team_name} - ${option.team_abbreviation}`}
+							filterOptions={(options, state) => options.filter((option) => option.team_name.toLowerCase().includes(state.inputValue.toLowerCase()))}
+
+							onInputChange={handleInputChange}
+							onChange={(event, value) => {
+								if (value) {
+									console.log(value);
+									setCoach({ ...coach, team: value.id });
+								}
+							}}
+							
 						/>
+                        
 
 						<Button type="submit">Add Coach</Button>
 					</form>
