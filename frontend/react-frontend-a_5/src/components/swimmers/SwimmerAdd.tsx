@@ -27,10 +27,6 @@ export const SwimmerAdd = () => {
 
 	const fetchSuggestions = async (query: string) => {
 		try {
-			// const response = await axios.get<Team[]>(
-			// 	`${BACKEND_API_URL}/teamOrdName/${query}/?page=${page}&page_size=${pageSize}`
-			// );
-			// const data = await response.data;
 			let url = `${BACKEND_API_URL}/teamOrdName/${query}/?page=${page}&page_size=${pageSize}`;
 			const response = await fetch(url);
 			const { count, next, previous, results } = await response.json();
@@ -133,6 +129,7 @@ export const SwimmerAdd = () => {
 									setSwimmer({ ...swimmer, team: value.id });
 								}
 							}}
+							
 						/>
 
 
