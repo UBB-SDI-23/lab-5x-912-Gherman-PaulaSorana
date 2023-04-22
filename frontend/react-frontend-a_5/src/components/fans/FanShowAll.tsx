@@ -74,6 +74,7 @@ export const FanShowAll = () => {
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Nationality</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Date Of Birth</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Email</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Number of Swimmers</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Operations</TableCell>
                         </TableRow>
                     </TableHead>
@@ -97,6 +98,7 @@ export const FanShowAll = () => {
                                 <TableCell align="center">{fan.fan_nationality}</TableCell>
                                 <TableCell align="center">{fan.fan_date_of_birth}</TableCell>
                                 <TableCell align="center">{fan.fan_email}</TableCell>
+                                <TableCell align="center">{fan.swimmers.length}</TableCell>
                                 <TableCell align="center">
 
 										<IconButton component={Link} sx={{ mr: 3 }} to={`/fans/${fan.id}/edit`}>
