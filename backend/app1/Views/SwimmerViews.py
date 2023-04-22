@@ -88,10 +88,9 @@ class SwimmersWithAtLeastNYearsExp(generics.ListCreateAPIView):
     pagination_class = CustomPagination
 
     def get_queryset(self):
-        queryset = Swimmer.objects.all()
         min_yoe = self.request.query_params.get("yoe")
         if min_yoe is not None:
-            queryset = queryset.filter(swimmer_years_of_experience__gte=min_yoe)
+            queryset = Swimmer.objects.all().filter(swimmer_years_of_experience__gte=min_yoe)
         print(queryset.explain())
         return queryset
 
