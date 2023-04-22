@@ -58,6 +58,7 @@ export const SwimmerFilterYoe = () => {
           value={yoeFilter}
           onChange={(e) => setYoeFilter(e.target.value)}
           InputProps={{ style: { color: "whitesmoke" } }}
+          InputLabelProps={{style: {color: 'whitesmoke'}}}
           style={{ marginRight: "16px", color:'whitesmoke' }}
         />
         <Button variant="contained" style={{color:"whitesmoke"}} onClick={() => fetchSwimmers()}>
