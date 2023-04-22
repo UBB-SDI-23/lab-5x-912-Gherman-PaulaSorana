@@ -24,7 +24,7 @@ const navigate = useNavigate();
     const [pageSize, setPageSize] = useState(10);
 
 	const [swimmers, setSwimmers] = useState<Swimmer[]>([]);
-	const [fan, setTFans] = useState<Fan[]>([]);
+	const [fans, setFans] = useState<Fan[]>([]);
 
 	const fetchSuggestions = async (query: string) => {
 		try {
@@ -38,13 +38,27 @@ const navigate = useNavigate();
 		}
 	};
 
+	const fetchSuggestions2 = async (query: string) => {
+		try {
+			let url = `${BACKEND_API_URL}/fanOrdName/${query}/?page=${page}&page_size=${pageSize}`;
+			const response = await fetch(url);
+			const { count, next, previous, results } = await response.json();
+			setFans(results);
+			console.log(results);
+		} catch (error) {
+			console.error("Error fetching suggestions:", error);
+		}
+	};
+
 	const debouncedFetchSuggestions = useCallback(debounce(fetchSuggestions, 500), []);
+	const debouncedFetchSuggestions2 = useCallback(debounce(fetchSuggestions2, 500), []);
 
 	useEffect(() => {
 		return () => {
 			debouncedFetchSuggestions.cancel();
+			debouncedFetchSuggestions2.cancel();
 		};
-	}, [debouncedFetchSuggestions]);
+	}, [debouncedFetchSuggestions, debouncedFetchSuggestions2]);
 
 	const addSwimmer = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
@@ -64,6 +78,14 @@ const navigate = useNavigate();
 		}
 	};
 
+	const handleInputChange2 = (event: any, value: any, reason: any) => {
+		console.log("input", value, reason);
+
+		if (reason === "input") {
+			debouncedFetchSuggestions2(value);
+		}
+	};
+
 	return (
 		<Container>
 			<Card>
@@ -72,21 +94,38 @@ const navigate = useNavigate();
 						<ArrowBackIcon />
 					</IconButton>{" "}
 					<form onSubmit={addSwimmer}>
-                        <TextField style={{color:"#2471A3", fontWeight:'bold'}}
+					<Autocomplete
 							id="swimmer"
-							label="Swimmer"
-							variant="outlined"
-							fullWidth
-							sx={{ mb: 2 }}
-							onChange={(event) => setSwimmer({ ...swimmer, swimmer: Number(event.target.value) })}
+							options={swimmers}
+							renderInput={(params) => <TextField {...params} label="Swimmer" variant="outlined" />}
+							getOptionLabel={(option) => `${option.swimmer_first_name} - ${option.swimmer_last_name}`}
+							filterOptions={(options, state) => options.filter((option) => option.swimmer_first_name.toLowerCase().includes(state.inputValue.toLowerCase()))}
+
+							onInputChange={handleInputChange}
+							onChange={(event, value) => {
+								if (value) {
+									console.log(value);
+									setSwimmer({ ...swimmer, swimmer: value.id });
+								}
+							}}
+							
 						/>
-						<TextField style={{color:"#2471A3", fontWeight:'bold'}}
+
+						<Autocomplete
 							id="fan"
-							label="fan"
-							variant="outlined"
-							fullWidth
-							sx={{ mb: 2 }}
-							onChange={(event) => setSwimmer({ ...swimmer, fan: Number(event.target.value) })}
+							options={fans}
+							renderInput={(params) => <TextField {...params} label="Fan" variant="outlined" />}
+							getOptionLabel={(option) => `${option.fan_first_name} - ${option.fan_last_name}`}
+							filterOptions={(options, state) => options.filter((option) => option.fan_first_name.toLowerCase().includes(state.inputValue.toLowerCase()))}
+
+							onInputChange={handleInputChange2}
+							onChange={(event, value) => {
+								if (value) {
+									console.log(value);
+									setSwimmer({ ...swimmer, fan: value.id });
+								}
+							}}
+							
 						/>
 
                         <TextField style={{color:"#2471A3", fontWeight:'bold'}}
@@ -105,23 +144,6 @@ const navigate = useNavigate();
 							fullWidth
 							sx={{ mb: 2 }}
 							onChange={(event) => setSwimmer({ ...swimmer, fan_since_year: Number(event.target.value) })}
-						/>
-
-						<Autocomplete
-							id="swimmer"
-							options={swimmers}
-							renderInput={(params) => <TextField {...params} label="Swimmers" variant="outlined" />}
-							getOptionLabel={(option) => `${option.swimmer_first_name} - ${option.swimmer_last_name}`}
-							filterOptions={(options, state) => options.filter((option) => option.swimmer_first_name.toLowerCase().includes(state.inputValue.toLowerCase()))}
-
-							onInputChange={handleInputChange}
-							onChange={(event, value) => {
-								if (value) {
-									console.log(value);
-									setSwimmer({ ...swimmer, swimmer: value.id });
-								}
-							}}
-							
 						/>
 
 						<Button type="submit">Add Swimmer Fan</Button>
