@@ -97,4 +97,16 @@ class SwimmersWithAtLeastNYearsExp(generics.ListCreateAPIView):
         return queryset
 
 
+class SwimmersOrderedByName(generics.ListCreateAPIView):
+    serializer_class = SwimmerSerializer
+    pagination_class = CustomPagination
+
+    def get_queryset(self):
+        s_name = self.kwargs.get("s_name")
+        queryset = Swimmer.objects.all()
+        if s_name is not None:
+            queryset = queryset.filter(team_name__icontains=s_name)
+        print(queryset.explain())
+        print(s_name)
+        return queryset
 

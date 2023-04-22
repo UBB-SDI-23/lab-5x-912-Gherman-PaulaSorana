@@ -1,8 +1,8 @@
 from django.urls import path
-from .Views.SwimmerViews import SwimmerListCreateView, SwimmerInfo, SwimmersWithAtLeastNYearsExp
+from .Views.SwimmerViews import SwimmerListCreateView, SwimmerInfo, SwimmersWithAtLeastNYearsExp, SwimmersOrderedByName
 from .Views.TeamViews import TeamListCreateView, TeamInfo, TeamsBulk, TeamsOrderedByNoOfSwimmers, TeamsOrderedByName
 from .Views.CoachViews import CoachInfo, CoachListCreateView
-from .Views.FanViews import FanInfo, FanListCreateView, FansOrderedByAvgYoeOfSwimmersTheyAreFansOf
+from .Views.FanViews import FanInfo, FanListCreateView, FansOrderedByAvgYoeOfSwimmersTheyAreFansOf, FansOrderedByName
 from .Views.SwimmerFanViews import SwimmerFanListCreateView, SwimmerFanInfo
 
 urlpatterns = [
@@ -21,5 +21,7 @@ urlpatterns = [
     path("fanAvgYoe/", FansOrderedByAvgYoeOfSwimmersTheyAreFansOf.as_view(), name="fanAvgYoe"),
     path("teamNoSwim/", TeamsOrderedByNoOfSwimmers.as_view(), name="teamNoSwim"),
     path("teamBulk/<int:id>/", TeamsBulk.as_view()),
-    path("teamOrdName/<str:t_name>/", TeamsOrderedByName.as_view(), name="t_name")
+    path("teamOrdName/<str:t_name>/", TeamsOrderedByName.as_view(), name="t_name"),
+    path("swimmerOrdName/<str:t_name>/", SwimmersOrderedByName.as_view(), name="s_name"),
+    path("fanOrdName/<str:t_name>/", FansOrderedByName.as_view(), name="f_name")
 ]

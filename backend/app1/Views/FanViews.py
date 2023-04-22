@@ -99,3 +99,16 @@ class FansOrderedByAvgYoeOfSwimmersTheyAreFansOf(generics.ListCreateAPIView):
         print(queryset.explain())
         return queryset
 
+
+class FansOrderedByName(generics.ListCreateAPIView):
+    serializer_class = FanSerializer
+    pagination_class = CustomPagination
+
+    def get_queryset(self):
+        f_name = self.kwargs.get("f_name")
+        queryset = Fan.objects.all()
+        if f_name is not None:
+            queryset = queryset.filter(team_name__icontains=f_name)
+        print(queryset.explain())
+        print(f_name)
+        return queryset
