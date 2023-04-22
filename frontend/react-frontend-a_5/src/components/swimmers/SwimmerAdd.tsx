@@ -1,10 +1,11 @@
-import { Button, Card, CardActions, CardContent, Container, IconButton, TextField } from "@mui/material";
-import { useState } from "react";
+import { Autocomplete, Button, Card, CardActions, CardContent, Container, debounce, IconButton, TextField } from "@mui/material";
+import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Swimmer } from "../../models/Swimmer";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 import { BACKEND_API_URL } from "../../constants";
+import { Team } from "../../models/Team";
 
 
 export const SwimmerAdd = () => {
@@ -19,6 +20,30 @@ const navigate = useNavigate();
         swimmer_years_of_experience:1,
         team: 1,
 	});
+	const [page, setPage] = useState(1);
+    const [pageSize, setPageSize] = useState(10);
+
+	const [teams, setTeams] = useState<Team[]>([]);
+
+	const fetchSuggestions = async (query: string) => {
+		try {
+			const response = await axios.get<Team[]>(
+				`${BACKEND_API_URL}/teamOrdName/${query}/?page=${page}&page_size=${pageSize}`
+			);
+			const data = await response.data;
+			setTeams(data);
+		} catch (error) {
+			console.error("Error fetching suggestions:", error);
+		}
+	};
+
+	const debouncedFetchSuggestions = useCallback(debounce(fetchSuggestions, 500), []);
+
+	useEffect(() => {
+		// return () => {
+		// 	debouncedFetchSuggestions.cancel();
+		// };
+	}, [debouncedFetchSuggestions]);
 
 	const addSwimmer = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
@@ -27,6 +52,14 @@ const navigate = useNavigate();
 			navigate("/swimmers");
 		} catch (error) {
 			console.log(error);
+		}
+	};
+
+	const handleInputChange = (event: any, value: any, reason: any) => {
+		console.log("input", value, reason);
+
+		if (reason === "input") {
+			debouncedFetchSuggestions(value);
 		}
 	};
 
@@ -82,14 +115,30 @@ const navigate = useNavigate();
 							onChange={(event) => setSwimmer({ ...swimmer, swimmer_years_of_experience: Number(event.target.value) })}
 						/>
 
-                        <TextField style={{color:"#2471A3", fontWeight:'bold'}}
+                        {/* <TextField style={{color:"#2471A3", fontWeight:'bold'}}
 							id="team"
 							label="Team"
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
 							onChange={(event) => setSwimmer({ ...swimmer, team: Number(event.target.value) })}
+						/> */}
+
+						<Autocomplete
+							id="team"
+							options={teams}
+							renderInput={(params) => <TextField {...params} label="Team" variant="outlined" />}
+							filterOptions={(x) => x}
+							onInputChange={handleInputChange}
+							onChange={(event, value) => {
+								if (value) {
+									console.log(value);
+									setSwimmer({ ...swimmer, team: value.id });
+								}
+							}}
 						/>
+
+						
 
 						<Button type="submit">Add Swimmer</Button>
 					</form>

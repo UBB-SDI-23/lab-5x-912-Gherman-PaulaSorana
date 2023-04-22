@@ -117,4 +117,18 @@ class TeamsBulk(APIView):
         return Response({"message": "Bulk succeed"}, status=status.HTTP_200_OK)
 
 
+class TeamsOrderedByName(generics.ListCreateAPIView):
+    serializer_class = TeamSerializer
+    pagination_class = CustomPagination
+
+    def get_queryset(self):
+        t_name = self.kwargs.get("t_name")
+        queryset = Team.objects.all()
+        if t_name is not None:
+            queryset = queryset.filter(team_name=t_name)
+        print(queryset.explain())
+        print(t_name)
+        return queryset
+
+
 
