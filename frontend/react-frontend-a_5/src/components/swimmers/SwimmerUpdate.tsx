@@ -42,6 +42,7 @@ export const SwimmerUpdate = () => {
 		};
 		fetchSwimmer();
 	}, [swimmerId]);
+	
 	const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
 
