@@ -74,6 +74,7 @@ export const TeamShowAll = () => {
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Budget</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Motto</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Abbreviation</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Number Of Swimmers</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Operations</TableCell>
                         </TableRow>
                     </TableHead>
@@ -95,6 +96,7 @@ export const TeamShowAll = () => {
                                 <TableCell align="center">{team.team_budget}</TableCell>
                                 <TableCell align="center">{team.team_motto}</TableCell>
                                 <TableCell align="center">{team.team_abbreviation}</TableCell>
+                                <TableCell align="center">{team.no_swim}</TableCell>
                                 <TableCell align="center">
 
 										<IconButton component={Link} sx={{ mr: 3 }} to={`/teams/${team.id}/edit`}>

@@ -3,6 +3,13 @@ from .models import Swimmer, Team, Coach, Fan, SwimmerFan
 
 
 class TeamSerializer(serializers.ModelSerializer):
+    team_name = serializers.CharField(max_length=100)
+    team_founding_year = serializers.IntegerField()
+    team_budget = serializers.IntegerField()
+    team_motto = serializers.CharField(max_length=100)
+    team_abbreviation = serializers.CharField(max_length=10)
+    no_swim = serializers.IntegerField()
+    
     def validate_team_name(self, value):
         existing_teams = Team.objects.filter(team_name=value)
 

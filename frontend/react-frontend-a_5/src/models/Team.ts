@@ -8,4 +8,5 @@ export interface Team{
     team_budget:number;
     team_motto:string;
     team_abbreviation:string;
+    no_swim:number;
 };

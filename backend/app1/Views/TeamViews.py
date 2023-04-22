@@ -13,7 +13,8 @@ class TeamListCreateView(generics.ListCreateAPIView):
     pagination_class = CustomPagination
 
     def get_queryset(self):
-        queryset = Team.objects.all()
+        # queryset = Team.objects.all()
+        queryset = Team.objects.all().annotate(no_swim=Count('swimmers'))
         print(queryset.explain())
         return queryset
 
