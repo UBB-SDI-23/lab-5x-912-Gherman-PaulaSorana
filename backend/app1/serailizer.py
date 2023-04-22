@@ -8,8 +8,8 @@ class TeamSerializer(serializers.ModelSerializer):
     team_budget = serializers.IntegerField()
     team_motto = serializers.CharField(max_length=100)
     team_abbreviation = serializers.CharField(max_length=10)
-    no_swim = serializers.IntegerField()
-    
+    no_swim = serializers.IntegerField(read_only=True)
+
     def validate_team_name(self, value):
         existing_teams = Team.objects.filter(team_name=value)
 
