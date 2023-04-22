@@ -23,7 +23,7 @@ const navigate = useNavigate();
 	const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
 
-	const [swimmers, setTSwimmers] = useState<Swimmer[]>([]);
+	const [swimmers, setSwimmers] = useState<Swimmer[]>([]);
 	const [fan, setTFans] = useState<Fan[]>([]);
 
 	const fetchSuggestions = async (query: string) => {
@@ -31,7 +31,7 @@ const navigate = useNavigate();
 			let url = `${BACKEND_API_URL}/swimmerOrdName/${query}/?page=${page}&page_size=${pageSize}`;
 			const response = await fetch(url);
 			const { count, next, previous, results } = await response.json();
-			setSwimmer(results);
+			setSwimmers(results);
 			console.log(results);
 		} catch (error) {
 			console.error("Error fetching suggestions:", error);
