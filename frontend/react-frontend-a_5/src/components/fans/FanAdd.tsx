@@ -32,9 +32,11 @@ const navigate = useNavigate();
 			}
 		
 		}
-		catch (error) {
-			toast.error((error as { message: string }).message);
+		catch (error: any) {
+			if(error.response && error.response.data && error.response.data.detail === "This email address is already in use.")
+				toast.error((error as { message: string }).message);
 			console.log(error);
+			
 		}
 	
 	};
