@@ -37,7 +37,7 @@ class Coach(models.Model):
     coach_years_of_experience = models.IntegerField()
     coach_date_of_birth = models.DateField()
     coach_email = models.CharField(max_length=100)
-    team = models.ForeignKey(Team, on_delete=models.CASCADE, unique=True)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['id']
