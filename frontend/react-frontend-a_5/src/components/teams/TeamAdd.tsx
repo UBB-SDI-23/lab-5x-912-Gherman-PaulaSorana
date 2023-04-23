@@ -24,8 +24,10 @@ const navigate = useNavigate();
 		try {
 
 			if(team.team_founding_year > 2023 || team.team_founding_year < 1970 ||
-				team.team_founding_year.toString().length > 4)
+				team.team_founding_year.toString().length >4)
+			{
 				throw new Error("Not a valid year!");
+			}
 
 			const response = await axios.post(`${BACKEND_API_URL}/team/`, team);
 			if (response.status < 200 || response.status >= 300)
