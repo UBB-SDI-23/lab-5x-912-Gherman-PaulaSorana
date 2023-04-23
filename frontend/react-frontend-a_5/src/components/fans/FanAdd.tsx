@@ -23,15 +23,21 @@ const navigate = useNavigate();
 		event.preventDefault();
 		try {
 			const response = await axios.post(`${BACKEND_API_URL}/fan/`, fan);
-			if (response.status < 200 || response.status >= 300) {
-				throw new Error("This email is already in use!");
-			  } else {
-				navigate("/fans");
-			  }
-		} catch (error) {
-			toast.error((error as { message: string }).message);
-			console.log(error);
-		}
+			try{
+				if (response.status < 200 || response.status >= 300) {
+					throw new Error("This email is already in use!");
+				} else {
+					navigate("/fans");
+				}
+			}
+			catch (error) {
+				toast.error((error as { message: string }).message);
+				console.log(error);
+			
+		// } catch (error) {
+		// 	toast.error((error as { message: string }).message);
+		// 	console.log(error);
+		// }
 	};
 
 	return (
