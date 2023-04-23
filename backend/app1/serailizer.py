@@ -27,7 +27,7 @@ class TeamSerializer(serializers.ModelSerializer):
     class Meta:
         model = Team
         fields = "__all__"
-.
+
 
 class SwimmerSerializer(serializers.ModelSerializer):
     swimmer_last_name = serializers.CharField(max_length=100)
