@@ -4,7 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 import { BACKEND_API_URL } from "../../constants";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const TeamAdd = () => {
 
@@ -22,9 +23,17 @@ const navigate = useNavigate();
 	const addTeam = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 		try {
-			await axios.post(`${BACKEND_API_URL}/team/`, team);
-			navigate("/teams");
+			const response = await axios.post(`${BACKEND_API_URL}/team/`, team);
+			if (response.status < 200 || response.status >= 300)
+			{
+				throw new Error("This team name is already in use!");
+			}
+			else{
+				navigate("/teams");
+			}
+
 		} catch (error) {
+			toast.error((error as { message: string }).message);
 			console.log(error);
 		}
 	};
@@ -81,6 +90,7 @@ const navigate = useNavigate();
 							onChange={(event) => setTeam({ ...team, team_abbreviation: event.target.value })}
 						/>
 
+						<ToastContainer />
 						<Button type="submit">Add Team</Button>
 					</form>
 				</CardContent>

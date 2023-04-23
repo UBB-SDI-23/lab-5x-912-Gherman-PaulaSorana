@@ -54,6 +54,7 @@ export const SwimmerAdd = () => {
 			{
 				throw new Error("Years of experience must be greater than zero!");
 			}
+			
 			const response = await axios.post(`${BACKEND_API_URL}/swimmer/`, swimmer);
 			if (response.status < 200 || response.status >= 300) {
 				throw new Error("An error occurred while adding the item!");

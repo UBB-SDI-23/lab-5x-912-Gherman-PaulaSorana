@@ -8,7 +8,8 @@ import { FullSwimmer } from "../../models/FullSwimmer";
 import { BACKEND_API_URL } from "../../constants";
 import { Team } from "../../models/Team";
 import { debounce } from "lodash";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const SwimmerUpdate = () => {
 
@@ -42,7 +43,7 @@ export const SwimmerUpdate = () => {
 		};
 		fetchSwimmer();
 	}, [swimmerId]);
-	
+
 	const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
 
@@ -71,10 +72,22 @@ export const SwimmerUpdate = () => {
 	const updateSwimmer = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 		try {
-			await axios.put(`../../api/swimmer/${swimmerId}/`, swimmer);
-			navigate(`/swimmers/${swimmerId}`);
+			if (swimmer.swimmer_years_of_experience <= 0)
+			{
+				throw new Error("Years of experience must be greater than zero!");
+			}
+
+			const response = await axios.put(`../../api/swimmer/${swimmerId}/`, swimmer);
+
+			if (response.status < 200 || response.status >= 300) {
+				throw new Error("An error occurred while adding the item!");
+			  } else {
+				navigate(`/swimmers/${swimmerId}`);
+			  }
+			
 		} catch (error) {
 			console.log(error);
+			toast.error((error as { message: string }).message);
 		}
 	};
 
@@ -161,6 +174,8 @@ export const SwimmerUpdate = () => {
 							}}
 							
 						/>
+
+						<ToastContainer />
 
 						<Button type="submit">Update Swimmer</Button>
 					</form>
