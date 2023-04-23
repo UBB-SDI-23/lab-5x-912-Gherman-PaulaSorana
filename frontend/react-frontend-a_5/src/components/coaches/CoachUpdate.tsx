@@ -6,7 +6,8 @@ import axios from "axios";
 import { BACKEND_API_URL } from "../../constants";
 import { Team } from "../../models/Team";
 import { debounce } from "lodash";
-
+import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
 
 export const CoachUpdate = () => {
 
@@ -70,9 +71,19 @@ export const CoachUpdate = () => {
 	const updateCoach = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 		try {
-			await axios.put(`../../api/coach/${coachId}/`, coach);
-			navigate(`/coaches/${coachId}`);
+			if(coach.coach_years_of_experience < 0)
+			{
+				throw new Error("Years of experience must be greater than zero!");
+			}
+			const response = await axios.put(`../../api/coach/${coachId}/`, coach);
+			if (response.status < 200 || response.status >= 300) {
+				throw new Error("An error occurred while adding the item!");
+			  } else {
+				navigate(`/coaches/${coachId}`);
+			  }
+			
 		} catch (error) {
+			toast.error((error as { message: string }).message);
 			console.log(error);
 		}
 	};
@@ -160,6 +171,8 @@ export const CoachUpdate = () => {
 							}}
 							
 						/>
+
+						<ToastContainer />
 
 						<Button type="submit">Update Coach</Button>
 					</form>

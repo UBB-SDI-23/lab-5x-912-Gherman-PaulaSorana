@@ -27,7 +27,7 @@ class TeamSerializer(serializers.ModelSerializer):
     class Meta:
         model = Team
         fields = "__all__"
-
+.
 
 class SwimmerSerializer(serializers.ModelSerializer):
     swimmer_last_name = serializers.CharField(max_length=100)
@@ -68,19 +68,20 @@ class SwimmerSerializerId(serializers.ModelSerializer):
 
 
 class CoachSerializer(serializers.ModelSerializer):
+    def validate_coach_years_of_experience(self, value):
+        if value < 0:
+            raise serializers.ValidationError("Years of experience must be greater than or equal to zero.")
+        return value
+
     class Meta:
         model = Coach
         fields = "__all__"
 
 
 class CoachSerializerId(serializers.ModelSerializer):
-    def validate_coach_email(self, value):
-        existing_emails = Coach.objects.filter(coach_email=value)
-
-        if self.instance:
-            existing_emails = existing_emails.exclude(pk=self.instance.pk)
-        if existing_emails.exists():
-            raise serializers.ValidationError("This email address is already in use!")
+    def validate_coach_years_of_experience(self, value):
+        if value < 0:
+            raise serializers.ValidationError("Years of experience must be greater than or equal to zero.")
         return value
 
     class Meta:
