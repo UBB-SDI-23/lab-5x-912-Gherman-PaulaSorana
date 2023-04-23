@@ -23,8 +23,8 @@ const navigate = useNavigate();
 		event.preventDefault();
 		try {
 
-			if(team.team_founding_year > 2023 || team.team_founding_year < 1970 ||
-				team.team_founding_year.toString().length >4)
+			if(team.team_founding_year > 2023 || team.team_founding_year < 1950 ||
+				team.team_founding_year.toString().length > 4)
 			{
 				throw new Error("Not a valid year!");
 			}
