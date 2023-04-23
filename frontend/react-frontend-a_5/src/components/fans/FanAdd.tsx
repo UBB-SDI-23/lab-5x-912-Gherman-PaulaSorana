@@ -4,7 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 import { BACKEND_API_URL } from "../../constants";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const FanAdd = () => {
 
@@ -21,9 +22,14 @@ const navigate = useNavigate();
 	const addFan = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 		try {
-			await axios.post(`${BACKEND_API_URL}/fan/`, fan);
-			navigate("/fans");
+			const response = await axios.post(`${BACKEND_API_URL}/fan/`, fan);
+			if (response.status < 200 || response.status >= 300) {
+				throw new Error("This email is already in use!");
+			  } else {
+				navigate("/fans");
+			  }
 		} catch (error) {
+			toast.error((error as { message: string }).message);
 			console.log(error);
 		}
 	};
@@ -79,7 +85,7 @@ const navigate = useNavigate();
 							sx={{ mb: 2 }}
 							onChange={(event) => setFan({ ...fan, fan_email: event.target.value })}
 						/>
-
+						<ToastContainer />
 						<Button type="submit">Add Fan</Button>
 					</form>
 				</CardContent>
