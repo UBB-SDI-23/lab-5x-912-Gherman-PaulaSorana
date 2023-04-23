@@ -33,10 +33,7 @@ const navigate = useNavigate();
 		
 		}
 		catch (error:any) {
-			
-			toast.error((error.response.data as { message: string }).message);
-			console.log(error);
-			
+			toast.error(error.response.data.fan_email[0]);		
 		}
 	
 	};

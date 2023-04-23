@@ -38,8 +38,8 @@ const navigate = useNavigate();
 				navigate("/teams");
 			}
 
-		} catch (error) {
-			toast.error((error as { message: string }).message);
+		} catch (error:any) {
+			toast.error(error.response.data.team_name[0]);
 			console.log(error);
 		}
 	};

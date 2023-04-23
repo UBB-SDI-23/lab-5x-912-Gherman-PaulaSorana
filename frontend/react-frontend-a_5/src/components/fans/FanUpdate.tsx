@@ -44,8 +44,8 @@ export const FanUpdate = () => {
 		try {
 			await axios.put(`../../api/fan/${fanId}/`, fan);
 			navigate(`/fans/${fanId}`);
-		} catch (error) {
-			console.log(error);
+		} catch (error:any) {
+			console.log(error.response.data.fan_email[0]);
 		}
 	};
 

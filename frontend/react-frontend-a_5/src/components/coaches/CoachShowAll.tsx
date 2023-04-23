@@ -22,13 +22,37 @@ import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import { Scale } from "@mui/icons-material";
 import { BACKEND_API_URL } from "../../constants";
 import { Coach } from "../../models/Coach";
+import { Paginator } from "../pagination/Pagination";
 
 export const CoachShowAll = () => {
     const[loading, setLoading] = useState(true);
     const[coaches, setCoaches] = useState([]);
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
+    const [totalRows, setTotalRows] = useState(0);
     const crt = (page - 1) * pageSize + 1;
+
+    const [isLastPage, setIsLastPage] = useState(false);
+
+    const setCurrentPage = (newPage: number) => {
+        setPage(newPage);
+    }
+
+    const goToNextPage = () => {
+        if (isLastPage) {
+            return;
+        }
+
+        setPage(page + 1);
+    }
+
+    const goToPrevPage = () => {
+        if (page === 1) {
+            return;
+        }
+
+        setPage(page - 1);
+    }
 
     const fetchCoaches = async () => {
         setLoading(true);
@@ -37,6 +61,8 @@ export const CoachShowAll = () => {
         );
         const { count, next, previous, results } = await response.json();
         setCoaches(results);
+        setTotalRows(count);
+        setIsLastPage(!next);
         setLoading(false);
       };
     
@@ -110,16 +136,16 @@ export const CoachShowAll = () => {
                 </TableBody>
                 </Table>
             </TableContainer>
-            <Button style={{color:"whitesmoke"}} disabled={page === 1} onClick={() => setPage(page - 1)}>
-            Previous
-            </Button>
-
-            <Button style={{color:"whitesmoke"}}
-            disabled={coaches.length < pageSize}
-            onClick={() => setPage(page + 1)}
-            >
-            Next
-            </Button>
+            <Paginator
+                        rowsPerPage={pageSize}
+                        totalRows={totalRows}
+                        currentPage={page}
+                        isFirstPage={page === 1}
+                        isLastPage={isLastPage}
+                        setPage={setCurrentPage}
+                        goToNextPage={goToNextPage}
+                        goToPrevPage={goToPrevPage}
+                    />
           </>
         )
         }
