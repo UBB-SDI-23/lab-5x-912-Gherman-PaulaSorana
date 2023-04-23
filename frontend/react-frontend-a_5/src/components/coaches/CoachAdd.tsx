@@ -50,7 +50,7 @@ const navigate = useNavigate();
 	const addCoach = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 		try {
-			if(coach.coach_years_of_experience < 0)
+			if(coach.coach_years_of_experience <= 0)
 			{
 				throw new Error("Years of experience must be greater than zero!");
 			}
@@ -145,6 +145,7 @@ const navigate = useNavigate();
 						/>
                         
 						<ToastContainer />
+						
 						<Button type="submit">Add Coach</Button>
 					</form>
 				</CardContent>
