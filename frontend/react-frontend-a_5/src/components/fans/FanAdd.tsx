@@ -22,18 +22,6 @@ const navigate = useNavigate();
 	const addFan = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 		try {
-			const resp = await axios.get(`${BACKEND_API_URL}/fan/`);
-			let ok = true;
-			for (let i=0; i<resp.data.length && ok; i++)
-				{
-					if(fan.fan_email === resp.data[i].fan_email)
-					{
-						ok = false;
-						throw new Error("This email is already in use!");
-					}
-				}
-
-
 			const response = await axios.post(`${BACKEND_API_URL}/fan/`, fan);
 			
 			if (response.status < 200 || response.status >= 300) {
