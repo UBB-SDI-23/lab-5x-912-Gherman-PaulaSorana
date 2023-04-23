@@ -24,7 +24,7 @@ const navigate = useNavigate();
 		try {
 			const response = await axios.post(`${BACKEND_API_URL}/fan/`, fan);
 			
-			if (response.status < 200 || response.status >= 300) {
+			if (response.status < 200 || response.status >= 300 || response.status===400) {
 				throw new Error("This email is already in use!");
 			}
 			else{
