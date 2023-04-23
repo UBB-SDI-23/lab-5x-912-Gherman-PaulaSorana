@@ -7,6 +7,8 @@ import axios from "axios";
 import { BACKEND_API_URL } from "../../constants";
 import { Team } from "../../models/Team";
 import {debounce} from  "lodash";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const SwimmerAdd = () => {
 
@@ -48,9 +50,18 @@ export const SwimmerAdd = () => {
 	const addSwimmer = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 		try {
-			await axios.post(`${BACKEND_API_URL}/swimmer/`, swimmer);
-			navigate("/swimmers");
+			if (swimmer.swimmer_years_of_experience <= 0)
+			{
+				throw new Error("Years of experience must be greater than zero!");
+			}
+			const response = await axios.post(`${BACKEND_API_URL}/swimmer/`, swimmer);
+			if (response.status < 200 || response.status >= 300) {
+				throw new Error("An error occurred while adding the item!");
+			  } else {
+				navigate("/swimmers");
+			  }
 		} catch (error) {
+			toast.error((error as { message: string }).message);
 			console.log(error);
 		}
 	};
