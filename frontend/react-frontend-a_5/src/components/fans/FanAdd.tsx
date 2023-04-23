@@ -33,9 +33,9 @@ const navigate = useNavigate();
 		
 		}
 		catch (error: any) {
-			if(error.response && error.response.data && error.response.data.detail === "This email address is already in use.")
-				toast.error((error as { message: string }).message);
-			console.log(error);
+			if(error.response.data.detail === "This email address is already in use.")
+				{toast.error((error as { message: string }).message);
+				console.log(error);}
 			
 		}
 	
