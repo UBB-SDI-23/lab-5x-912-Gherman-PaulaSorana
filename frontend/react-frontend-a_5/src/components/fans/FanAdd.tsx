@@ -34,10 +34,13 @@ const navigate = useNavigate();
 				toast.error((error as { message: string }).message);
 				console.log(error);
 			
-		// } catch (error) {
+			} 
+		}
+		catch (error) {
 		// 	toast.error((error as { message: string }).message);
-		// 	console.log(error);
-		// }
+			console.log(error);
+		}
+	
 	};
 
 	return (
