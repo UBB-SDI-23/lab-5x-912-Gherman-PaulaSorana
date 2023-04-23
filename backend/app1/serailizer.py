@@ -19,6 +19,11 @@ class TeamSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("This team name is already in use.")
         return value
 
+    def validate_team_founding_year(self, value):
+        if value > 2023 or value < 1950:
+            raise serializers.ValidationError("Not a valid year!")
+        return value
+
     class Meta:
         model = Team
         fields = "__all__"
@@ -69,6 +74,15 @@ class CoachSerializer(serializers.ModelSerializer):
 
 
 class CoachSerializerId(serializers.ModelSerializer):
+    def validate_coach_email(self, value):
+        existing_emails = Coach.objects.filter(coach_email=value)
+
+        if self.instance:
+            existing_emails = existing_emails.exclude(pk=self.instance.pk)
+        if existing_emails.exists():
+            raise serializers.ValidationError("This email address is already in use!")
+        return value
+
     class Meta:
         model = Coach
         fields = "__all__"
