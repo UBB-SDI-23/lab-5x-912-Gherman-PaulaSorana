@@ -24,6 +24,7 @@ import AddIcon from "@mui/icons-material/Add";
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import { Scale } from "@mui/icons-material";
 import { BACKEND_API_URL } from "../../constants";
+import { Paginator } from "../pagination/Pagination";
 
 export const SwimmerFilterYoe = () => {
     const[loading, setLoading] = useState(true);
@@ -31,7 +32,30 @@ export const SwimmerFilterYoe = () => {
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
     const [yoeFilter, setYoeFilter] = useState("");
+    const [totalRows, setTotalRows] = useState(0);
     const crt = (page - 1) * pageSize + 1;
+
+    const [isLastPage, setIsLastPage] = useState(false);
+
+    const setCurrentPage = (newPage: number) => {
+      setPage(newPage);
+  }
+
+  const goToNextPage = () => {
+      if (isLastPage) {
+          return;
+      }
+
+      setPage(page + 1);
+  }
+
+  const goToPrevPage = () => {
+      if (page === 1) {
+          return;
+      }
+
+      setPage(page - 1);
+  }
 
     const fetchSwimmers = async () => {
         setLoading(true);
@@ -39,6 +63,8 @@ export const SwimmerFilterYoe = () => {
         const response = await fetch(url);
         const { count, next, previous, results } = await response.json();
         setSwimmers(results);
+        setTotalRows(count);
+        setIsLastPage(!next);
         setLoading(false);
       };
       
@@ -101,16 +127,16 @@ export const SwimmerFilterYoe = () => {
                 </TableBody>
                 </Table>
             </TableContainer>
-            <Button style={{color:"whitesmoke"}} disabled={page === 1} onClick={() => setPage(page - 1)}>
-            Previous
-            </Button>
-
-            <Button style={{color:"whitesmoke"}}
-            disabled={swimmers.length < pageSize}
-            onClick={() => setPage(page + 1)}
-            >
-            Next
-            </Button>
+            <Paginator
+                        rowsPerPage={pageSize}
+                        totalRows={totalRows}
+                        currentPage={page}
+                        isFirstPage={page === 1}
+                        isLastPage={isLastPage}
+                        setPage={setCurrentPage}
+                        goToNextPage={goToNextPage}
+                        goToPrevPage={goToPrevPage}
+                    />
           </>
         )
         }

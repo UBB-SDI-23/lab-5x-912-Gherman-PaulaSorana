@@ -21,13 +21,39 @@ import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import { BACKEND_API_URL } from "../../constants";
 import { Fan } from "../../models/Fan";
 import { FanOrderedAgvSwimmer } from "../../models/FanOrderedAgvSwim";
+import { Paginator } from "../pagination/Pagination";
 
 export const FanOrdShowAll = () => {
     const [loading, setLoading] = useState(true);
     const [fans, setFans] = useState([]);
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
+    const [totalRows, setTotalRows] = useState(0);
     const crt = (page - 1) * pageSize + 1;
+
+    const [isLastPage, setIsLastPage] = useState(false);
+
+    const setCurrentPage = (newPage: number) => {
+      setPage(newPage);
+  }
+
+  const goToNextPage = () => {
+      if (isLastPage) {
+          return;
+      }
+
+      setPage(page + 1);
+  }
+
+  const goToPrevPage = () => {
+      if (page === 1) {
+          return;
+      }
+
+      setPage(page - 1);
+  }
+
+    
 
     const fetchFans = async () => {
         setLoading(true);
@@ -37,6 +63,8 @@ export const FanOrdShowAll = () => {
         const { count, next, previous, results } = await response.json();
         setFans(results);
         setLoading(false);
+        setTotalRows(count);
+        setIsLastPage(!next);
         console.log(results);
       };
     
@@ -95,16 +123,17 @@ export const FanOrdShowAll = () => {
                 </TableBody>
                 </Table>
             </TableContainer>
-            <Button style={{color:"whitesmoke"}} disabled={page === 1} onClick={() => setPage(page - 1)}>
-            Previous
-            </Button>
-
-            <Button style={{color:"whitesmoke"}}
-            disabled={fans.length < pageSize}
-            onClick={() => setPage(page + 1)}
-            >
-            Next
-            </Button>
+            <Paginator
+                        rowsPerPage={pageSize}
+                        totalRows={totalRows}
+                        currentPage={page}
+                        isFirstPage={page === 1}
+                        isLastPage={isLastPage}
+                        setPage={setCurrentPage}
+                        goToNextPage={goToNextPage}
+                        goToPrevPage={goToPrevPage}
+                    />
+            
           </>
         )
         }
