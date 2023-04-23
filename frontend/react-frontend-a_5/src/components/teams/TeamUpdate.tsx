@@ -4,7 +4,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 import { BACKEND_API_URL } from "../../constants";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const TeamUpdate = () => {
 
@@ -42,9 +43,23 @@ export const TeamUpdate = () => {
 	const updateTeam = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 		try {
-			await axios.put(`../../api/team/${teamId}/`, team);
-			navigate(`/teams/${teamId}`);
+			if(team.team_founding_year > 2023 || team.team_founding_year < 1950 ||
+				team.team_founding_year.toString().length > 4)
+			{
+				throw new Error("Not a valid year!");
+			}
+
+			const response = await axios.put(`../../api/team/${teamId}/`, team);
+			if (response.status < 200 || response.status >= 300)
+			{
+				throw new Error("Error when adding!");
+			}
+			else{
+				navigate(`/teams/${teamId}`);
+			}
+			
 		} catch (error) {
+			toast.error((error as { message: string }).message);
 			console.log(error);
 		}
 	};
@@ -107,6 +122,8 @@ export const TeamUpdate = () => {
 							sx={{ mb: 2 }}
 							onChange={(event) => setTeam({ ...team, team_abbreviation: event.target.value })}
 						/>
+
+						<ToastContainer />
 
 						<Button type="submit">Update Team</Button>
 					</form>
