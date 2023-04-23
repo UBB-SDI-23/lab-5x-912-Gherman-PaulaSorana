@@ -16,8 +16,7 @@ const navigate = useNavigate();
         team_founding_year:1,
         team_budget:1,
         team_motto:"",
-        team_abbreviation:"",
-        team_description:""
+        team_abbreviation:""
 	});
 
 	const addTeam = async (event: { preventDefault: () => void }) => {
