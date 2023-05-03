@@ -8,6 +8,8 @@ import Face2Icon from '@mui/icons-material/Face2';
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import SportsIcon from '@mui/icons-material/Sports';
 import InsightsIcon from '@mui/icons-material/Insights';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
+import LoginIcon from '@mui/icons-material/Login';
 
 export const AppMenu = () => {
 	const location = useLocation();
@@ -30,6 +32,26 @@ export const AppMenu = () => {
 					<Typography variant="h6" component="div" sx={{ mr: 5 }}>
 						Professional swimming
 					</Typography>
+					<Button
+						variant={path.startsWith("/register") ? "outlined" : "text"}
+						to="/register"
+						component={Link}
+						color="inherit"
+						sx={{ mr: 5 }}
+						startIcon={<HowToRegIcon />}>
+						Register
+					</Button>
+
+					<Button
+						variant={path.startsWith("/login") ? "outlined" : "text"}
+						to="/login"
+						component={Link}
+						color="inherit"
+						sx={{ mr: 5 }}
+						startIcon={<LoginIcon />}>
+						LogIn
+					</Button>
+
 					<Button
 						variant={path.startsWith("/swimmers") ? "outlined" : "text"}
 						to="/swimmers"

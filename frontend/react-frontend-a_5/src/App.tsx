@@ -33,6 +33,9 @@ import { TeamShowAll } from "./components/teams/TeamsShowAll";
 import { Statistics } from "./components/Statistics";
 import { FanOrdShowAll } from "./components/fans/FanOrdered";
 import { SwimmerFilterYoe } from "./components/swimmers/SwimmerFilterYoe";
+import { RegistrationForm } from "./components/auth/Register";
+import { ActivateAccount } from "./components/auth/Activate";
+import { LoginForm } from "./components/auth/Login";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -77,6 +80,10 @@ function App() {
                       <Route path="/swimmerfans" element={<SwimmerFanShowAll />} />
                       <Route path="/swimmerfans/:swimmerfanId/delete" element={<SwimmerFanDelete />} />
                       <Route path="/swimmerfans/:swimmerfanId" element={<SwimmerFanDetails />} />
+
+                      <Route path="/register" element={<RegistrationForm />} />
+                      <Route path="/activate/:activationCode" element={<ActivateAccount />} />
+                      <Route path="/login" element={<LoginForm />} />
    
               </Routes>
       </Router>
