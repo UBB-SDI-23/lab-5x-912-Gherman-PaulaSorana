@@ -1,9 +1,13 @@
 from django.urls import path
+
+from .Views.LoginView import LoginView
+from .Views.RegisterView import UserRegistrationView, UserActivationView
 from .Views.SwimmerViews import SwimmerListCreateView, SwimmerInfo, SwimmersWithAtLeastNYearsExp, SwimmersOrderedByName
 from .Views.TeamViews import TeamListCreateView, TeamInfo, TeamsBulk, TeamsOrderedByNoOfSwimmers, TeamsOrderedByName
 from .Views.CoachViews import CoachInfo, CoachListCreateView
 from .Views.FanViews import FanInfo, FanListCreateView, FansOrderedByAvgYoeOfSwimmersTheyAreFansOf, FansOrderedByName
 from .Views.SwimmerFanViews import SwimmerFanListCreateView, SwimmerFanInfo
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
 
@@ -23,5 +27,9 @@ urlpatterns = [
     path("teamBulk/<int:id>/", TeamsBulk.as_view()),
     path("teamOrdName/<str:t_name>/", TeamsOrderedByName.as_view(), name="t_name"),
     path("swimmerOrdName/<str:s_name>/", SwimmersOrderedByName.as_view(), name="s_name"),
-    path("fanOrdName/<str:f_name>/", FansOrderedByName.as_view(), name="f_name")
+    path("fanOrdName/<str:f_name>/", FansOrderedByName.as_view(), name="f_name"),
+    path("login/", LoginView.as_view(), name="token_obtain_pair"),
+    path("login/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path("register/", UserRegistrationView.as_view(), name="register"),
+    path("activate/", UserActivationView.as_view(), name="activate-user"),
 ]

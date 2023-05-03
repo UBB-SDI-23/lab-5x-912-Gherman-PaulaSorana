@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
@@ -10,6 +11,7 @@ class Team(models.Model):
     team_motto = models.CharField(max_length=100)
     team_abbreviation = models.CharField(max_length=10)
     team_description = models.CharField(max_length=5000, default="")
+    # added_by = models.ForeignKey("User", on_delete=models.CASCADE, default=None)
 
     class Meta:
         ordering = ['id']
@@ -24,6 +26,7 @@ class Swimmer(models.Model):
     swimmer_years_of_experience = models.IntegerField()
     team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='swimmers')
     fans = models.ManyToManyField("Fan", through='SwimmerFan')
+    # added_by = models.ForeignKey("User", on_delete=models.CASCADE, default=None)
 
     class Meta:
         ordering = ['id']
@@ -38,6 +41,7 @@ class Coach(models.Model):
     coach_date_of_birth = models.DateField()
     coach_email = models.CharField(max_length=100)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    # added_by = models.ForeignKey("User", on_delete=models.CASCADE, default=None)
 
     class Meta:
         ordering = ['id']
@@ -51,6 +55,7 @@ class Fan(models.Model):
     fan_date_of_birth = models.DateField()
     fan_email = models.CharField(max_length=100)
     swimmers = models.ManyToManyField(Swimmer, through='SwimmerFan')
+    # added_by = models.ForeignKey("User", on_delete=models.CASCADE, default=None)
 
     def __str__(self):
         return self.fan_last_name
@@ -75,6 +80,21 @@ class SwimmerFan(models.Model):
                    models.Index(fields=['fan_page_name']),
                    models.Index(fields=['fan_since_year'])
                    ]
+
+
+class UserProfile(models.Model):
+    user_first_name = models.CharField(max_length=100)
+    user_last_name = models.CharField(max_length=100)
+    user_date_of_birth = models.DateField()
+    user_bio = models.CharField(max_length=1000)
+    user_location = models.CharField(max_length=100)
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name="profile", to_field="username"
+    )
+    activation_code = models.CharField(max_length=36)
+    activation_expiry_date = models.DateTimeField()
+    active = models.BooleanField()
+
 
 
 
