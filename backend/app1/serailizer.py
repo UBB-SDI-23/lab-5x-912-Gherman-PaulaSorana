@@ -14,7 +14,7 @@ class TeamSerializer(serializers.ModelSerializer):
     team_motto = serializers.CharField(max_length=100)
     team_abbreviation = serializers.CharField(max_length=10)
     no_swim = serializers.IntegerField(read_only=True)
-    added_by = User
+    added_by = User()
 
     def validate_team_name(self, value):
         existing_teams = Team.objects.filter(team_name=value)
@@ -43,6 +43,7 @@ class SwimmerSerializer(serializers.ModelSerializer):
     swimmer_date_of_birth = serializers.DateField()
     swimmer_years_of_experience = serializers.IntegerField()
     team = Team()
+    added_by = User()
 
     def validate_swimmer_years_of_experience(self, value):
         if value < 0:
@@ -76,6 +77,7 @@ class SwimmerSerializerId(serializers.ModelSerializer):
 
 
 class CoachSerializer(serializers.ModelSerializer):
+    added_by = User()
     def validate_coach_years_of_experience(self, value):
         if value < 0:
             raise serializers.ValidationError("Years of experience must be greater than or equal to zero.")
@@ -100,6 +102,7 @@ class CoachSerializerId(serializers.ModelSerializer):
 
 
 class FanSerializer(serializers.ModelSerializer):
+    added_by = User()
     def validate_fan_email(self, value):
         existing_emails = Fan.objects.filter(fan_email=value)
 
