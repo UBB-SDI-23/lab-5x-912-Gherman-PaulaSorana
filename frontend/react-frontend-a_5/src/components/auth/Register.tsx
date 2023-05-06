@@ -37,7 +37,7 @@ export const RegistrationForm = () => {
             user_location: formData.location
         }
         const response = await axios.post(`${BACKEND_API_URL}/register/`, data);
-        setCode(response.data['code_activation']);
+        setCode(response.data['activation_code']);
 
     }
     catch (error: any) {
