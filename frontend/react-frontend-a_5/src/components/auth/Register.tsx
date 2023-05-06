@@ -18,6 +18,7 @@ export const RegistrationForm = () => {
   });
 
   const navigate = useNavigate();
+  const [code, setCode] = useState('');
 
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
@@ -36,8 +37,7 @@ export const RegistrationForm = () => {
             user_location: formData.location
         }
         const response = await axios.post(`${BACKEND_API_URL}/register/`, data);
-        const code = response.data['activation_code'];
-        navigate(`/activate/${code}`);
+        setCode(response.data['code_activation']);
 
     }
     catch (error: any) {
@@ -49,9 +49,11 @@ export const RegistrationForm = () => {
   };
 
   return (
-        <Container style={{ backgroundColor: "whitesmoke", color: "whitesmoke" }}>
-            <Card style={{ backgroundColor: "whitesmoke", color: "whitesmoke" }}>
-                <CardContent style={{ backgroundColor: "whitesmoke", color: "whitesmoke" }}>
+    <Container style={{ backgroundColor: "whitesmoke", color: "whitesmoke" }}>
+        <Card style={{ backgroundColor: "whitesmoke", color: "whitesmoke" }}>
+            <CardContent style={{ backgroundColor: "whitesmoke", color: "whitesmoke" }}>
+            
+            {code === '' && (
                 <form onSubmit={handleSubmit}>
 
                     <TextField
@@ -120,9 +122,18 @@ export const RegistrationForm = () => {
                     <Button type="submit">Register</Button>
 
                 </form>
-                <ToastContainer />
-                </CardContent>
-            </Card>
-        </Container>
-  );
+            )}
+
+            {code !== '' && (
+                <div>
+                    <p>Registration successful! You have 10 minutes to activate your account.</p>
+                    <Button onClick={() => navigate(`/activate/${code}`)}>Activate Account</Button>
+                </div>
+            )}
+
+            <ToastContainer />
+            </CardContent>
+        </Card>
+    </Container>
+);
 };
