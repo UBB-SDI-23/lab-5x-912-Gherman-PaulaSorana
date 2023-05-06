@@ -10,10 +10,47 @@ import SportsIcon from '@mui/icons-material/Sports';
 import InsightsIcon from '@mui/icons-material/Insights';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import LoginIcon from '@mui/icons-material/Login';
+import { useEffect, useState } from "react";
+import { User } from "../models/User";
+import LogoutIcon from '@mui/icons-material/Logout';
+import jwt_decode from 'jwt-decode';
+
 
 export const AppMenu = () => {
 	const location = useLocation();
 	const path = location.pathname;
+
+	const [user, setUser] = useState<User>({
+		id:1,
+        username: '',
+        user_first_name: '',
+        user_last_name: '',
+        user_date_of_birth: '',
+        user_bio: '',
+        user_location: ''
+    });
+
+	useEffect(() => {
+		const intervalId = setInterval(() => {
+			const token = localStorage.getItem('token');
+			if (token !== null) {
+			const decoded: any = jwt_decode(token);
+			const user = decoded['user'];
+			setUser(user);
+			}
+			else {
+				setUser({id:1, username: '',
+				user_first_name: '',
+				user_last_name: '',
+				user_date_of_birth: '',
+				user_bio: '',
+				user_location: ''});
+			}
+		}, 250);
+	
+		// Clean up the interval when the component unmounts
+		return () => clearInterval(intervalId);
+	  }, []);
 
 	return (
 		<Box>
@@ -32,6 +69,8 @@ export const AppMenu = () => {
 					<Typography variant="h6" component="div" sx={{ mr: 5 }}>
 						Professional swimming
 					</Typography>
+
+					{user.username === '' && (
 					<Button
 						variant={path.startsWith("/register") ? "outlined" : "text"}
 						to="/register"
@@ -41,7 +80,9 @@ export const AppMenu = () => {
 						startIcon={<HowToRegIcon />}>
 						Register
 					</Button>
+					)}
 
+					{user.username === '' && (
 					<Button
 						variant={path.startsWith("/login") ? "outlined" : "text"}
 						to="/login"
@@ -51,6 +92,21 @@ export const AppMenu = () => {
 						startIcon={<LoginIcon />}>
 						LogIn
 					</Button>
+					)}
+
+					{user.username !== '' && (
+					<Button
+						variant={path.startsWith("/logout") ? "outlined" : "text"}
+						to="/logout"
+						component={Link}
+						color="inherit"
+						sx={{ mr: 5 }}
+						startIcon={<LogoutIcon />}>
+						LogOut
+					</Button>
+					)}
+
+
 
 					<Button
 						variant={path.startsWith("/swimmers") ? "outlined" : "text"}
@@ -117,3 +173,5 @@ export const AppMenu = () => {
 		</Box>
 	);
 };
+
+

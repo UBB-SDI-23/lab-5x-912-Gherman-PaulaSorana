@@ -1,3 +1,4 @@
+import { User } from "./User";
 
 export{};
 
@@ -9,4 +10,5 @@ export interface Team{
     team_motto:string;
     team_abbreviation:string;
     no_swim:number;
+    added_by:User;
 };

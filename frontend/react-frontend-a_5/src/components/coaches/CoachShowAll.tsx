@@ -101,6 +101,7 @@ export const CoachShowAll = () => {
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Date Of Birth</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Email</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Operations</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Added by</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -131,6 +132,11 @@ export const CoachShowAll = () => {
 											<DeleteForeverIcon sx={{ color: "red" }} />
 										</IconButton>
 									</TableCell>
+                                    <TableCell component="th" scope="row">
+                                        <Link to={`/profile/${coach.added_by.id}`}>
+                                                {coach.added_by.username}      
+                                            </Link>
+                                    </TableCell>  
                             </TableRow>
                         ))}
                 </TableBody>

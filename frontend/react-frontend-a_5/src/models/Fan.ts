@@ -1,3 +1,5 @@
+import { User } from "./User";
+
 export {};
 
 export interface Fan{
@@ -8,4 +10,5 @@ export interface Fan{
     fan_date_of_birth:string;
     fan_email:string;
     swimmers: number[];
+    added_by:User;
 };

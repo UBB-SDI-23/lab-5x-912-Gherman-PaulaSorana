@@ -14,6 +14,7 @@ class TeamSerializer(serializers.ModelSerializer):
     team_motto = serializers.CharField(max_length=100)
     team_abbreviation = serializers.CharField(max_length=10)
     no_swim = serializers.IntegerField(read_only=True)
+    added_by = User
 
     def validate_team_name(self, value):
         existing_teams = Team.objects.filter(team_name=value)
@@ -32,6 +33,7 @@ class TeamSerializer(serializers.ModelSerializer):
     class Meta:
         model = Team
         fields = "__all__"
+        depth = 1
 
 
 class SwimmerSerializer(serializers.ModelSerializer):
@@ -50,6 +52,7 @@ class SwimmerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Swimmer
         fields = "__all__"
+        depth = 1
 
 
 class SwimmerSerializerId(serializers.ModelSerializer):
@@ -81,6 +84,7 @@ class CoachSerializer(serializers.ModelSerializer):
     class Meta:
         model = Coach
         fields = "__all__"
+        depth = 1
 
 
 class CoachSerializerId(serializers.ModelSerializer):
@@ -108,6 +112,7 @@ class FanSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fan
         fields = "__all__"
+        depth = 1
 
 
 class FanSerializerId(serializers.ModelSerializer):

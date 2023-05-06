@@ -122,6 +122,7 @@ export const SwimmerShowAll = () => {
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Years of experience</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Number Of Fans</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Operations</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Added by</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -153,6 +154,11 @@ export const SwimmerShowAll = () => {
 											<DeleteForeverIcon sx={{ color: "red" }} />
 										</IconButton>
 									</TableCell>
+                                <TableCell component="th" scope="row">
+                                <Link to={`/profile/${swimmer.added_by.id}`}>
+                                        {swimmer.added_by.username}      
+                                    </Link>
+                                    </TableCell>
                             </TableRow>
                         ))}
                 </TableBody>
