@@ -9,6 +9,8 @@ from .Views.FanViews import FanInfo, FanListCreateView, FansOrderedByAvgYoeOfSwi
 from .Views.SwimmerFanViews import SwimmerFanListCreateView, SwimmerFanInfo
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+from .Views.UserView import UserDetail
+
 urlpatterns = [
 
     path("swimmer/", SwimmerListCreateView.as_view(), name="swimmer"),
@@ -32,4 +34,5 @@ urlpatterns = [
     path("login/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("register/", UserRegistrationView.as_view(), name="register"),
     path("activate/", UserActivationView.as_view(), name="activate-user"),
+    path("profile/<str:id>/", UserDetail.as_view(), name="profile"),
 ]

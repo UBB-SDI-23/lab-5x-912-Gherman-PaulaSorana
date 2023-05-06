@@ -36,6 +36,8 @@ import { SwimmerFilterYoe } from "./components/swimmers/SwimmerFilterYoe";
 import { RegistrationForm } from "./components/auth/Register";
 import { ActivateAccount } from "./components/auth/Activate";
 import { LoginForm } from "./components/auth/Login";
+import { LogoutFrom } from "./components/auth/LogoutForm";
+import { UserProfile } from "./components/Profile";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -84,6 +86,10 @@ function App() {
                       <Route path="/register" element={<RegistrationForm />} />
                       <Route path="/activate/:activationCode" element={<ActivateAccount />} />
                       <Route path="/login" element={<LoginForm />} />
+                      <Route path="/logout" element={<LogoutFrom />} />
+
+                      <Route path="/profile/:profileId" element={<UserProfile />} />
+
    
               </Routes>
       </Router>

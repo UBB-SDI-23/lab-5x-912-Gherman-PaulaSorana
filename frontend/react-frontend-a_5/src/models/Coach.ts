@@ -1,4 +1,5 @@
 import { Team } from "./Team";
+import { User } from "./User";
 
 export{};
 
@@ -10,4 +11,5 @@ export interface Coach{
     coach_date_of_birth:string;
     coach_email:string;
     team: Team;
+    added_by:User;
 };

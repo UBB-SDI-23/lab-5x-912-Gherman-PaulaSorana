@@ -1,5 +1,6 @@
 import {Team} from "./Team";
 import { Fan } from "./Fan";
+import { User } from "./User";
 
 export interface Swimmer{
     id:number;
@@ -10,4 +11,5 @@ export interface Swimmer{
     swimmer_years_of_experience:number;
     team: number;
     fans: number[];
+    added_by:User;
 };

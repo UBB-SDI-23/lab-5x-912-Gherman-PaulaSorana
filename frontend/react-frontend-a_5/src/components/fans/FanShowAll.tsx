@@ -102,6 +102,7 @@ export const FanShowAll = () => {
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Email</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Number of Swimmers</TableCell>
                             <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Operations</TableCell>
+                            <TableCell align="center" style={{color:"#2471A3", fontWeight: 'bold'}}>Added by</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -135,6 +136,11 @@ export const FanShowAll = () => {
 											<DeleteForeverIcon sx={{ color: "red" }} />
 										</IconButton>
 									</TableCell>
+                                    <TableCell component="th" scope="row">
+                                <Link to={`/profile/${fan.added_by.id}`}>
+                                        {fan.added_by.username}      
+                                    </Link>
+                                    </TableCell>
                             </TableRow>
                         ))}
                 </TableBody>

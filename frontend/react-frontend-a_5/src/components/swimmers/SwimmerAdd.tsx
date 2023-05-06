@@ -21,6 +21,7 @@ export const SwimmerAdd = () => {
         swimmer_date_of_birth:"",
         swimmer_years_of_experience:1,
         team: 1,
+		added_by:1
 	});
 	const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
@@ -54,7 +55,10 @@ export const SwimmerAdd = () => {
 			{
 				throw new Error("Years of experience must be greater than zero!");
 			}
-			
+			const id = localStorage.getItem('user_id');
+			if(id){
+				swimmer.added_by = parseInt(id);
+			}
 			const response = await axios.post(`${BACKEND_API_URL}/swimmer/`, swimmer);
 			if (response.status < 200 || response.status >= 300) {
 				throw new Error("An error occurred while adding the item!");

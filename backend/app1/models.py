@@ -11,7 +11,7 @@ class Team(models.Model):
     team_motto = models.CharField(max_length=100)
     team_abbreviation = models.CharField(max_length=10)
     team_description = models.CharField(max_length=5000, default="")
-    # added_by = models.ForeignKey("User", on_delete=models.CASCADE, default=None)
+    added_by = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
     class Meta:
         ordering = ['id']
@@ -26,7 +26,7 @@ class Swimmer(models.Model):
     swimmer_years_of_experience = models.IntegerField()
     team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='swimmers')
     fans = models.ManyToManyField("Fan", through='SwimmerFan')
-    # added_by = models.ForeignKey("User", on_delete=models.CASCADE, default=None)
+    added_by = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
     class Meta:
         ordering = ['id']
@@ -41,7 +41,7 @@ class Coach(models.Model):
     coach_date_of_birth = models.DateField()
     coach_email = models.CharField(max_length=100)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
-    # added_by = models.ForeignKey("User", on_delete=models.CASCADE, default=None)
+    added_by = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
     class Meta:
         ordering = ['id']
@@ -55,7 +55,7 @@ class Fan(models.Model):
     fan_date_of_birth = models.DateField()
     fan_email = models.CharField(max_length=100)
     swimmers = models.ManyToManyField(Swimmer, through='SwimmerFan')
-    # added_by = models.ForeignKey("User", on_delete=models.CASCADE, default=None)
+    added_by = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return self.fan_last_name

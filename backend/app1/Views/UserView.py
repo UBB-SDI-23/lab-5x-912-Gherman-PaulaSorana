@@ -13,4 +13,4 @@ class UserDetail(generics.RetrieveAPIView):
         fans_count=Count("user__fan", distinct=True),
     )
     serializer_class = UserProfileDetailSerializer
-    lookup_field = "user_id"
+    lookup_field = "id"

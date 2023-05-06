@@ -16,7 +16,8 @@ const navigate = useNavigate();
         team_founding_year:1,
         team_budget:1,
         team_motto:"",
-        team_abbreviation:""
+        team_abbreviation:"",
+		added_by:1
 	});
 
 	const addTeam = async (event: { preventDefault: () => void }) => {
@@ -27,6 +28,11 @@ const navigate = useNavigate();
 				team.team_founding_year.toString().length > 4)
 			{
 				throw new Error("Not a valid year!");
+			}
+
+			const id = localStorage.getItem('user_id');
+			if(id){
+				team.added_by = parseInt(id);
 			}
 
 			const response = await axios.post(`${BACKEND_API_URL}/team/`, team);

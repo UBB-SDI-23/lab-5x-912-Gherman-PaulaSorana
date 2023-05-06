@@ -20,6 +20,7 @@ const navigate = useNavigate();
         coach_date_of_birth:"",
         coach_email:"",
         team: 1,
+		added_by:1
 	});
 
 	const [page, setPage] = useState(1);
@@ -53,6 +54,10 @@ const navigate = useNavigate();
 			if(coach.coach_years_of_experience <= 0)
 			{
 				throw new Error("Years of experience must be greater than zero!");
+			}
+			const id = localStorage.getItem('user_id');
+			if(id){
+				coach.added_by = parseInt(id);
 			}
 			const response = await axios.post(`${BACKEND_API_URL}/coach/`, coach);
 			if (response.status < 200 || response.status >= 300) {
