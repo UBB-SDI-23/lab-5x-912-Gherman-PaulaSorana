@@ -18,6 +18,16 @@ class TeamListCreateView(generics.ListCreateAPIView):
         print(queryset.explain())
         return queryset
 
+    def create(self, request, *args, **kwargs):
+        data = request.data.copy()
+        serializer = TeamSerializer(data=data, depth=0)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        headers = self.get_success_headers(serializer.data)
+        return Response(
+            serializer.data, status=status.HTTP_201_CREATED, headers=headers
+        )
+
 
 class TeamInfo(APIView):
     serializer_class = TeamSerializer

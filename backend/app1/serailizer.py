@@ -7,7 +7,15 @@ from .models import Swimmer, Team, Coach, Fan, SwimmerFan, UserProfile
 from rest_framework_simplejwt.serializers import RefreshToken, TokenObtainPairSerializer
 
 
-class TeamSerializer(serializers.ModelSerializer):
+class DynamicSerializer(serializers.ModelSerializer):
+    def __init__(self, *args, **kwargs):
+        kwargs.pop('fields', None)
+        depth = kwargs.pop('depth', None)
+        super().__init__(*args, **kwargs)
+        self.Meta.depth = 1 if depth is None else depth
+
+
+class TeamSerializer(DynamicSerializer):
     team_name = serializers.CharField(max_length=100)
     team_founding_year = serializers.IntegerField()
     team_budget = serializers.IntegerField()
@@ -36,7 +44,7 @@ class TeamSerializer(serializers.ModelSerializer):
         depth = 1
 
 
-class SwimmerSerializer(serializers.ModelSerializer):
+class SwimmerSerializer(DynamicSerializer):
     swimmer_last_name = serializers.CharField(max_length=100)
     swimmer_first_name = serializers.CharField(max_length=100)
     swimmer_county = serializers.CharField(max_length=100)
@@ -53,7 +61,6 @@ class SwimmerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Swimmer
         fields = "__all__"
-        depth = 1
 
 
 class SwimmerSerializerId(serializers.ModelSerializer):
@@ -76,7 +83,7 @@ class SwimmerSerializerId(serializers.ModelSerializer):
         depth = 1
 
 
-class CoachSerializer(serializers.ModelSerializer):
+class CoachSerializer(DynamicSerializer):
     added_by = User()
     def validate_coach_years_of_experience(self, value):
         if value < 0:
@@ -86,7 +93,6 @@ class CoachSerializer(serializers.ModelSerializer):
     class Meta:
         model = Coach
         fields = "__all__"
-        depth = 1
 
 
 class CoachSerializerId(serializers.ModelSerializer):
@@ -101,7 +107,7 @@ class CoachSerializerId(serializers.ModelSerializer):
         depth = 1
 
 
-class FanSerializer(serializers.ModelSerializer):
+class FanSerializer(DynamicSerializer):
     added_by = User()
     def validate_fan_email(self, value):
         existing_emails = Fan.objects.filter(fan_email=value)
@@ -115,7 +121,7 @@ class FanSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fan
         fields = "__all__"
-        depth = 1
+
 
 
 class FanSerializerId(serializers.ModelSerializer):
