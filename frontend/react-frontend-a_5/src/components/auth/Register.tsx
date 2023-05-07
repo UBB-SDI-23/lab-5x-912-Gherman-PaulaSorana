@@ -126,7 +126,7 @@ export const RegistrationForm = () => {
 
             {code !== '' && (
                 <div>
-                    <p>Registration successful! You have 10 minutes to activate your account.</p>
+                    <p style={{color:'black'}} >Registration successful! You have 10 minutes to activate your account.</p>
                     <Button onClick={() => navigate(`/activate/${code}`)}>Activate Account</Button>
                 </div>
             )}
