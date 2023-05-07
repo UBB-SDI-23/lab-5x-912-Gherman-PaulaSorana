@@ -34,16 +34,6 @@ export const UserProfile = () => {
 	}, [profileId]);
 
 
-
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (token) {
-        const decoded: any = jwt_decode(token);
-        const user = decoded['user'];
-        setUser(user);
-        }
-    }, []);
-
     return (
 	
 		<>
