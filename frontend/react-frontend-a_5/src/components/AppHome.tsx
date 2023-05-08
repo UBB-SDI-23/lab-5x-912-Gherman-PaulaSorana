@@ -12,17 +12,19 @@ export const AppHome = () => {
         user_last_name: '',
         user_date_of_birth: '',
         user_bio: '',
-        user_location: ''
+        user_location: '',
+		page_size: 1
     });
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (token) {
-        const decoded: any = jwt_decode(token);
-        const user = decoded['user'];
-        setUser(user);
+        const userString = localStorage.getItem('user');
+        const user = userString !== null ? JSON.parse(userString) : null;
+
+        if (user !== null) {
+            setUser(user);
         }
     }, []);
+
 
     return (
 	
@@ -34,6 +36,33 @@ export const AppHome = () => {
 		{user.username !== '' && (
 			<>
 		<h1>Welcome back, {user.username}!</h1>
+		<>
+		<TextField
+			id="page_sizes"
+			label="Page Size"
+			variant="outlined"
+			fullWidth
+			sx={{ mb: 2, color: "whitesmoke !important" }}
+			value={user.page_size}
+			type="number"
+			onChange={(event) => {
+				const size = Number(event.target.value);
+				if (size < 0 || size > 100) {
+					return;
+				}
+
+				setUser({
+					...user,
+					page_size: size
+				});
+				
+				localStorage.setItem('user', JSON.stringify({
+					...user,
+					page_size: size
+				}));
+			}}
+			/>
+		</>
 		<Container>
 		<Card style={{ backgroundColor: "whitesmoke", color: "whitesmoke" }}>
 			<CardContent style={{ backgroundColor: "whitesmoke", color: "whitesmoke" }}>

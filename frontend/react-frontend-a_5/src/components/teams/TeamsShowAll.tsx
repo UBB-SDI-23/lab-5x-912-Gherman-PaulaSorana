@@ -55,8 +55,12 @@ export const TeamShowAll = () => {
     
     const fetchTeams = async () => {
         setLoading(true);
+        const stringUser = localStorage.getItem("user");
+        const user = JSON.parse(stringUser!);
+        const new_page_size = user?.page_size || 10;
+        setPageSize(new_page_size);
         const response = await fetch(
-          `${BACKEND_API_URL}/team/?page=${page}&page_size=${pageSize}`
+          `${BACKEND_API_URL}/team/?page=${page}&page_size=${new_page_size}`
         );
         const { count, next, previous, results } = await response.json();
         setTeams(results);
@@ -68,6 +72,8 @@ export const TeamShowAll = () => {
       useEffect(() => {
         fetchTeams();
       }, [page]);
+
+      
 
     
     return (
