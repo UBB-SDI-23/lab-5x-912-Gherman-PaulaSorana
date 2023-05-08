@@ -6,6 +6,8 @@ export const LogoutFrom = () => {
 
     useEffect(() => {
         localStorage.removeItem("token");
+        localStorage.removeItem("user_id");
+        localStorage.removeItem("user");
         navigate(`/`);
       }, []);
 

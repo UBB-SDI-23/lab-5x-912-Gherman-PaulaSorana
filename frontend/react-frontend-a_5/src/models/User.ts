@@ -8,4 +8,5 @@ export interface User{
     user_date_of_birth: string;
     user_bio: string;
     user_location: string;
+    page_size:number
 };

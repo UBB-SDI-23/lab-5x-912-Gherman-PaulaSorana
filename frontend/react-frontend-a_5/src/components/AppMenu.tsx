@@ -27,30 +27,35 @@ export const AppMenu = () => {
         user_last_name: '',
         user_date_of_birth: '',
         user_bio: '',
-        user_location: ''
+        user_location: '',
+		page_size:1
     });
 
 	useEffect(() => {
 		const intervalId = setInterval(() => {
-			const token = localStorage.getItem('token');
-			if (token !== null) {
-			const decoded: any = jwt_decode(token);
-			const user = decoded['user'];
-			setUser(user);
+			const userString = localStorage.getItem('user');
+            const user = userString !== null ? JSON.parse(userString) : null;
+
+			if (user !== null) {
+                setUser(user);
+                return;
 			}
-			else {
-				setUser({id:1, username: '',
-				user_first_name: '',
-				user_last_name: '',
-				user_date_of_birth: '',
-				user_bio: '',
-				user_location: ''});
-			}
+            
+            setUser({
+                id: 0,
+                username: '',
+                user_first_name: '',
+                user_last_name: '',
+                user_date_of_birth: '',
+                user_bio: '',
+                user_location: '',
+                page_size: 0
+            });
 		}, 250);
 	
-		// Clean up the interval when the component unmounts
 		return () => clearInterval(intervalId);
 	  }, []);
+
 
 	return (
 		<Box>
