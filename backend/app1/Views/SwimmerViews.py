@@ -1,15 +1,18 @@
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status, generics
 
 from .Pagination import CustomPagination
 from ..models import Swimmer, SwimmerFan
+from ..permissions import HasEditPermissionOrReadOnly
 from ..serailizer import SwimmerSerializer, SwimmerSerializerId, SwimmerFanSerializer
 
 
 class SwimmerListCreateView(generics.ListCreateAPIView):
     serializer_class = SwimmerSerializer
     pagination_class = CustomPagination
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
         queryset = Swimmer.objects.all()
@@ -26,9 +29,9 @@ class SwimmerListCreateView(generics.ListCreateAPIView):
         )
 
 
-
 class SwimmerInfo(APIView):
     serializer_class = SwimmerSerializerId
+    permission_classes = [IsAuthenticatedOrReadOnly, HasEditPermissionOrReadOnly]
 
     def get(self, request, id):
         try:
@@ -50,7 +53,6 @@ class SwimmerInfo(APIView):
 
         return Response(serialized_data, status=status.HTTP_200_OK)
 
-
     def put(self, request, id):
         try:
             obj = Swimmer.objects.get(id=id)
@@ -58,6 +60,8 @@ class SwimmerInfo(APIView):
         except Swimmer.DoesNotExist:
             msg = {"msg": "not found error"}
             return Response(msg, status=status.HTTP_404_NOT_FOUND)
+
+        self.check_object_permissions(request, obj)
 
         serializer = SwimmerSerializer(obj, data=request.data)
 
@@ -74,6 +78,8 @@ class SwimmerInfo(APIView):
             msg = {"msg": "not found error!"}
             return Response(msg, status=status.HTTP_404_NOT_FOUND)
 
+        self.check_object_permissions(request, obj)
+
         serializer = SwimmerSerializer(obj, data=request.data, partial=True)
 
         if serializer.is_valid():
@@ -88,6 +94,8 @@ class SwimmerInfo(APIView):
         except Swimmer.DoesNotExist:
             msg = {"msg" : "not found"}
             return Response(msg, status=status.HTTP_404_NOT_FOUND)
+
+        self.check_object_permissions(request, obj)
 
         obj.delete()
         return Response({"msg":"deleted"}, status=status.HTTP_204_NO_CONTENT)

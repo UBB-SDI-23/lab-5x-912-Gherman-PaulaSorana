@@ -59,7 +59,19 @@ const navigate = useNavigate();
 			if(id){
 				coach.added_by = parseInt(id);
 			}
-			const response = await axios.post(`${BACKEND_API_URL}/coach/`, coach);
+
+			const token = localStorage.getItem("token");
+			if (!token) {
+                toast.error("You are not logged in!");
+                return;
+            }
+
+			const response = await axios.post(`${BACKEND_API_URL}/coach/`, coach, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+			
 			if (response.status < 200 || response.status >= 300) {
 				throw new Error("An error occurred while adding the item!");
 			  } else {

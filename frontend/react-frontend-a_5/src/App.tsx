@@ -38,6 +38,7 @@ import { ActivateAccount } from "./components/auth/Activate";
 import { LoginForm } from "./components/auth/Login";
 import { LogoutFrom } from "./components/auth/LogoutForm";
 import { UserProfile } from "./components/Profile";
+import Users from "./components/AllUsers";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -89,7 +90,7 @@ function App() {
                       <Route path="/logout" element={<LogoutFrom />} />
 
                       <Route path="/profile/:profileId" element={<UserProfile />} />
-
+                      <Route path="/users" element={<Users />} />
    
               </Routes>
       </Router>
