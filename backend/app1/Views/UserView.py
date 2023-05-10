@@ -11,7 +11,7 @@ import rest_framework.response as RestReponses
 
 
 class UserList(generics.ListAPIView):
-    queryset = UserProfile.objects.all()
+    queryset = UserProfile.objects.all().order_by("id")
     serializer_class = UsernameAndRoleSerializer
     pagination_class = CustomPagination
 
