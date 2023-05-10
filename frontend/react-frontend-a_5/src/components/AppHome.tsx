@@ -13,7 +13,8 @@ export const AppHome = () => {
         user_date_of_birth: '',
         user_bio: '',
         user_location: '',
-		page_size: 1
+		page_size: 1,
+		role: ''
     });
 
     useEffect(() => {
