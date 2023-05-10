@@ -16,6 +16,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import jwt_decode from 'jwt-decode';
 
 
+
 export const AppMenu = () => {
 	const location = useLocation();
 	const path = location.pathname;
@@ -98,6 +99,18 @@ export const AppMenu = () => {
 						sx={{ mr: 5 }}
 						startIcon={<LoginIcon />}>
 						LogIn
+					</Button>
+					)}
+
+					{user.username !== '' && user.role === "admin" && (
+					<Button
+						variant={path.startsWith("/users") ? "outlined" : "text"}
+						to="/users"
+						component={Link}
+						color="inherit"
+						sx={{ mr: 5 }}
+						startIcon={<Diversity3Icon />}>
+						Users
 					</Button>
 					)}
 
