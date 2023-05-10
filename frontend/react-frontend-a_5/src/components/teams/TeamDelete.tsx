@@ -3,14 +3,23 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 import { BACKEND_API_URL } from "../../constants";
+import { toast, ToastContainer } from "react-toastify";
 
 export const TeamDelete = () => {
 	const { teamId } = useParams();
 	const navigate = useNavigate();
 
 	const handleDelete = async (event: { preventDefault: () => void }) => {
-		event.preventDefault();
-		await axios.delete(`${BACKEND_API_URL}/team/${teamId}/`);
+		try{
+			event.preventDefault();
+			await axios.delete(`${BACKEND_API_URL}/team/${teamId}/`);
+		}
+		catch (error: any){
+			if (error.response.status === 401 || error.response.status === 403) {
+                toast.error("You are not authorized to delete this team!");
+            }
+            return;
+		}
 		
 		navigate("/teams");
 	};
@@ -35,6 +44,7 @@ export const TeamDelete = () => {
 					<Button onClick={handleCancel}>Cancel</Button>
 				</CardActions>
 			</Card>
+			<ToastContainer />
 		</Container>
 	);
 };

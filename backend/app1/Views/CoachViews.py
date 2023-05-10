@@ -1,15 +1,18 @@
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status, generics
 
 from .Pagination import CustomPagination
 from ..models import Coach, Team
+from ..permissions import HasEditPermissionOrReadOnly
 from ..serailizer import CoachSerializer, CoachSerializerId
 
 
 class CoachListCreateView(generics.ListCreateAPIView):
     serializer_class = CoachSerializer
     pagination_class = CustomPagination
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
         queryset = Coach.objects.all()
@@ -29,6 +32,7 @@ class CoachListCreateView(generics.ListCreateAPIView):
 class CoachInfo(APIView):
     serializer_class = CoachSerializerId
     pagination_class = CustomPagination
+    permission_classes = [IsAuthenticatedOrReadOnly, HasEditPermissionOrReadOnly]
 
     def get(self, request, id):
         try:
@@ -49,6 +53,8 @@ class CoachInfo(APIView):
             msg = {"msg": "not found error"}
             return Response(msg, status=status.HTTP_404_NOT_FOUND)
 
+        self.check_object_permissions(request, obj)
+
         serializer = CoachSerializer(obj, data=request.data)
 
         if serializer.is_valid():
@@ -64,6 +70,7 @@ class CoachInfo(APIView):
             msg = {"msg": "not found error"}
             return Response(msg, status=status.HTTP_404_NOT_FOUND)
 
+        self.check_object_permissions(request, obj)
         serializer = CoachSerializer(obj, data=request.data, partial=True)
 
         if serializer.is_valid():
@@ -79,6 +86,7 @@ class CoachInfo(APIView):
             msg = {"msg": "not found"}
             return Response(msg, status=status.HTTP_404_NOT_FOUND)
 
+        self.check_object_permissions(request, obj)
         obj.delete()
         return Response({"msg": "deleted"}, status=status.HTTP_204_NO_CONTENT)
 

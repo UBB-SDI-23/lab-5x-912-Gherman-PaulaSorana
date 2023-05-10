@@ -35,7 +35,18 @@ const navigate = useNavigate();
 				team.added_by = parseInt(id);
 			}
 
-			const response = await axios.post(`${BACKEND_API_URL}/team/`, team);
+			const token = localStorage.getItem("token");
+			if (!token) {
+                toast.error("You are not logged in!");
+                return;
+            }
+
+			const response = await axios.post(`${BACKEND_API_URL}/team/`, team, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+			
 			if (response.status < 200 || response.status >= 300)
 			{
 				throw new Error("This team name is already in use!");

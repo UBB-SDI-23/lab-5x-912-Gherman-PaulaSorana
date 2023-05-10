@@ -1,22 +1,29 @@
 from django.db.models import Count
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status, generics
 
 from .Pagination import CustomPagination
 from ..models import Team, Swimmer
+from ..permissions import HasEditPermissionOrReadOnly
 from ..serailizer import TeamSerializer, TeamSerializerNo, SwimmerSerializer
 
 
 class TeamListCreateView(generics.ListCreateAPIView):
     serializer_class = TeamSerializer
     pagination_class = CustomPagination
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
         # queryset = Team.objects.all()
         queryset = Team.objects.all().annotate(no_swim=Count('swimmers'))
-        print(queryset.explain())
+        # print(queryset.explain())
         return queryset
+
+    def post(self, request, *args, **kwargs):
+        print(request.user)
+        return self.create(request, *args, **kwargs)
 
     def create(self, request, *args, **kwargs):
         data = request.data.copy()
@@ -32,6 +39,7 @@ class TeamListCreateView(generics.ListCreateAPIView):
 class TeamInfo(APIView):
     serializer_class = TeamSerializer
     pagination_class = CustomPagination
+    permission_classes = [IsAuthenticatedOrReadOnly, HasEditPermissionOrReadOnly]
 
     def get(self, request, id):
         try:
@@ -60,6 +68,8 @@ class TeamInfo(APIView):
             msg = {"msg": "not found error"}
             return Response(msg, status=status.HTTP_404_NOT_FOUND)
 
+        self.check_object_permissions(request, obj)
+
         serializer = TeamSerializer(obj, data=request.data)
 
         if serializer.is_valid():
@@ -75,6 +85,8 @@ class TeamInfo(APIView):
             msg = {"msg": "not found error"}
             return Response(msg, status=status.HTTP_404_NOT_FOUND)
 
+        self.check_object_permissions(request, obj)
+
         serializer = TeamSerializer(obj, data=request.data, partial=True)
 
         if serializer.is_valid():
@@ -89,6 +101,8 @@ class TeamInfo(APIView):
         except Team.DoesNotExist:
             msg = {"msg": "not found"}
             return Response(msg, status=status.HTTP_404_NOT_FOUND)
+
+        self.check_object_permissions(request, obj)
 
         obj.delete()
         return Response({"msg": "deleted"}, status=status.HTTP_204_NO_CONTENT)

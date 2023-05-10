@@ -1,15 +1,18 @@
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status, generics
 
 from .Pagination import CustomPagination
 from ..models import SwimmerFan
+from ..permissions import HasEditPermissionOrReadOnly
 from ..serailizer import SwimmerFanSerializer
 
 
 class SwimmerFanListCreateView(generics.ListCreateAPIView):
     serializer_class = SwimmerFanSerializer
     pagination_class = CustomPagination
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
         queryset = SwimmerFan.objects.all()
@@ -20,6 +23,7 @@ class SwimmerFanListCreateView(generics.ListCreateAPIView):
 class SwimmerFanInfo(APIView):
     serializer_class = SwimmerFanSerializer
     pagination_class = CustomPagination
+    permission_classes = [IsAuthenticatedOrReadOnly, HasEditPermissionOrReadOnly]
 
     def get(self, request, id):
         try:
@@ -40,6 +44,8 @@ class SwimmerFanInfo(APIView):
             msg = {"msg": "not found error"}
             return Response(msg, status=status.HTTP_404_NOT_FOUND)
 
+        self.check_object_permissions(request, obj)
+
         serializer = SwimmerFanSerializer(obj, data=request.data)
 
         if serializer.is_valid():
@@ -55,6 +61,8 @@ class SwimmerFanInfo(APIView):
             msg = {"msg": "not found error"}
             return Response(msg, status=status.HTTP_404_NOT_FOUND)
 
+        self.check_object_permissions(request, obj)
+
         serializer = SwimmerFanSerializer(obj, data=request.data, partial=True)
 
         if serializer.is_valid():
@@ -69,6 +77,8 @@ class SwimmerFanInfo(APIView):
         except SwimmerFan.DoesNotExist:
             msg = {"msg": "not found"}
             return Response(msg, status=status.HTTP_404_NOT_FOUND)
+
+        self.check_object_permissions(request, obj)
 
         obj.delete()
         return Response({"msg": "deleted"}, status=status.HTTP_204_NO_CONTENT)
