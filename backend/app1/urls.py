@@ -36,5 +36,5 @@ urlpatterns = [
     path("activate/", UserActivationView.as_view(), name="activate-user"),
     path("profile/<str:id>/", UserDetail.as_view(), name="profile"),
     path("users/", UserList.as_view()),
-    path("update-role/<str:id>", UpdateUserRoleView.as_view()),
+    path("update-role/<str:id>/", UpdateUserRoleView.as_view()),
 ]
