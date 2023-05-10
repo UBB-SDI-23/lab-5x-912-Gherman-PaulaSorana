@@ -13,7 +13,8 @@ import {
     Select,
     MenuItem,
     Paper,
-} from "@mui/material"; import { useEffect, useState } from "react"
+} from "@mui/material";import axios from "axios";
+ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import { BACKEND_API_URL } from "../constants";
 import { UserRoles } from "../models/UserRoles";
@@ -108,7 +109,13 @@ const Users = () => {
                                             onChange={(e) => { 
                                                 user.role = e.target.value; 
                                                 setUers([...users]);
-                                                // do a post to update the user role
+                                                axios.put(`${BACKEND_API_URL}/update-role/${user.id}/`, {
+                                                    "role": user.role,
+                                                }, {
+                                                    headers: {
+                                                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                                                    }
+                                                });
                                                 
                                             }}
                                         >
