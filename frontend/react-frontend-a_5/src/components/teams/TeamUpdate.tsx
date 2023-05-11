@@ -49,7 +49,16 @@ export const TeamUpdate = () => {
 				throw new Error("Not a valid year!");
 			}
 
-			const response = await axios.put(`../../api/team/${teamId}/`, team);
+			const token = localStorage.getItem("token");
+			if (!token) {
+                toast.error("You are not logged in!");
+                return;
+            }
+
+			const response = await axios.put(`../../api/team/${teamId}/`, team,  {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }});
 			if (response.status < 200 || response.status >= 300)
 			{
 				throw new Error("Error when adding!");
