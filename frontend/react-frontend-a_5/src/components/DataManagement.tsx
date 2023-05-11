@@ -20,6 +20,10 @@ export const DataManagement = () => {
       <Button style={{color:"whitesmoke", border: '1px solid whitesmoke'}} component={Link} sx={{ mr: 3 }} to="/fansBulk">
         BULK DELETE FANS
       </Button>
+
+      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke'}} component={Link} sx={{ mr: 3 }} to="/usersBulk">
+        BULK DELETE USERS
+      </Button>
     
     </Container>
 

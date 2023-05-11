@@ -115,7 +115,7 @@ export const AppMenu = () => {
 					</Button>
 					)}
 
-					{user.username !== '' && (
+					{user.username !== '' && user.role === "admin" &&(
 					<Button
 						variant={path.startsWith("/dataManagement") ? "outlined" : "text"}
 						to="/dataManagement"

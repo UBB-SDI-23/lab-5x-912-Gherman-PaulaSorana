@@ -5,7 +5,7 @@ from rest_framework import status, generics
 
 from .Pagination import CustomPagination
 from ..models import Swimmer, SwimmerFan
-from ..permissions import HasEditPermissionOrReadOnly
+from ..permissions import HasEditPermissionOrReadOnly, IsAdminOrReadOnly
 from ..serailizer import SwimmerSerializer, SwimmerSerializerId, SwimmerFanSerializer
 
 
@@ -130,7 +130,7 @@ class SwimmersOrderedByName(generics.ListCreateAPIView):
 
 
 class SwimmerBulk(APIView):
-    # permission_classes = [IsAuthenticatedOrReadOnly, HasEditPermissionOrReadOnly]
+    permission_classes = [IsAdminOrReadOnly]
 
     def delete(self, request, *args, **kwargs):
         ids = kwargs.get('ids')
@@ -138,7 +138,7 @@ class SwimmerBulk(APIView):
         if ids:
             ids_list = ids.split(',')
             queryset = Swimmer.objects.filter(id__in=ids_list)
-            # self.check_object_permissions(request, queryset)
+            self.check_object_permissions(request, queryset)
             deleted_count, _ = queryset.delete()
 
         return Response(status=status.HTTP_204_NO_CONTENT)
