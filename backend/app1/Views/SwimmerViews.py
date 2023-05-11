@@ -128,3 +128,18 @@ class SwimmersOrderedByName(generics.ListCreateAPIView):
         print(s_name)
         return queryset
 
+
+class SwimmerBulk(APIView):
+    # permission_classes = [IsAuthenticatedOrReadOnly, HasEditPermissionOrReadOnly]
+
+    def delete(self, request, *args, **kwargs):
+        ids = kwargs.get('ids')
+
+        if ids:
+            ids_list = ids.split(',')
+            queryset = Swimmer.objects.filter(id__in=ids_list)
+            # self.check_object_permissions(request, queryset)
+            deleted_count, _ = queryset.delete()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
+

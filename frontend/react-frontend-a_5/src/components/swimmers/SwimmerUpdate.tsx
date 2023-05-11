@@ -77,7 +77,16 @@ export const SwimmerUpdate = () => {
 				throw new Error("Years of experience must be greater than zero!");
 			}
 
-			const response = await axios.put(`${BACKEND_API_URL}/swimmer/${swimmerId}/`, swimmer);
+			const token = localStorage.getItem("token");
+			if (!token) {
+                toast.error("You are not logged in!");
+                return;
+            }
+
+			const response = await axios.put(`${BACKEND_API_URL}/swimmer/${swimmerId}/`, swimmer,  {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }});
 
 			if (response.status < 200 || response.status >= 300) {
 				throw new Error("An error occurred while adding the item!");

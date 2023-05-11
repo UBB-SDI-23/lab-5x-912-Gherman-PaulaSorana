@@ -82,3 +82,18 @@ class SwimmerFanInfo(APIView):
 
         obj.delete()
         return Response({"msg": "deleted"}, status=status.HTTP_204_NO_CONTENT)
+
+
+class SwimmerFanBulk(APIView):
+    # permission_classes = [IsAuthenticatedOrReadOnly, HasEditPermissionOrReadOnly]
+
+    def delete(self, request, *args, **kwargs):
+        ids = kwargs.get('ids')
+
+        if ids:
+            ids_list = ids.split(',')
+            queryset = SwimmerFan.objects.filter(id__in=ids_list)
+            # self.check_object_permissions(request, queryset)
+            deleted_count, _ = queryset.delete()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)

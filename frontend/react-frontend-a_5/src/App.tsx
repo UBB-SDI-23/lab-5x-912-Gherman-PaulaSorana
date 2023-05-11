@@ -39,6 +39,13 @@ import { LoginForm } from "./components/auth/Login";
 import { LogoutFrom } from "./components/auth/LogoutForm";
 import { UserProfile } from "./components/Profile";
 import Users from "./components/AllUsers";
+import UsersBulk from "./components/UsersBulk";
+import TeamsBulk from "./components/teams/TeamBulk";
+import SwimmersBulk from "./components/swimmers/SwimmersBulk";
+import SwimmerFanBulk from "./components/swimmerfans/SwimmerFanBulk";
+import FansBulk from "./components/fans/FansBulk";
+import CoachesBulk from "./components/coaches/CoachBulk";
+import { DataManagement } from "./components/DataManagement";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -91,6 +98,15 @@ function App() {
 
                       <Route path="/profile/:profileId" element={<UserProfile />} />
                       <Route path="/users" element={<Users />} />
+
+                      <Route path="/usersBulk" element={<UsersBulk />} />
+                      <Route path="/teamsBulk" element={<TeamsBulk />} />
+                      <Route path="/swimmersBulk" element={<SwimmersBulk />} />
+                      <Route path="/swimmerfanBulk" element={<SwimmerFanBulk />} />
+                      <Route path="/fansBulk" element={<FansBulk />} />
+                      <Route path="/coachesBulk" element={<CoachesBulk/>} />
+
+                      <Route path="/dataManagement" element={<DataManagement/>} />
    
               </Routes>
       </Router>

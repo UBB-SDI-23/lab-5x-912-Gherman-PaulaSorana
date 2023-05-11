@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import { User } from "../models/User";
 import LogoutIcon from '@mui/icons-material/Logout';
 import jwt_decode from 'jwt-decode';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 
 
 
@@ -116,6 +117,18 @@ export const AppMenu = () => {
 
 					{user.username !== '' && (
 					<Button
+						variant={path.startsWith("/dataManagement") ? "outlined" : "text"}
+						to="/dataManagement"
+						component={Link}
+						color="inherit"
+						sx={{ mr: 5 }}
+						startIcon={<HowToRegIcon />}>
+						Data Management
+					</Button>
+					)}
+
+					{user.username !== '' && (
+					<Button
 						variant={path.startsWith("/logout") ? "outlined" : "text"}
 						to="/logout"
 						component={Link}
@@ -125,8 +138,6 @@ export const AppMenu = () => {
 						LogOut
 					</Button>
 					)}
-
-
 
 					<Button
 						variant={path.startsWith("/swimmers") ? "outlined" : "text"}

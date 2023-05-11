@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import jwt_decode from 'jwt-decode';
 import { User } from '../models/User';
-import { Card, CardContent, Container, TextField } from '@mui/material';
+import { Button, Card, CardContent, Container, Link, TextField } from '@mui/material';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 
 export const AppHome = () => {
 
@@ -65,8 +66,10 @@ export const AppHome = () => {
 			/>
 		</>
 		<Container>
+			
 		<Card style={{ backgroundColor: "whitesmoke", color: "whitesmoke" }}>
 			<CardContent style={{ backgroundColor: "whitesmoke", color: "whitesmoke" }}>
+					
 				<TextField
 					id="username"
 					label="Username"
