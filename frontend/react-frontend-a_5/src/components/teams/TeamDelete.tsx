@@ -12,7 +12,15 @@ export const TeamDelete = () => {
 	const handleDelete = async (event: { preventDefault: () => void }) => {
 		try{
 			event.preventDefault();
-			await axios.delete(`${BACKEND_API_URL}/team/${teamId}/`);
+			const token = localStorage.getItem("token");
+			if (!token) {
+                toast.error("You are not logged in!");
+                return;
+            }
+			await axios.delete(`${BACKEND_API_URL}/team/${teamId}/`,  {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }});
 		}
 		catch (error: any){
 			if (error.response.status === 401 || error.response.status === 403) {

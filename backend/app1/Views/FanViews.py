@@ -131,3 +131,18 @@ class FansOrderedByName(generics.ListCreateAPIView):
         print(queryset.explain())
         print(f_name)
         return queryset
+
+
+class FanBulk(APIView):
+    # permission_classes = [IsAuthenticatedOrReadOnly, HasEditPermissionOrReadOnly]
+
+    def delete(self, request, *args, **kwargs):
+        ids = kwargs.get('ids')
+
+        if ids:
+            ids_list = ids.split(',')
+            queryset = Fan.objects.filter(id__in=ids_list)
+            # self.check_object_permissions(request, queryset)
+            deleted_count, _ = queryset.delete()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)

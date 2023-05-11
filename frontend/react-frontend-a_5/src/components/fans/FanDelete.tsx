@@ -12,7 +12,15 @@ export const FanDelete = () => {
 	const handleDelete = async (event: { preventDefault: () => void }) => {
 		try{
 			event.preventDefault();
-			await axios.delete(`${BACKEND_API_URL}/fan/${fanId}/`);
+			const token = localStorage.getItem("token");
+			if (!token) {
+                toast.error("You are not logged in!");
+                return;
+            }
+			await axios.delete(`${BACKEND_API_URL}/fan/${fanId}/`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }});
 		}
 		catch (error: any){
 			if (error.response.status === 401 || error.response.status === 403) {

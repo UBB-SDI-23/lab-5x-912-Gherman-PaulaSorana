@@ -118,28 +118,28 @@ class TeamsOrderedByNoOfSwimmers(generics.ListCreateAPIView):
         return queryset
 
 
-class TeamsBulk(APIView):
-
-    def post(self, request, id):
-        try:
-            team = Team.objects.get(id=id)
-
-        except Team.DoesNotExist:
-            msg = {"msg": "not found error"}
-            return Response(msg, status=status.HTTP_404_NOT_FOUND)
-
-        swimmers = request.data
-
-        for swimmer_data in swimmers:
-            try:
-                swimmer = Swimmer.objects.get(id=swimmer_data['swimmer_id'])
-            except Swimmer.DoesNotExist:
-                msg = {"msg": "Swimmer with this id does not exist!"}
-                return Response(msg, status=status.HTTP_404_NOT_FOUND)
-            swimmer.team = team
-            swimmer.save()
-
-        return Response({"message": "Bulk succeed"}, status=status.HTTP_200_OK)
+# class TeamsBulk(APIView):
+# 
+#     def post(self, request, id):
+#         try:
+#             team = Team.objects.get(id=id)
+# 
+#         except Team.DoesNotExist:
+#             msg = {"msg": "not found error"}
+#             return Response(msg, status=status.HTTP_404_NOT_FOUND)
+# 
+#         swimmers = request.data
+# 
+#         for swimmer_data in swimmers:
+#             try:
+#                 swimmer = Swimmer.objects.get(id=swimmer_data['swimmer_id'])
+#             except Swimmer.DoesNotExist:
+#                 msg = {"msg": "Swimmer with this id does not exist!"}
+#                 return Response(msg, status=status.HTTP_404_NOT_FOUND)
+#             swimmer.team = team
+#             swimmer.save()
+# 
+#         return Response({"message": "Bulk succeed"}, status=status.HTTP_200_OK)
 
 
 class TeamsOrderedByName(generics.ListCreateAPIView):
@@ -155,5 +155,19 @@ class TeamsOrderedByName(generics.ListCreateAPIView):
         print(t_name)
         return queryset
 
+
+class TeamBulk(APIView):
+    # permission_classes = [IsAuthenticatedOrReadOnly, HasEditPermissionOrReadOnly]
+
+    def delete(self, request, *args, **kwargs):
+        ids = kwargs.get('ids')
+
+        if ids:
+            ids_list = ids.split(',')
+            queryset = Team.objects.filter(id__in=ids_list)
+            # self.check_object_permissions(request, queryset)
+            deleted_count, _ = queryset.delete()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 

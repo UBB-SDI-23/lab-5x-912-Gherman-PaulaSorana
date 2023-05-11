@@ -1,13 +1,16 @@
 from django.db.models import Count
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from app1.Views.Pagination import CustomPagination
 from app1.models import UserProfile
-from app1.permissions import IsAdminOrReadOnly
+from app1.permissions import IsAdminOrReadOnly, HasEditPermissionOrReadOnly
 from app1.serailizer import UserProfileDetailSerializer, UsernameAndRoleSerializer, UserProfileSerializer
 import rest_framework.views as RestViews
 from rest_framework import status
 import rest_framework.response as RestReponses
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 
 class UserList(generics.ListAPIView):
@@ -43,4 +46,18 @@ class UpdateUserRoleView(RestViews.APIView):
         user.save()
         return RestReponses.Response({"message": "User role updated"}, status=status.HTTP_200_OK)
 
+
+class UserBulk(APIView):
+    # permission_classes = [IsAuthenticatedOrReadOnly, HasEditPermissionOrReadOnly]
+
+    def delete(self, request, *args, **kwargs):
+        ids = kwargs.get('ids')
+
+        if ids:
+            ids_list = ids.split(',')
+            queryset = UserProfile.objects.filter(id__in=ids_list)
+            # self.check_object_permissions(request, queryset)
+            deleted_count, _ = queryset.delete()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
 

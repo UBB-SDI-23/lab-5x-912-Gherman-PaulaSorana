@@ -6,6 +6,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 import { FullSwimmer } from "../../models/FullSwimmer";
 import { BACKEND_API_URL } from "../../constants";
+import { toast } from "react-toastify";
 
 
 export const FanUpdate = () => {
@@ -15,7 +16,7 @@ export const FanUpdate = () => {
 
 	const [loading, setLoading] = useState(true)
 	const [fan, setFan] = useState({
-        fan_first_name:"",
+        fan_first_name: "",
         fan_last_name:"",
         fan_nationality:"",
         fan_date_of_birth:"",
@@ -42,7 +43,16 @@ export const FanUpdate = () => {
 	const updateFan = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 		try {
-			await axios.put(`../../api/fan/${fanId}/`, fan);
+			const token = localStorage.getItem("token");
+			if (!token) {
+                toast.error("You are not logged in!");
+                return;
+            }
+			
+			await axios.put(`../../api/fan/${fanId}/`, fan, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }});
 			navigate(`/fans/${fanId}`);
 		} catch (error:any) {
 			console.log(error.response.data.fan_email[0]);
