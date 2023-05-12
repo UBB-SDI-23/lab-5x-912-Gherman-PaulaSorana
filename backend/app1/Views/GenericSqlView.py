@@ -19,7 +19,9 @@ class GenericSqlView(APIView):
         self.add_indexes_path = add_index_path
 
     def post(self, request: Request) -> Response:
+        print("/n/n/n/n/n")
         print(request.user)
+        print("/n/n/n/n/n")
         self.check_permissions(request)
 
         if self.drop_indexes_path != '':
