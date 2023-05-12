@@ -15,6 +15,8 @@ class GenericSqlView(APIView):
     def __init__(self, script_path: str, drop_index_path: str = '', add_index_path: str = '') -> None:
         super().__init__()
         self.script_path = script_path
+        self.drop_indexes_path = drop_index_path
+        self.add_indexes_path = add_index_path
 
     def post(self, request: Request) -> Response:
         self.check_permissions(request)
