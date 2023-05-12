@@ -8,7 +8,14 @@ export const DataManagement = () => {
 
   async function generateData(table: string) {
     try {
-        await axios.post(`${BACKEND_API_URL}/database/${table}/generate/`);
+        const token = localStorage.getItem("token");
+			if (!token) {
+                return;
+            }
+        await axios.post(`${BACKEND_API_URL}/database/${table}/generate/`,  {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }});
     } catch (error: any) {
         console.log(error.response.status);
         return;
@@ -18,7 +25,14 @@ export const DataManagement = () => {
 
   async function truncateData(table: string) {
     try {
-        await axios.post(`${BACKEND_API_URL}/database/${table}/truncate/`);
+        const token = localStorage.getItem("token");
+			if (!token) {
+                return;
+            }
+        await axios.post(`${BACKEND_API_URL}/database/${table}/truncate/`,  {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }});
     } catch (error: any) {
         console.log(error.response.status);
         return;
