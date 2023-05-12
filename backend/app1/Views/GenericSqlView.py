@@ -7,7 +7,7 @@ from app1.run_sql_data import run_sql_script
 
 
 class GenericSqlView(APIView):
-    permission_classes = [IsAdminOrReadOnly]
+    # permission_classes = [IsAdminOrReadOnly]
     script_path = ""
     drop_indexes_path = ""
     add_indexes_path = ""
