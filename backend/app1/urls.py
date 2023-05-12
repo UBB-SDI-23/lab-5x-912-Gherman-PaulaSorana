@@ -1,9 +1,14 @@
 from django.urls import path
 
+from .Views.CoachSqlView import CoachSqlView, TruncateCoachSqlView
+from .Views.FanSqlView import FanSqlView, TruncateFanSqlView
 from .Views.LoginView import LoginView
 from .Views.RegisterView import UserRegistrationView, UserActivationView
+from .Views.SwimmerFanSqlView import SwimmerFanSqlView, TruncateSwimmerFanSqlView
+from .Views.SwimmerSqlView import SwimmerSqlView, TruncateSwimmerSqlView
 from .Views.SwimmerViews import SwimmerListCreateView, SwimmerInfo, SwimmersWithAtLeastNYearsExp, SwimmersOrderedByName, \
     SwimmerBulk
+from .Views.TeamSqlView import TeamSqlView, TruncateTeamSqlView
 from .Views.TeamViews import TeamListCreateView, TeamInfo, TeamsOrderedByNoOfSwimmers, TeamsOrderedByName, TeamBulk
 from .Views.CoachViews import CoachInfo, CoachListCreateView, CoachBulk
 from .Views.FanViews import FanInfo, FanListCreateView, FansOrderedByAvgYoeOfSwimmersTheyAreFansOf, FansOrderedByName, \
@@ -45,4 +50,14 @@ urlpatterns = [
     path('swimmerfanBulk/<str:ids>/', SwimmerFanBulk().as_view(), name='swimmer_bulk'),
     path('fanBulk/<str:ids>/', FanBulk().as_view(), name='fan_bulk'),
     path('coachBulk/<str:ids>/', CoachBulk().as_view(), name='fan_bulk'),
+    path('database/teams/generate/', TeamSqlView.as_view()),
+    path('database/teams/truncate/', TruncateTeamSqlView.as_view()),
+    path('database/swimmers/generate/', SwimmerSqlView.as_view()),
+    path('database/swimmers/truncate/', TruncateSwimmerSqlView.as_view()),
+    path('database/coaches/generate/', CoachSqlView.as_view()),
+    path('database/coaches/truncate/', TruncateCoachSqlView.as_view()),
+    path('database/fans/generate/', FanSqlView.as_view()),
+    path('database/fans/truncate/', TruncateFanSqlView.as_view()),
+    path('database/swimmerfans/generate/', SwimmerFanSqlView.as_view()),
+    path('database/swimmerfans/truncate/', TruncateSwimmerFanSqlView.as_view()),
 ]
