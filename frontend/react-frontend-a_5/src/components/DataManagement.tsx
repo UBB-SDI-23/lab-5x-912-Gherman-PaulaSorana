@@ -1,4 +1,5 @@
 import { Button, Container } from "@mui/material";
+import { Box } from "@mui/system";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import { BACKEND_API_URL } from "../constants";
@@ -28,71 +29,72 @@ export const DataManagement = () => {
 
 
   return (
-    <Container sx={{ display: 'flex', flexDirection: 'row' }}>
-      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke'}} component={Link} sx={{ mr: 3 }} to="/teamsBulk">
+
+    <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', rowGap:2, columnGap:5 }}>
+      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke', width:"300px"}} component={Link} sx={{ mr: 3 }} to="/teamsBulk">
         BULK DELETE TEAMS
       </Button>
 
-      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke'}} onClick={async() => await generateData('teams')}>
+      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke', width:"300px"}} onClick={async() => await generateData('teams')}>
         GENERATE TEAMS
       </Button>
 
-      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke'}} onClick={async() => await truncateData('teams')}>
+      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke', width:"300px"}} onClick={async() => await truncateData('teams')}>
         TRUNCATE TEAMS
       </Button>
 
 
-      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke'}} component={Link} sx={{ mr: 3 }} to="/swimmersBulk">
+      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke', width:"300px"}} component={Link} sx={{ mr: 3 }} to="/swimmersBulk">
         BULK DELETE SWIMMERS
       </Button>
 
-      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke'}} onClick={async() => await generateData('swimmers')}>
+      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke', width:"300px"}} onClick={async() => await generateData('swimmers')}>
         GENERATE SWIMMERS
       </Button>
 
-      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke'}} onClick={async() => await truncateData('swimmers')}>
+      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke', width:"300px"}} onClick={async() => await truncateData('swimmers')}>
         TRUNCATE SWIMMERS
       </Button>
 
 
-      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke'}} component={Link} sx={{ mr: 3 }} to="/coachesBulk">
+      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke', width:"300px"}} component={Link} sx={{ mr: 3 }} to="/coachesBulk">
         BULK DELETE COACHES
       </Button>
 
-      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke'}} onClick={async() => await generateData('coaches')}>
+      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke', width:"300px"}} onClick={async() => await generateData('coaches')}>
         GENERATE COACHES
       </Button>
 
-      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke'}} onClick={async() => await truncateData('coaches')}>
+      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke', width:"300px"}} onClick={async() => await truncateData('coaches')}>
         TRUNCATE COACHES
       </Button>
 
 
-      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke'}} component={Link} sx={{ mr: 3 }} to="/fansBulk">
+      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke', width:"300px"}} component={Link} sx={{ mr: 3 }} to="/fansBulk">
         BULK DELETE FANS
       </Button>
 
-      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke'}} onClick={async() => await generateData('fans')}>
+      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke', width:"300px"}} onClick={async() => await generateData('fans')}>
         GENERATE FANS
       </Button>
 
-      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke'}} onClick={async() => await truncateData('fans')}>
+      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke', width:"300px"}} onClick={async() => await truncateData('fans')}>
         TRUNCATE FANS
       </Button>
 
-      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke'}} onClick={async() => await generateData('swimmerfans')}>
+      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke', width:"300px"}} onClick={async() => await generateData('swimmerfans')}>
         GENERATE SWIMMERFANS
       </Button>
 
-      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke'}} onClick={async() => await truncateData('swimmerfans')}>
+      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke', width:"300px"}} onClick={async() => await truncateData('swimmerfans')}>
         TRUNCATE SWIMMERFANS
       </Button>
 
-      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke'}} component={Link} sx={{ mr: 3 }} to="/usersBulk">
+      <Button style={{color:"whitesmoke", border: '1px solid whitesmoke', width:"300px"}} component={Link} sx={{ mr: 3 }} to="/usersBulk">
         BULK DELETE USERS
       </Button>
     
-    </Container>
+    </Box>
 
   );
 };
