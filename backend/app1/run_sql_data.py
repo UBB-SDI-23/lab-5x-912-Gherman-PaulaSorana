@@ -3,7 +3,7 @@ import subprocess
 
 
 def run_sql_script(path: str) -> None:
-    # os.environ["PGPASSWORD"] = os.environ["DB_PASSWORD"]
+    os.environ["PGPASSWORD"] = os.environ["DB_PASS"]
     # psql -h hostname -d database_name -U user_name -p 5432 -a -q -f filepath
     path = os.path.join('/home/ubuntu/', path)
     print(path)
