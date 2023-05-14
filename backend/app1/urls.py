@@ -16,7 +16,7 @@ from .Views.FanViews import FanInfo, FanListCreateView, FansOrderedByAvgYoeOfSwi
 from .Views.SwimmerFanViews import SwimmerFanListCreateView, SwimmerFanInfo, SwimmerFanBulk
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from .Views.UserView import UserDetail, UserList, UpdateUserRoleView, UserBulk
+from .Views.UserView import UserDetail, UserList, UpdateUserRoleView, UserBulk, UpdateUserPageSizeView
 
 urlpatterns = [
 
@@ -60,4 +60,5 @@ urlpatterns = [
     path('database/fans/truncate/', TruncateFanSqlView.as_view()),
     path('database/swimmerfans/generate/', SwimmerFanSqlView.as_view()),
     path('database/swimmerfans/truncate/', TruncateSwimmerFanSqlView.as_view()),
+    path("update-page-size/<str:id>/", UpdateUserPageSizeView.as_view()),
 ]

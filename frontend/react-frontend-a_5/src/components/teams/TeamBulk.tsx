@@ -20,7 +20,7 @@ import {
   import { Link } from "react-router-dom";
 import { BACKEND_API_URL } from "../../constants";
 import { Team } from "../../models/Team";
-import { UserRoles } from "../../models/UserRoles";
+import { UserDetails } from "../../models/UserRoles";
 import { Paginator } from "../pagination/Pagination";
 
   

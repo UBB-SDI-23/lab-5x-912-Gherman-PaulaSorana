@@ -3,6 +3,9 @@ import jwt_decode from 'jwt-decode';
 import { User } from '../models/User';
 import { Button, Card, CardContent, Container, Link, TextField } from '@mui/material';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import { toast, ToastContainer } from 'react-toastify';
+import { BACKEND_API_URL } from '../constants';
+import axios from 'axios';
 
 export const AppHome = () => {
 
@@ -48,20 +51,28 @@ export const AppHome = () => {
 			value={user.page_size}
 			type="number"
 			onChange={(event) => {
+				// changed
 				const size = Number(event.target.value);
-				if (size < 0 || size > 100) {
+				if (size < 1 || size > 100) {
+					toast.error('Page size must be between 1 and 100');
 					return;
 				}
 
-				setUser({
-					...user,
-					page_size: size
-				});
-				
-				localStorage.setItem('user', JSON.stringify({
-					...user,
-					page_size: size
-				}));
+				try {
+					axios.put(`${BACKEND_API_URL}/update-page-size/${user.id}/`, {
+						"page_size": user.page_size,
+					}, {
+						headers: {
+							Authorization: `Bearer ${localStorage.getItem("token")}`,
+						}
+					});
+
+					user.page_size = size;
+					localStorage.setItem('user', JSON.stringify(user));
+					setUser({ ...user });
+				} catch (error) {
+					toast.error("Error updating page size");
+				}
 			}}
 			/>
 		</>
@@ -144,6 +155,7 @@ export const AppHome = () => {
 
 			</CardContent>
 		</Card>
+		<ToastContainer />
 	</Container>
 	</>
 	)}

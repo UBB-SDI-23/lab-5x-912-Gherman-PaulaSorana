@@ -22,7 +22,7 @@ import { BACKEND_API_URL } from "../../constants";
 import { Swimmer } from "../../models/Swimmer";
 import { SwimmerFan } from "../../models/SwimmerFan";
 import { Team } from "../../models/Team";
-import { UserRoles } from "../../models/UserRoles";
+import { UserDetails } from "../../models/UserRoles";
 import { Paginator } from "../pagination/Pagination";
 
   

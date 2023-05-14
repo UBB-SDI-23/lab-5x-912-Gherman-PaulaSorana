@@ -262,7 +262,8 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
             "user_bio": user.user_bio,
             "user_date_of_birth": f'{user.user_date_of_birth}',
             "user_location": user.user_location,
-            "role": user.role
+            "role": user.role,
+            "page_size": user.page_size
         }
 
         data["refresh"] = str(refresh)
@@ -271,7 +272,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         return data
 
 
-class UsernameAndRoleSerializer(serializers.ModelSerializer[UserProfile]):
+class UserDetailsSerializer(serializers.ModelSerializer[UserProfile]):
     username = serializers.SerializerMethodField()
 
     def get_username(self, user_profile: UserProfile) -> str:
@@ -283,5 +284,6 @@ class UsernameAndRoleSerializer(serializers.ModelSerializer[UserProfile]):
             "id",
             "username",
             "role",
+            "page_size"
         )
 

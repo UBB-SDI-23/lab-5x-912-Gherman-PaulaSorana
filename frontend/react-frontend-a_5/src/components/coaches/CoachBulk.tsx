@@ -23,7 +23,7 @@ import { Coach } from "../../models/Coach";
 import { Fan } from "../../models/Fan";
 import { Swimmer } from "../../models/Swimmer";
 import { Team } from "../../models/Team";
-import { UserRoles } from "../../models/UserRoles";
+import { UserDetails } from "../../models/UserRoles";
 import { Paginator } from "../pagination/Pagination";
 
   

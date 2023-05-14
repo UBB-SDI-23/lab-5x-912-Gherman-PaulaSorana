@@ -1,7 +1,8 @@
 export {};
 
-export interface UserRoles{
+export interface UserDetails{
     id:number;
     username: string;
     role:string;
+    page_size:number;
 };

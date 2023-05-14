@@ -12,7 +12,7 @@ export const DataManagement = () => {
 			if (!token) {
                 return;
             }
-        await axios.post(`${BACKEND_API_URL}/database/${table}/generate/`,  {
+        await axios.post(`${BACKEND_API_URL}/database/${table}/generate/`,  {}, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }});
@@ -29,7 +29,7 @@ export const DataManagement = () => {
 			if (!token) {
                 return;
             }
-        await axios.post(`${BACKEND_API_URL}/database/${table}/truncate/`,  {
+        await axios.post(`${BACKEND_API_URL}/database/${table}/truncate/`, {}, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }});

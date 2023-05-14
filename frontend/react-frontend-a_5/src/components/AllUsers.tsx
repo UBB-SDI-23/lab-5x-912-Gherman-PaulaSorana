@@ -13,11 +13,13 @@ import {
     Select,
     MenuItem,
     Paper,
+    TextField,
 } from "@mui/material";import axios from "axios";
  import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import { BACKEND_API_URL } from "../constants";
-import { UserRoles } from "../models/UserRoles";
+import { UserDetails } from "../models/UserRoles";
 import { Paginator } from "./pagination/Pagination";
 
 
@@ -88,11 +90,12 @@ const Users = () => {
                                     <TableCell sx={{ color: "#2471A3", fontWeight: "bold" }} align="center">#</TableCell>
                                     <TableCell sx={{ color: "#2471A3", fontWeight: "bold" }} align="center">Username</TableCell>
                                     <TableCell sx={{ color: "#2471A3", fontWeight: "bold" }} align="center">Role</TableCell>
+                                    <TableCell sx={{ color: "#2471A3", fontWeight: "bold" }} align="center">Page Size</TableCell>
                                 </TableRow>
                             </TableHead>
 
                             <TableBody>
-                                {users.map((user: UserRoles, index) => (
+                                {users.map((user: UserDetails, index) => (
                                     <TableRow key={user.id}>
                                         <TableCell sx={{ color: "#2471A3" }} align="center">{(page - 1) * rowsPerPage + index + 1}</TableCell>
                                         <TableCell sx={{ color: "#2471A3" }} align="center">
@@ -100,6 +103,7 @@ const Users = () => {
                                                 {user.username}
                                             </Link>
                                         </TableCell>
+                                        <TableCell>
                                         <Select
                                             labelId="role-selct"
                                             id="role-select"
@@ -123,6 +127,39 @@ const Users = () => {
                                             <MenuItem value={"moderator"}>Moderator</MenuItem>
                                             <MenuItem value={"admin"}>Admin</MenuItem>
                                         </Select>
+                                        </TableCell>
+
+                                        <TableCell sx={{ color: "whitesmoke" }} align="center">
+                                            <TextField
+                                                label="Page size"
+                                                type="number"
+                                                value={user.page_size}
+                                                onChange={(e) => {
+                                                    const size = Number(e.target.value);
+                                                    if (size < 1 || size > 100) {
+                                                        toast.error("Page size must be between 1 and 100");
+                                                        return;
+                                                    }
+
+                                                    user.page_size = size;
+                                                    setUers([...users]);
+                                                    try {
+                                                        axios.put(`${BACKEND_API_URL}/update-page-size/${user.id}/`, {
+                                                            "page_size": user.page_size,
+                                                        }, {
+                                                            headers: {
+                                                                Authorization: `Bearer ${localStorage.getItem("token")}`,
+                                                            }
+                                                        });
+
+                                                    } catch (error) {
+                                                        toast.error("Error updating page size");
+                                                    }
+
+                                                }}
+                                            />
+                                        </TableCell>
+
                                     </TableRow>))}
 
                             </TableBody>
@@ -142,7 +179,7 @@ const Users = () => {
                 </>
             )}
 
-
+            <ToastContainer />                                   
         </Container>
     )
 }

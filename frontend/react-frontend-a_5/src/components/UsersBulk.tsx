@@ -19,7 +19,7 @@ import {
   import { useEffect, useState } from "react";
   import { Link } from "react-router-dom";
   import { BACKEND_API_URL } from "../constants";
-  import { UserRoles } from "../models/UserRoles";
+  import { UserDetails } from "../models/UserRoles";
   import { Paginator } from "./pagination/Pagination";
   
   const UsersBulk = () => {
@@ -149,7 +149,7 @@ import {
                         </TableRow>
                         </TableHead>
                         <TableBody>
-                        {users.map((user: UserRoles, index) => (
+                        {users.map((user: UserDetails, index) => (
                         <TableRow key={user.id}>
                             <TableCell sx={{ color: "#2471A3" }} align="center">
                             {(page - 1) * rowsPerPage + index + 1}

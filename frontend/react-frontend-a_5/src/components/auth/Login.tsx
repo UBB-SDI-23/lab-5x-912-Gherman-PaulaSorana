@@ -29,10 +29,7 @@ export const LoginForm = () => {
             const decoded: any = jwt_decode(access_token);
             const user = decoded['user'];
             localStorage.setItem('user_id', user["id"]);
-            localStorage.setItem('user', JSON.stringify({
-                ...user,
-                page_size: 10
-            }));
+            localStorage.setItem('user', JSON.stringify(user));
             console.log(response.data);
             navigate(`/`);
         }
