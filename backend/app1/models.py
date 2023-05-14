@@ -103,6 +103,7 @@ class UserProfile(models.Model):
         ),
         default="regular",
     )
+    page_size = models.IntegerField(default=10)
 
 
 
